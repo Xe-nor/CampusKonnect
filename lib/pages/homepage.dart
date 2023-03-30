@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
-class homepage extends StatelessWidget {
+class Homepage extends StatelessWidget {
   final int days = 30;
   final String name = "codeee";
+
+  const Homepage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
