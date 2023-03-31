@@ -27,7 +27,7 @@ class Loginpage extends StatelessWidget {
                   decoration: const InputDecoration(
                     hintText: "Enter E-mail ID",
                     labelText: "E-mail ID",
-                   ),
+                  ),
                 ),
                 TextFormField(
                   obscureText: true,
@@ -36,8 +36,12 @@ class Loginpage extends StatelessWidget {
                     labelText: "Password",
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text("Sign in"),
                 )
               ],
             ),
