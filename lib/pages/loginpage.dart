@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 
-class Loginpage extends StatelessWidget {
+class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
 
+  @override
+  State<Loginpage> createState() => _LoginpageState();
+}
+
+class _LoginpageState extends State<Loginpage> {
+  bool changebutton = false;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -39,26 +45,75 @@ class Loginpage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 25,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
+                  InkWell(
+                    onTap: () async {
+                      setState(() {
+                        changebutton = true;
+                      });
+                      await Future.delayed(const Duration(seconds: 1));
                       Navigator.pushNamed(context, MyRoutes.homeRoute);
                     },
-                    style:
-                        TextButton.styleFrom(minimumSize: const Size(150, 40)),
-                    child: const Text("Sign in"),
+                    child: AnimatedContainer(
+                      duration: const Duration(seconds: 1),
+                      width: changebutton ? 50 : 150,
+                      height: 50,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: const Color(0xff5669FF),
+                        borderRadius:
+                            BorderRadius.circular(changebutton ? 100 : 0),
+                      ),
+                      child: changebutton
+                          ? const Icon(
+                              Icons.done,
+                              color: Colors.white,
+                            )
+                          : const Text(
+                              "Sign in",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15,
+                              ),
+                            ),
+                    ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, MyRoutes.homeRoute);
-                      },
-                      style: TextButton.styleFrom(
-                          minimumSize: const Size(300, 40)),
-                      child: const Text("Sign in with Google"))
+                  InkWell(
+                    onTap: () async {
+                      setState(() {
+                        changebutton = true;
+                      });
+                      await Future.delayed(const Duration(seconds: 1));
+                      Navigator.pushNamed(context, MyRoutes.homeRoute);
+                    },
+                    child: AnimatedContainer(
+                      duration: const Duration(seconds: 1),
+                      width: changebutton ? 50 : 250,
+                      height: 50,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: const Color(0xff5669FF),
+                        borderRadius:
+                            BorderRadius.circular(changebutton ? 100 : 0),
+                      ),
+                      child: changebutton
+                          ? const Icon(
+                              Icons.done,
+                              color: Colors.white,
+                            )
+                          : const Text(
+                              "Sign in with Google",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15,
+                              ),
+                            ),
+                    ),
+                  ),
                 ],
               ),
             )
