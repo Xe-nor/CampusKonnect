@@ -12,7 +12,7 @@ class Controller extends GetxController {
     await Future.delayed(const Duration(milliseconds: 2000));
     // Navigator.pushReplacement(
     //     context, MaterialPageRoute(builder: (context) => const Loginpage()));
-    Get.to(const Loginpage(),
+    Get.to(() => const Loginpage(),
         transition: Transition.cupertino,
         duration: const Duration(milliseconds: 1500));
   }
