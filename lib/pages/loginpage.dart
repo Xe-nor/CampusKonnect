@@ -20,6 +20,7 @@ class _LoginpageState extends State<Loginpage> {
         },
       );
       await Future.delayed(const Duration(seconds: 1));
+      // ignore: use_build_context_synchronously
       await Navigator.pushNamed(context, MyRoutes.homeRoute);
     }
 
@@ -38,6 +39,7 @@ class _LoginpageState extends State<Loginpage> {
         },
       );
       await Future.delayed(const Duration(seconds: 1));
+      // ignore: use_build_context_synchronously
       await Navigator.pushNamed(context, MyRoutes.homeRoute);
     }
 
@@ -63,7 +65,7 @@ class _LoginpageState extends State<Loginpage> {
                 padding: const EdgeInsets.only(
                     left: 20, top: 100, right: 20, bottom: 30),
                 child: Image.asset(
-                  "assets/images/nobglogo.png",
+                  "assets/images/nobglogo2.png",
                   fit: BoxFit.contain,
                 ),
               ),

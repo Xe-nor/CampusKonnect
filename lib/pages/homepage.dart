@@ -10,7 +10,8 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text("Catalog App")),
+        title:const Text("Catalog App"),
+        centerTitle: true,
       ),
       body: Center(
         child: Text("Welcome $days and $name"),

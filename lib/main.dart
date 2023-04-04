@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/homepage.dart';
 import 'package:flutter_application_1/pages/loginpage.dart';
+import 'package:flutter_application_1/pages/splashscreen.dart';
 import 'package:flutter_application_1/utils/routes.dart';
+// ignore: depend_on_referenced_packages
+import 'package:get/get.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      title: "CampusKonnect",
       themeMode: ThemeMode.dark,
-      theme: ThemeData(
-        primarySwatch: Colors.cyan,
-
-        // fontFamily: GoogleFonts.lato().fontFamily,
-      ),
       darkTheme: ThemeData(
-        brightness: Brightness.dark,
-      ),
-      initialRoute: "/",
+          canvasColor: const Color(0xff22222C),
+          brightness: Brightness.dark,
+          appBarTheme: const AppBarTheme(color: Color(0xff2D2D3A))),
+      initialRoute: MyRoutes.splashscreen,
       routes: {
         "/": (context) => const Loginpage(),
+        MyRoutes.splashscreen: (context) => Splashscreen(),
         MyRoutes.homeRoute: (context) => const Homepage(),
         MyRoutes.loginRoute: (context) => const Loginpage(),
       },
