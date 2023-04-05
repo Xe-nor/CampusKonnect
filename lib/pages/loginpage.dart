@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/utils/routes.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -54,114 +55,132 @@ class _LoginpageState extends State<Loginpage> {
   Widget build(BuildContext context) {
     return Material(
       child: SingleChildScrollView(
-        child: Form(
-          key: formkey,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 100,
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 100,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 20, top: 100, right: 20, bottom: 30),
+              child: Image.asset(
+                "assets/images/nobglogo2.png",
+                fit: BoxFit.contain,
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 20, top: 100, right: 20, bottom: 30),
-                child: Image.asset(
-                  "assets/images/nobglogo2.png",
-                  fit: BoxFit.contain,
+            ),
+            loginform(context)
+          ],
+        ),
+      ),
+    );
+  }
+
+  Form loginform(BuildContext context) {
+    return Form(
+      key: formkey,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextFormField(
+              decoration: const InputDecoration(
+                  fillColor: Color(0xff393948),
+                  filled: true,
+                  enabledBorder:
+                      OutlineInputBorder(borderSide: BorderSide.none),
+                  prefixIcon: Icon(Icons.email),
+                  hintText: "Enter E-mail ID",
+                  labelText: "E-mail ID",
+                  border: OutlineInputBorder()),
+              validator: (value) {
+                if (value == "") {
+                  return "Username cant be empty";
+                }
+                return null;
+              },
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              obscureText: true,
+              decoration: const InputDecoration(
+                  fillColor: Color(0xff393948),
+                  filled: true,
+                  enabledBorder:
+                      OutlineInputBorder(borderSide: BorderSide.none),
+                  prefixIcon: Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                      onPressed: null, icon: Icon(Icons.remove_red_eye)),
+                  hintText: "Enter Password",
+                  labelText: "Password",
+                  border: OutlineInputBorder()),
+              validator: (value) {
+                if (value == "") {
+                  return "Password cant be empty";
+                }
+                return null;
+              },
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                  onPressed: () {}, child: const Text("Forgot Password?")),
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () => movetohome(context),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xff5669FF)),
+                child: const Text(
+                  "Sign in",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                  ),
                 ),
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-                child: Column(
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 0),
+              child: Text("OR"),
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: OutlinedButton.icon(
+                onPressed: () => movetohome(context),
+                icon: const Icon(
+                  FontAwesomeIcons.google,
+                  size: 17,
+                ),
+                label: const Text(
+                  "Sign in with Google",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: const Text.rich(
+                TextSpan(
+                  text: "Don't have an account? ",
+                  style: TextStyle(color: Colors.white60),
                   children: [
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: "Enter E-mail ID",
-                        labelText: "E-mail ID",
-                      ),
-                      validator: (value) {
-                        if (value == "") {
-                          return "Username cant be empty";
-                        }
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        hintText: "Enter Password",
-                        labelText: "Password",
-                      ),
-                      validator: (value) {
-                        if (value == "") {
-                          return "Password cant be empty";
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    InkWell(
-                      onTap: () => movetohome(context),
-                      child: AnimatedContainer(
-                        duration: const Duration(seconds: 1),
-                        width: changebutton1 ? 50 : 150,
-                        height: 50,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: const Color(0xff5669FF),
-                          borderRadius:
-                              BorderRadius.circular(changebutton1 ? 100 : 0),
-                        ),
-                        child: changebutton1
-                            ? const Icon(
-                                Icons.done,
-                                color: Colors.white,
-                              )
-                            : const Text(
-                                "Sign in",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15,
-                                ),
-                              ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    InkWell(
-                      onTap: () => movetohome2(context),
-                      child: AnimatedContainer(
-                        duration: const Duration(seconds: 1),
-                        width: changebutton2 ? 50 : 250,
-                        height: 50,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: const Color(0xff5669FF),
-                          borderRadius:
-                              BorderRadius.circular(changebutton2 ? 100 : 0),
-                        ),
-                        child: changebutton2
-                            ? const Icon(
-                                Icons.done,
-                                color: Colors.white,
-                              )
-                            : const Text(
-                                "Sign in with Google",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15,
-                                ),
-                              ),
-                      ),
-                    ),
+                    TextSpan(
+                        text: "Sign Up!",
+                        style: TextStyle(color: Colors.blueAccent)),
                   ],
                 ),
-              )
-            ],
-          ),
+              ),
+            ),
+          ],
         ),
       ),
     );
