@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/signup.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -13,46 +15,26 @@ class _LoginpageState extends State<Loginpage> {
   bool changebutton1 = false;
   bool changebutton2 = false;
   final formkey = GlobalKey<FormState>();
+
   movetohome(BuildContext context) async {
     if (formkey.currentState!.validate()) {
-      setState(
-        () {
-          changebutton1 = true;
-        },
-      );
       await Future.delayed(const Duration(seconds: 1));
       // ignore: use_build_context_synchronously
       await Navigator.pushNamed(context, MyRoutes.homeRoute);
     }
-
-    setState(
-      () {
-        changebutton1 = false;
-      },
-    );
   }
 
   movetohome2(BuildContext context) async {
     if (formkey.currentState!.validate()) {
-      setState(
-        () {
-          changebutton2 = true;
-        },
-      );
       await Future.delayed(const Duration(seconds: 1));
       // ignore: use_build_context_synchronously
       await Navigator.pushNamed(context, MyRoutes.homeRoute);
     }
-
-    setState(
-      () {
-        changebutton2 = false;
-      },
-    );
   }
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Material(
       child: SingleChildScrollView(
         child: Column(
@@ -66,6 +48,7 @@ class _LoginpageState extends State<Loginpage> {
               child: Image.asset(
                 "assets/images/nobglogo2.png",
                 fit: BoxFit.contain,
+                height: size.height * 0.12,
               ),
             ),
             loginform(context)
@@ -79,11 +62,12 @@ class _LoginpageState extends State<Loginpage> {
     return Form(
       key: formkey,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
+              //
               decoration: const InputDecoration(
                   fillColor: Color(0xff393948),
                   filled: true,
@@ -130,7 +114,7 @@ class _LoginpageState extends State<Loginpage> {
             ),
             SizedBox(
               width: double.infinity,
-              height: 50,
+              height: 40,
               child: ElevatedButton(
                 onPressed: () => movetohome(context),
                 style: ElevatedButton.styleFrom(
@@ -150,7 +134,7 @@ class _LoginpageState extends State<Loginpage> {
             ),
             SizedBox(
               width: double.infinity,
-              height: 50,
+              height: 40,
               child: OutlinedButton.icon(
                 onPressed: () => movetohome(context),
                 icon: const Icon(
@@ -167,7 +151,9 @@ class _LoginpageState extends State<Loginpage> {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(const Signupscreen());
+              },
               child: const Text.rich(
                 TextSpan(
                   text: "Don't have an account? ",
