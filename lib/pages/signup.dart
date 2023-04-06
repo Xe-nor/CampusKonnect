@@ -13,7 +13,9 @@ class Signupscreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Get.to(const Loginpage());
+              Get.to(const Loginpage(),
+                  transition: Transition.cupertinoDialog,
+                  duration: const Duration(milliseconds: 1500));
             },
             icon: const Icon(Icons.arrow_back)),
         elevation: 0,
@@ -162,7 +164,9 @@ class Signupscreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.to(const Loginpage());
+                        Get.to(const Loginpage(),
+                            transition: Transition.cupertinoDialog,
+                            duration: const Duration(milliseconds: 1500));
                       },
                       child: const Text.rich(
                         TextSpan(

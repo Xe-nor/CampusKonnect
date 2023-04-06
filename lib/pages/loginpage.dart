@@ -152,7 +152,9 @@ class _LoginpageState extends State<Loginpage> {
             ),
             TextButton(
               onPressed: () {
-                Get.to(const Signupscreen());
+                Get.to(const Signupscreen(),
+                    transition: Transition.cupertino,
+                    duration: const Duration(milliseconds: 1500));
               },
               child: const Text.rich(
                 TextSpan(
