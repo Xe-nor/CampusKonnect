@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "557886313030",
+    "firebase_url": "https://campuskonnect-3e383-default-rtdb.firebaseio.com",
+    "project_id": "campuskonnect-3e383",
+    "storage_bucket": "campuskonnect-3e383.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:557886313030:android:72608b912218b0e1557047",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "557886313030-p9ot0bq3kcsfemg525qepobtcudmd4cb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_application_1",
+            "certificate_hash": "9b27889fff31e258ee089600213e3eaf99f0cfc2"
+          }
+        },
+        {
+          "client_id": "557886313030-8pqfi68tlihrn36k51tatolclv5vf874.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGRw9KP-BBWuNOPnWJm6g0WBh1fIif5ZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "557886313030-8pqfi68tlihrn36k51tatolclv5vf874.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
