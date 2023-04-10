@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/signup.dart';
 import 'package:flutter_application_1/utils/routes.dart';
+import 'package:flutter_application_1/widgets/textform.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
@@ -68,48 +69,19 @@ class _LoginpageState extends State<Loginpage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextFormField(   
-              //
-              controller: TextEditingController controller ,
-              decoration: const InputDecoration(
-                  fillColor: Color(0xff393948),
-                  filled: true,
-                  enabledBorder:
-                      OutlineInputBorder(borderSide: BorderSide.none),
-                  prefixIcon: Icon(Icons.email),
-                  hintText: "Enter E-mail ID",
-                  labelText: "E-mail ID",
-                  border: OutlineInputBorder()),
-              validator: (value) {
-                if (value == "") {
-                  return "Username cant be empty";
-                }
-                return null;
-              },
-            ),
+            const textform(
+                labeltxt: "E-mail",
+                hinttxt: "Enter your E-mail",
+                icon: Icons.email,
+                obscure: false),
             const SizedBox(
               height: 20,
             ),
-            TextFormField(
-              obscureText: true,
-              decoration: const InputDecoration(
-                  fillColor: Color(0xff393948),
-                  filled: true,
-                  enabledBorder:
-                      OutlineInputBorder(borderSide: BorderSide.none),
-                  prefixIcon: Icon(Icons.lock),
-                  suffixIcon: IconButton(
-                      onPressed: null, icon: Icon(Icons.remove_red_eye)),
-                  hintText: "Enter Password",
-                  labelText: "Password",
-                  border: OutlineInputBorder()),
-              validator: (value) {
-                if (value == "") {
-                  return "Password cant be empty";
-                }
-                return null;
-              },
-            ),
+            const textform(
+                labeltxt: "Password",
+                hinttxt: "Enter your Password",
+                icon: Icons.key,
+                obscure: true),
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(

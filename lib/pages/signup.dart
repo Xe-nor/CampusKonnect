@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/loginpage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import '../widgets/textform.dart';
 
 class Signupscreen extends StatelessWidget {
   const Signupscreen({super.key});
@@ -57,69 +58,36 @@ class Signupscreen extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 child: Column(
                   children: [
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: "Name",
-                        hintText: "Enter your Name",
-                        fillColor: Color(0xff393948),
-                        filled: true,
-                        enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
-                        prefixIcon: Icon(Icons.email),
-                        border: OutlineInputBorder(),
-                      ),
+                    const textform(
+                      obscure: false,
+                      hinttxt: 'Enter your Name',
+                      icon: Icons.person,
+                      labeltxt: 'Name',
                     ),
                     const SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        labelText: "E-mail",
-                        hintText: "Enter your E-mail",
-                        fillColor: Color(0xff393948),
-                        filled: true,
-                        enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
-                        prefixIcon: Icon(Icons.email),
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
+                    const textform(
+                        obscure: false,
+                        labeltxt: "E-mail",
+                        hinttxt: "Enter your E-mail",
+                        icon: Icons.email),
                     const SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        labelText: "Password",
-                        hintText: "Enter your Password",
-                        fillColor: Color(0xff393948),
-                        suffixIcon: IconButton(
-                            onPressed: null, icon: Icon(Icons.remove_red_eye)),
-                        filled: true,
-                        enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
-                        prefixIcon: Icon(Icons.key),
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
+                    const textform(
+                        labeltxt: "Password",
+                        hinttxt: "Enter your Password",
+                        icon: Icons.key,
+                        obscure: true),
                     const SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        labelText: "Confirm Password",
-                        hintText: "Re-enter your Password",
-                        suffixIcon: IconButton(
-                            onPressed: null, icon: Icon(Icons.remove_red_eye)),
-                        fillColor: Color(0xff393948),
-                        filled: true,
-                        enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
-                        prefixIcon: Icon(Icons.key),
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
+                    const textform(
+                        labeltxt: "Confirm Password",
+                        hinttxt: "Re-enter your Password",
+                        icon: Icons.key,
+                        obscure: true),
                     const SizedBox(
                       height: 30,
                     ),
@@ -190,3 +158,6 @@ class Signupscreen extends StatelessWidget {
     );
   }
 }
+
+// ignore: camel_case_types
+
