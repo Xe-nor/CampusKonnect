@@ -7,6 +7,8 @@ import 'package:flutter_application_1/pages/splashscreen.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

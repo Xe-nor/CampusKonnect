@@ -28,7 +28,7 @@ class Signupscreen extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.12,
+              height: MediaQuery.of(context).size.height * 0.1,
               padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
               child: Column(
                 children: const [

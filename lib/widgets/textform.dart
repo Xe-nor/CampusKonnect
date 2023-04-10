@@ -15,8 +15,6 @@ class textform extends StatelessWidget {
 
   @override
 
-
-  
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: obscure,
