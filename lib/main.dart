@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           color: Color(0xff2D2D3A),
         ),
       ),
-      initialRoute: MyRoutes.profilepage,
+      initialRoute: MyRoutes.splashscreen,
       routes: {
         "/": (context) => const Loginpage(),
         MyRoutes.splashscreen: (context) => Splashscreen(),
