@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/signup.dart';
 import 'package:flutter_application_1/utils/routes.dart';
@@ -48,7 +50,6 @@ class _LoginpageState extends State<Loginpage> {
                   left: 20, top: 100, right: 20, bottom: 30),
               child: Image.asset(
                 "assets/images/nobglogo2.png",
-                
                 fit: BoxFit.contain,
                 height: size.height * 0.12,
               ),
@@ -90,11 +91,20 @@ class _LoginpageState extends State<Loginpage> {
               width: double.infinity,
               height: 40,
               child: ElevatedButton(
-                onPressed: () => movetohome(context),
+                //onPressed: () => movetohome(context),
+                onPressed: () {
+                  FirebaseAuth.instance
+                      .signInWithEmailAndPassword(
+                          email: _emailTextController.text, password: password)
+                      .then((value) {
+                    movetohome(context);
+                  });
+                },
+
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff5669FF)),
                 child: const Text(
-                  "Sign in",
+                  "Log in",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 15,
