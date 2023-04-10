@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/signup.dart';
 import 'package:flutter_application_1/utils/routes.dart';
@@ -66,8 +68,9 @@ class _LoginpageState extends State<Loginpage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextFormField(
+            TextFormField(   
               //
+              controller: TextEditingController controller ,
               decoration: const InputDecoration(
                   fillColor: Color(0xff393948),
                   filled: true,
@@ -116,7 +119,16 @@ class _LoginpageState extends State<Loginpage> {
               width: double.infinity,
               height: 40,
               child: ElevatedButton(
-                onPressed: () => movetohome(context),
+                //onPressed: () => movetohome(context),
+                onPressed: () {
+                  FirebaseAuth.instance
+                      .signInWithEmailAndPassword(
+                          email: _emailTextController.text, password: password)
+                      .then((value) {
+                    movetohome(context);
+                  });
+                },
+
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff5669FF)),
                 child: const Text(
