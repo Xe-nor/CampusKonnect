@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/homepage.dart';
 import 'package:get/get.dart';
 
 import 'loginpage.dart';
@@ -12,7 +13,7 @@ class Profile extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Get.to(const Loginpage(),
+              Get.to(const Homepage(),
                   transition: Transition.cupertinoDialog,
                   duration: const Duration(milliseconds: 1500));
             },

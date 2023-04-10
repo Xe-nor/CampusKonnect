@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/profilepage.dart';
+import 'package:get/get.dart';
 
 class Homepage extends StatelessWidget {
   final int days = 30;
@@ -10,13 +12,34 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:const Text("Catalog App"),
-        centerTitle: true,
+        elevation: 0,
+        // backgroundColor: const Color(0xff22222C),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Get.to(const Profile(),
+                  transition: Transition.cupertinoDialog,
+                  duration: const Duration(milliseconds: 1500));
+            },
+            child: const CircleAvatar(
+              backgroundImage: AssetImage("assets/images/defaultpic.jpg"),
+            ),
+          ),
+        ],
       ),
-      body: Center(
-        child: Text("Welcome $days and $name"),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+          child: Column(
+            children: [
+              const ListTile(
+                
+
+              ),
+            ],
+          ),
+        ),
       ),
-      // drawer: Drawer(),
     );
   }
 }

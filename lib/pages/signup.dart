@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/homepage.dart';
 import 'package:flutter_application_1/pages/loginpage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -14,7 +15,7 @@ class Signupscreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Get.to(const Loginpage(),
+              Get.to(const Homepage(),
                   transition: Transition.cupertinoDialog,
                   duration: const Duration(milliseconds: 1500));
             },
