@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/homepage.dart';
+import 'package:flutter_application_1/pages/informationpage.dart';
 import 'package:flutter_application_1/pages/loginpage.dart';
+// import 'package:flutter_application_1/pages/mainpage.dart';
 import 'package:flutter_application_1/pages/profilepage.dart';
 import 'package:flutter_application_1/pages/signup.dart';
 import 'package:flutter_application_1/pages/splashscreen.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:google_fonts/google_fonts.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -30,14 +32,16 @@ class MyApp extends StatelessWidget {
           color: Color(0xff2D2D3A),
         ),
       ),
-      initialRoute: MyRoutes.splashscreen,
+      initialRoute: MyRoutes.profilepage,
       routes: {
         "/": (context) => const Loginpage(),
         MyRoutes.splashscreen: (context) => Splashscreen(),
         MyRoutes.homeRoute: (context) => const Homepage(),
         MyRoutes.loginRoute: (context) => const Loginpage(),
         MyRoutes.signupscreen: (context) => const Signupscreen(),
-        MyRoutes.profilepage: (context) => const Profile(),
+        MyRoutes.profilepage: (context) => const profile(),
+        MyRoutes.infopage: (context) => const info(),
+        // MyRoutes.mainpage: (context) => const mainpage(),
       },
     );
   }

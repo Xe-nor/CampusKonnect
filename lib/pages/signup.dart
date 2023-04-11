@@ -15,7 +15,7 @@ class Signupscreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Get.to(const Homepage(),
+              Get.to( const Homepage(),
                   transition: Transition.cupertinoDialog,
                   duration: const Duration(milliseconds: 1500));
             },
@@ -28,8 +28,8 @@ class Signupscreen extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.1,
-              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+              height: MediaQuery.of(context).size.height * 0.15,
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 25),
               child: Column(
                 children: const [
                   Text(

@@ -23,6 +23,7 @@ class Auth with ChangeNotifier {
         },
       ),
     );
+    // ignore: avoid_print
     print(json.decode(response.body));
   }
 
