@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/homepage.dart';
+// import 'package:flutter_application_1/pages/homepage.dart';
 // import 'package:flutter_application_1/pages/informationpage.dart';
 import 'package:flutter_application_1/pages/loginpage.dart';
 import 'package:get/get.dart';
@@ -20,138 +20,116 @@ class _profileState extends State<profile> {
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     int currentIndex = 3;
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () {
-              Get.to(const Homepage(),
-                  transition: Transition.cupertinoDialog,
-                  duration: const Duration(milliseconds: 1500));
-            },
-            icon: const Icon(Icons.arrow_back)),
-        elevation: 0,
-        backgroundColor: const Color(0xff22222C),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-          child: Column(
-            children: [
-              //!-----Profile pic
-              const SizedBox(
-                width: 120,
-                height: 120,
-                child: CircleAvatar(
-                  // foregroundImage: AssetImage("assets/images/#"),
-                  backgroundImage: AssetImage("assets/images/defaultpic.jpg"),
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          padding:
+              const EdgeInsets.only(top: 50, left: 20, right: 20, bottom: 20),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                //!-----Profile pic
+                const SizedBox(
+                  width: 120,
+                  height: 120,
+                  child: CircleAvatar(
+                    // foregroundImage: AssetImage("assets/images/#"),
+                    backgroundImage: AssetImage("assets/images/defaultpic.jpg"),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              //!-----Name
-              Text(
-                "Nameabc",
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-              //!-----Email
-              Text(
-                "email@abc",
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Divider(),
-              const SizedBox(
-                height: 10,
-              ),
-              //!-----MENU
-
-              profiletile(
-                text: "Information",
-                icon: Icons.info_outline_rounded,
-                trailing: true,
-                onPress: () {
-                  // dialogbox(context);
-                },
-              ),
-
-              profiletile(
-                text: "Logout",
-                icon: Icons.logout,
-                textColor: Colors.red,
-                trailing: false,
-                onPress: () {
-                  Get.to(const Loginpage());
-                },
-              ),
-              // ElevatedButton(
-              //     onPressed: () {
-              //       showAboutDialog(
-              //         context: context,
-              //         applicationName: "CampusKonnect",
-              //         applicationVersion: "1.0.0",
-              //         applicationIcon: Image.asset("assets/images/logo.png"),
-              //       );
-              //     },
-              //     child: Text("data")),
-            ],
+                const SizedBox(
+                  height: 10,
+                ),
+                //!-----Name
+                Text(
+                  "Nameabc",
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                //!-----Email
+                Text(
+                  "email@abc",
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Divider(),
+                const SizedBox(
+                  height: 10,
+                ),
+                //!-----MENU
+                SizedBox(
+                  width: 300,
+                  height: 50,
+                  child: OutlinedButton.icon(
+                    style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: Colors.yellow)),
+                    onPressed: () {
+                      showAboutDialog(
+                        context: context,
+                        applicationName: "CampusKonnect",
+                        applicationVersion: "1.0.0",
+                        applicationIcon: Image.asset("assets/images/logo.png"),
+                        children: [
+                          Text(
+                            "Developers",
+                            style: Theme.of(context).textTheme.headlineSmall,
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "Amarendra Dash(2006258)",
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
+                          Text(
+                            "Mayur Raj Sarma(2006273)",
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
+                          Text(
+                            "Dhriti Das(2006069)",
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
+                          Text(
+                            "Rohit Raj(2006280)",
+                            style: Theme.of(context).textTheme.labelLarge,
+                          ),
+                        ],
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.info,
+                      color: Colors.grey,
+                    ),
+                    label: const Text("Information",
+                        style: TextStyle(fontSize: 20, color: Colors.white)),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  width: 300,
+                  height: 50,
+                  child: OutlinedButton.icon(
+                    style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: Colors.yellow)),
+                    onPressed: () {
+                      Get.to(const Loginpage());
+                    },
+                    icon: const Icon(
+                      Icons.logout,
+                      color: Colors.grey,
+                    ),
+                    label: const Text("Logout",
+                        style: TextStyle(fontSize: 20, color: Colors.red)),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-    );
-  }
-}
-
-// ignore: camel_case_types
-class profiletile extends StatelessWidget {
-  const profiletile({
-    super.key,
-    required this.text,
-    required this.icon,
-    this.textColor,
-    required this.trailing,
-    required this.onPress,
-  });
-  final String text;
-  final IconData icon;
-  final Color? textColor;
-  final bool trailing;
-  final VoidCallback? onPress;
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        onPress;
-      },
-      leading: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
-          color: Colors.grey.withOpacity(0.1),
-        ),
-        child: Icon(icon),
-      ),
-      title: Text(text,
-          style:
-              Theme.of(context).textTheme.titleLarge!.apply(color: textColor)),
-      trailing: trailing
-          ? Container(
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: Colors.grey.withOpacity(0.1),
-              ),
-              child: const Icon(
-                Icons.arrow_forward_ios,
-                size: 18,
-                color: Colors.grey,
-              ),
-            )
-          : null,
     );
   }
 }
