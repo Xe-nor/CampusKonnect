@@ -136,7 +136,6 @@ class CreateEvent extends StatelessWidget {
       darkTheme: ThemeData(
         canvasColor: const Color(0xff22222C),
         brightness: Brightness.dark,
-        
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -180,10 +179,26 @@ class MyCustomFormState extends State<MyCustomForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 5),
+            SizedBox(height: 6),
             TextFormField(
               decoration: InputDecoration(
-                  labelText: "Event Name", hintText: "Write your event name"),
+                border: const OutlineInputBorder(),
+                hintText: "Write your event name",
+                hintStyle: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                  height: 0,
+                  color: Color(0XFF8d99ae),
+                ),
+                labelText: "Event Name",
+                labelStyle: MaterialStateTextStyle.resolveWith(
+                    (Set<MaterialState> states) {
+                  final Color color = states.contains(MaterialState.error)
+                      ? Theme.of(context).colorScheme.error
+                      : Colors.yellow;
+                  return TextStyle(color: color, letterSpacing: 1.3);
+                }),
+              ),
               // The validator receives the text that the user has entered.
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -192,11 +207,26 @@ class MyCustomFormState extends State<MyCustomForm> {
                 return null;
               },
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 6),
             TextFormField(
               decoration: InputDecoration(
-                  labelText: "Description",
-                  hintText: "What the event is all about "),
+                border: const OutlineInputBorder(),
+                hintText: "What the event is all about ",
+                hintStyle: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                  height: 0,
+                  color: Color(0XFF8d99ae),
+                ),
+                labelText: "Description",
+                labelStyle: MaterialStateTextStyle.resolveWith(
+                    (Set<MaterialState> states) {
+                  final Color color = states.contains(MaterialState.error)
+                      ? Theme.of(context).colorScheme.error
+                      : Colors.yellow;
+                  return TextStyle(color: color, letterSpacing: 1.3);
+                }),
+              ),
 
               // The validator receives the text that the user has entered.
               validator: (value) {
@@ -206,10 +236,26 @@ class MyCustomFormState extends State<MyCustomForm> {
                 return null;
               },
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 6),
             TextFormField(
               decoration: InputDecoration(
-                  labelText: "Location", hintText: "Where the event will be  "),
+                border: const OutlineInputBorder(),
+                hintText: "Where the event will be  ",
+                hintStyle: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                  height: 0,
+                  color: Color(0XFF8d99ae),
+                ),
+                labelText: "Location",
+                labelStyle: MaterialStateTextStyle.resolveWith(
+                    (Set<MaterialState> states) {
+                  final Color color = states.contains(MaterialState.error)
+                      ? Theme.of(context).colorScheme.error
+                      : Colors.yellow;
+                  return TextStyle(color: color, letterSpacing: 1.3);
+                }),
+              ),
 
               // The validator receives the text that the user has entered.
               validator: (value) {
@@ -219,11 +265,25 @@ class MyCustomFormState extends State<MyCustomForm> {
                 return null;
               },
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 6),
             TextFormField(
               decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                hintText: "Where the will be  ",
+                hintStyle: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                  height: 0,
+                  color: Color(0XFF8d99ae),
+                ),
                 labelText: "Date",
-                // hintText: "Where the will be  "
+                labelStyle: MaterialStateTextStyle.resolveWith(
+                    (Set<MaterialState> states) {
+                  final Color color = states.contains(MaterialState.error)
+                      ? Theme.of(context).colorScheme.error
+                      : Colors.yellow;
+                  return TextStyle(color: color, letterSpacing: 1.3);
+                }),
               ),
 
               // The validator receives the text that the user has entered.
@@ -234,10 +294,26 @@ class MyCustomFormState extends State<MyCustomForm> {
                 return null;
               },
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 6),
             TextFormField(
               decoration: InputDecoration(
-                  labelText: "Time", hintText: "Enter time of the event"),
+                border: const OutlineInputBorder(),
+                hintText: "Enter time of the event",
+                hintStyle: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                  height: 0,
+                  color: Color(0XFF8d99ae),
+                ),
+                labelText: "Time",
+                labelStyle: MaterialStateTextStyle.resolveWith(
+                    (Set<MaterialState> states) {
+                  final Color color = states.contains(MaterialState.error)
+                      ? Theme.of(context).colorScheme.error
+                      : Colors.yellow;
+                  return TextStyle(color: color, letterSpacing: 1.3);
+                }),
+              ),
 
               // The validator receives the text that the user has entered.
               validator: (value) {
@@ -247,11 +323,25 @@ class MyCustomFormState extends State<MyCustomForm> {
                 return null;
               },
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 6),
             TextFormField(
               decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                hintText: "Where the will be  ",
+                hintStyle: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                  height: 0,
+                  color: Color(0XFF8d99ae),
+                ),
                 labelText: "Branch",
-                // hintText: "Where the will be  "
+                labelStyle: MaterialStateTextStyle.resolveWith(
+                    (Set<MaterialState> states) {
+                  final Color color = states.contains(MaterialState.error)
+                      ? Theme.of(context).colorScheme.error
+                      : Colors.yellow;
+                  return TextStyle(color: color, letterSpacing: 1.3);
+                }),
               ),
 
               // The validator receives the text that the user has entered.
@@ -262,11 +352,25 @@ class MyCustomFormState extends State<MyCustomForm> {
                 return null;
               },
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 6),
             TextFormField(
               decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                hintText: "enter batch   ex : 2020-2024  ",
+                hintStyle: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 18,
+                  height: 0,
+                  color: Color(0XFF8d99ae),
+                ),
                 labelText: "Batch",
-                // hintText: "Where the will be  "
+                labelStyle: MaterialStateTextStyle.resolveWith(
+                    (Set<MaterialState> states) {
+                  final Color color = states.contains(MaterialState.error)
+                      ? Theme.of(context).colorScheme.error
+                      : Colors.yellow;
+                  return TextStyle(color: color, letterSpacing: 1.3);
+                }),
               ),
 
               // The validator receives the text that the user has entered.
@@ -277,7 +381,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 return null;
               },
             ),
-            SizedBox(height: 5),
+            SizedBox(height: 6),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: ElevatedButton(
@@ -294,7 +398,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 child: Center(
                     child: const Text(
                   "Submit",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                 )),
                 style: TextButton.styleFrom(
                     backgroundColor: const Color(0xff5669FF),
