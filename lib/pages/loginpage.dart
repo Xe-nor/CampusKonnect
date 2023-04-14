@@ -69,19 +69,20 @@ class _LoginpageState extends State<Loginpage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const textform(
-                labeltxt: "E-mail",
-                hinttxt: "Enter your E-mail",
-                icon: Icons.email,
-                obscure: false),
+            textform(
+              bool: false,
+              hinttxt: "Enter your Email",
+              labeltxt: "Email",
+              icon: Icons.email,
+            ),
             const SizedBox(
               height: 20,
             ),
-            const textform(
+            textform(
                 labeltxt: "Password",
                 hinttxt: "Enter your Password",
                 icon: Icons.key,
-                obscure: true),
+                bool: true),
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
