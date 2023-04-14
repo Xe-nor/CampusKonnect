@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/create_event.dart';
 import 'package:flutter_application_1/pages/homepage.dart';
 import 'package:flutter_application_1/pages/informationpage.dart';
 import 'package:flutter_application_1/pages/loginpage.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_application_1/pages/profilepage.dart';
 import 'package:flutter_application_1/pages/signup.dart';
 import 'package:flutter_application_1/pages/splashscreen.dart';
 import 'package:flutter_application_1/utils/routes.dart';
+import 'package:flutter_application_1/pages/create_event.dart';
 import 'package:get/get.dart';
 // import 'package:google_fonts/google_fonts.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
           color: Color(0xff2D2D3A),
         ),
       ),
-      initialRoute: MyRoutes.profilepage,
+      initialRoute: MyRoutes.create_event,
       routes: {
         "/": (context) => const Homepage(),
         MyRoutes.splashscreen: (context) => Splashscreen(),
@@ -41,6 +43,7 @@ class MyApp extends StatelessWidget {
         MyRoutes.signupscreen: (context) => const Signupscreen(),
         MyRoutes.profilepage: (context) => const profile(),
         MyRoutes.infopage: (context) => const info(),
+        MyRoutes.create_event: (context) => const CreateEvent(),
         // MyRoutes.mainpage: (context) => const mainpage(),
       },
     );
