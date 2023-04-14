@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/eventdetail.dart';
 import 'package:flutter_application_1/pages/homepage.dart';
-import 'package:flutter_application_1/pages/informationpage.dart';
+// import 'package:flutter_application_1/pages/informationpage.dart';
 import 'package:flutter_application_1/pages/loginpage.dart';
 // import 'package:flutter_application_1/pages/mainpage.dart';
 import 'package:flutter_application_1/pages/profilepage.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           color: Color(0xff2D2D3A),
         ),
       ),
-      initialRoute: MyRoutes.profilepage,
+      initialRoute: MyRoutes.eventdetail,
       routes: {
         "/": (context) => const Homepage(),
         MyRoutes.splashscreen: (context) => Splashscreen(),
@@ -40,7 +41,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.loginRoute: (context) => const Loginpage(),
         MyRoutes.signupscreen: (context) => const Signupscreen(),
         MyRoutes.profilepage: (context) => const profile(),
-        MyRoutes.infopage: (context) => const info(),
+        MyRoutes.eventdetail: (context) => const eventdetail(),
+        // MyRoutes.infopage: (context) => const info(),
         // MyRoutes.mainpage: (context) => const mainpage(),
       },
     );

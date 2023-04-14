@@ -59,8 +59,8 @@ class Signupscreen extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 child: Column(
                   children: [
-                    const textform(
-                      obscure: false,
+                    textform(
+                      bool: false,
                       hinttxt: 'Enter your Name',
                       icon: Icons.person,
                       labeltxt: 'Name',
@@ -68,27 +68,27 @@ class Signupscreen extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    const textform(
-                        obscure: false,
+                    textform(
+                        bool: false,
                         labeltxt: "E-mail",
                         hinttxt: "Enter your E-mail",
                         icon: Icons.email),
                     const SizedBox(
                       height: 20,
                     ),
-                    const textform(
+                    textform(
                         labeltxt: "Password",
                         hinttxt: "Enter your Password",
                         icon: Icons.key,
-                        obscure: true),
+                        bool: true),
                     const SizedBox(
                       height: 20,
                     ),
-                    const textform(
+                    textform(
                         labeltxt: "Confirm Password",
                         hinttxt: "Re-enter your Password",
                         icon: Icons.key,
-                        obscure: true),
+                        bool: true),
                     const SizedBox(
                       height: 30,
                     ),
