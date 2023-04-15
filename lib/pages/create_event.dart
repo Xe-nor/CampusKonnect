@@ -503,6 +503,7 @@
 // //
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/utils/routes.dart';
 
 class CreateEvent extends StatefulWidget {
   const CreateEvent({super.key});
@@ -827,10 +828,10 @@ class _CreateEventState extends State<CreateEvent> {
                 ])
               ],
             ))),
-            //
-            //
-            //
-            
+        //
+        //
+        //
+
         Step(
           state: _activeStepIndex <= 3 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 2,
@@ -868,47 +869,22 @@ class _CreateEventState extends State<CreateEvent> {
                     return TextStyle(color: color, letterSpacing: 1.3);
                   }),
                 ),
-                // The validator receives the text that the user has entered.
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please name of the event';
-                  }
-                  return null;
-                },
               ),
               SizedBox(
                 height: 5,
               ),
-              TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  hintText: "Upload image",
-                  hintStyle: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 15,
-                    height: 0,
-                    color: Color(0XFF8d99ae),
-                  ),
-                  labelText: "Image",
-                  labelStyle: MaterialStateTextStyle.resolveWith(
-                      (Set<MaterialState> states) {
-                    final Color color = states.contains(MaterialState.error)
-                        ? Theme.of(context).colorScheme.error
-                        : Colors.yellow;
-                    return TextStyle(color: color, letterSpacing: 1.3);
-                  }),
-                ),
-                // The validator receives the text that the user has entered.
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please name of the event';
-                  }
-                  return null;
-                },
-              ),
-              
+              // ElevatedButton(
+              //   child: Text(
+              //     "Upload Poster of the Event",
+              //     style: TextStyle(color: Colors.black, fontSize: 20),
+              //   ),
+              //   style: TextButton.styleFrom(
+              //       backgroundColor: Colors.lightGreenAccent,
+              //       minimumSize: Size(300, 40)),
+              //   onPressed: () {
+              //     Navigator.pushNamed(context, MyRoutes.image_input);
+              //   },
+              // ),
             ],
           )),
         ),
@@ -931,7 +907,7 @@ class _CreateEventState extends State<CreateEvent> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(1.0),
+          padding: const EdgeInsets.only(top: 3),
           child: Stepper(
             currentStep: _activeStepIndex,
             steps: stepList(),

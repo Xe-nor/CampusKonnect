@@ -10,7 +10,7 @@ import 'package:flutter_application_1/pages/splashscreen.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 import 'package:flutter_application_1/pages/create_event.dart';
 import 'package:get/get.dart';
-import 'package:flutter_application_1/pages/imageinputchatgpt.dart';
+import 'package:flutter_application_1/pages/img_input.dart';
 import 'dart:io';
 import 'package:get/get.dart';
 // import 'package:google_fonts/google_fonts.dart';
@@ -47,6 +47,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.profilepage: (context) => const profile(),
         MyRoutes.infopage: (context) => const info(),
         MyRoutes.create_event: (context) => const CreateEvent(),
+        MyRoutes.image_input: (context) => const GetImage(),
+
         // MyRoutes.mainpage: (context) => const mainpage(),
       },
     );

@@ -6,5 +6,6 @@ class MyRoutes {
   static String profilepage = "/profile";
   static String infopage = "/info";
   static String create_event = "/create";
+  static String image_input ="/image_input";
   // static String mainpage = "/main";
 }
