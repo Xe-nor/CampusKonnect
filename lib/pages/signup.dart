@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/homepage.dart';
-import 'package:flutter_application_1/pages/loginpage.dart';
+import 'package:campuskonnect/pages/homepage.dart';
+import 'package:campuskonnect/pages/loginpage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import '../widgets/textform.dart';

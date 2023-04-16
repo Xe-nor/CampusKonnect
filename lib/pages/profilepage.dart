@@ -1,7 +1,8 @@
+import 'package:campuskonnect/widgets/themebutton.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_application_1/pages/homepage.dart';
-// import 'package:flutter_application_1/pages/informationpage.dart';
-import 'package:flutter_application_1/pages/loginpage.dart';
+// import 'package:campuskonnect/pages/homepage.dart';
+// import 'package:campuskonnect/pages/informationpage.dart';
+import 'package:campuskonnect/pages/loginpage.dart';
 import 'package:get/get.dart';
 
 // import 'loginpage.dart';
@@ -22,6 +23,9 @@ class _profileState extends State<profile> {
     int currentIndex = 3;
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          actions: const [ThemeButton()],
+        ),
         body: Container(
           padding:
               const EdgeInsets.only(top: 50, left: 20, right: 20, bottom: 20),
@@ -67,7 +71,7 @@ class _profileState extends State<profile> {
                     onPressed: () {
                       showAboutDialog(
                         context: context,
-                        applicationName: "CampusKonnect",
+                        applicationName: "campuskonnect",
                         applicationVersion: "1.0.0",
                         applicationIcon: Image.asset("assets/images/logo.png"),
                         children: [

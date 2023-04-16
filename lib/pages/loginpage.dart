@@ -1,11 +1,13 @@
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:firebase_core/firebase_core.dart';
+import 'package:campuskonnect/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/signup.dart';
-import 'package:flutter_application_1/utils/routes.dart';
-import 'package:flutter_application_1/widgets/textform.dart';
+import 'package:campuskonnect/pages/signup.dart';
+import 'package:campuskonnect/utils/routes.dart';
+import 'package:campuskonnect/widgets/textform.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -52,6 +54,7 @@ class _LoginpageState extends State<Loginpage> {
                 "assets/images/nobglogo2.png",
                 fit: BoxFit.contain,
                 height: size.height * 0.12,
+                color: Appcolors.darkprimary,
               ),
             ),
             loginform(context)
@@ -104,11 +107,10 @@ class _LoginpageState extends State<Loginpage> {
 
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff5669FF)),
-                child: const Text(
+                child: Text(
                   "Log in",
-                  style: TextStyle(
+                  style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.w500,
-                    fontSize: 15,
                   ),
                 ),
               ),

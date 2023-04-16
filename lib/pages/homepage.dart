@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/dashboard.dart';
-import 'package:flutter_application_1/pages/profilepage.dart';
-import 'package:flutter_application_1/pages/search.dart';
+import 'package:campuskonnect/pages/create_event.dart';
+import 'package:campuskonnect/pages/dashboard.dart';
+import 'package:campuskonnect/pages/profilepage.dart';
+import 'package:campuskonnect/pages/search.dart';
 import 'bookmark.dart';
-// import 'package:flutter_application_1/pages/profilepage.dart';
+// import 'package:campuskonnect/pages/profilepage.dart';
 // import 'package:get/get.dart';
 
 class Homepage extends StatefulWidget {
@@ -18,6 +19,7 @@ class _HomepageState extends State<Homepage> {
   List pages = const [
     dashboard(),
     bookmark(),
+    CreateEvent(),
     search(),
     profile(),
   ];
@@ -44,6 +46,8 @@ class _HomepageState extends State<Homepage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
               icon: Icon(Icons.bookmark), label: "Bookmarked"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add_circle_outline), label: "Create Event"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],

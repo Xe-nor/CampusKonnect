@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/utils/controller.dart';
+import 'package:campuskonnect/utils/controller.dart';
 // ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
 
