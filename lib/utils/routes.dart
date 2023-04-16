@@ -4,8 +4,7 @@ class MyRoutes {
   static String splashscreen = "/splash";
   static String signupscreen = "/signup";
   static String profilepage = "/profile";
-  static String infopage = "/info";
-  static String create_event = "/create";
-  static String image_input ="/image_input";
+  static String eventdetail = "/detail";
+  // static String infopage = "/info";
   // static String mainpage = "/main";
 }
