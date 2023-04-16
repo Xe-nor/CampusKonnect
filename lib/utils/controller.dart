@@ -1,4 +1,4 @@
-import 'package:flutter_application_1/pages/loginpage.dart';
+import 'package:campuskonnect/pages/loginpage.dart';
 // ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
 

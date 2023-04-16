@@ -16,7 +16,10 @@ class _CreateEventState extends State<CreateEvent> {
             state:
                 _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
             isActive: _activeStepIndex >= 0,
-            title: Text(
+
+
+            title: const Text(
+
               "Name & Description ",
               style: TextStyle(
                   color: Colors.yellow,
@@ -26,7 +29,10 @@ class _CreateEventState extends State<CreateEvent> {
             content: Container(
                 child: Column(
               children: [
-                SizedBox(
+
+
+                const SizedBox(
+
                   height: 5,
                 ),
                 TextFormField(
@@ -35,7 +41,10 @@ class _CreateEventState extends State<CreateEvent> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     hintText: "Write your event name",
-                    hintStyle: TextStyle(
+
+
+                    hintStyle: const TextStyle(
+
                       fontWeight: FontWeight.w400,
                       fontSize: 15,
                       height: 0,
@@ -58,7 +67,9 @@ class _CreateEventState extends State<CreateEvent> {
                     return null;
                   },
                 ),
-                SizedBox(
+
+                const SizedBox(
+
                   height: 5,
                 ),
                 //
@@ -70,7 +81,9 @@ class _CreateEventState extends State<CreateEvent> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     hintText: "What the event is all about",
-                    hintStyle: TextStyle(
+
+                    hintStyle: const TextStyle(
+
                       fontWeight: FontWeight.w400,
                       fontSize: 15,
                       height: 0,
@@ -93,7 +106,9 @@ class _CreateEventState extends State<CreateEvent> {
                     return null;
                   },
                 ),
-                SizedBox(height: 6),
+
+                const SizedBox(height: 6),
+
               ],
             ))),
         //
@@ -104,7 +119,9 @@ class _CreateEventState extends State<CreateEvent> {
             state:
                 _activeStepIndex <= 1 ? StepState.editing : StepState.complete,
             isActive: _activeStepIndex >= 1,
-            title: Text(
+
+            title: const Text(
+
               "Location, Time & Date ",
               style: TextStyle(
                   color: Colors.yellow,
@@ -114,7 +131,9 @@ class _CreateEventState extends State<CreateEvent> {
             content: Container(
                 child: Column(
               children: [
-                SizedBox(
+
+                const SizedBox(
+
                   height: 5,
                 ),
                 TextFormField(
@@ -123,7 +142,9 @@ class _CreateEventState extends State<CreateEvent> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     hintText: "Where the event will be",
-                    hintStyle: TextStyle(
+
+                    hintStyle: const TextStyle(
+
                       fontWeight: FontWeight.w400,
                       fontSize: 15,
                       height: 0,
@@ -146,7 +167,9 @@ class _CreateEventState extends State<CreateEvent> {
                     return null;
                   },
                 ),
-                SizedBox(
+
+                const SizedBox(
+
                   height: 5,
                 ),
                 //
@@ -163,7 +186,9 @@ class _CreateEventState extends State<CreateEvent> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         hintText: "Time of the event",
-                        hintStyle: TextStyle(
+
+                        hintStyle: const TextStyle(
+
                           fontWeight: FontWeight.w400,
                           fontSize: 15,
                           height: 0,
@@ -200,7 +225,9 @@ class _CreateEventState extends State<CreateEvent> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               hintText: "Date of the event",
-                              hintStyle: TextStyle(
+
+                              hintStyle: const TextStyle(
+
                                 fontWeight: FontWeight.w400,
                                 fontSize: 15,
                                 height: 0,
@@ -236,7 +263,9 @@ class _CreateEventState extends State<CreateEvent> {
             state:
                 _activeStepIndex <= 2 ? StepState.editing : StepState.complete,
             isActive: _activeStepIndex >= 2,
-            title: Text(
+
+            title: const Text(
+
               "Branch & Batch",
               style: TextStyle(
                   color: Colors.yellow,
@@ -246,7 +275,9 @@ class _CreateEventState extends State<CreateEvent> {
             content: Container(
                 child: Column(
               children: [
-                SizedBox(
+
+                const SizedBox(
+
                   height: 5,
                 ),
                 Row(children: [
@@ -259,7 +290,9 @@ class _CreateEventState extends State<CreateEvent> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         hintText: "Enter the branch",
-                        hintStyle: TextStyle(
+
+                        hintStyle: const TextStyle(
+
                           fontWeight: FontWeight.w400,
                           fontSize: 15,
                           height: 0,
@@ -286,7 +319,8 @@ class _CreateEventState extends State<CreateEvent> {
                   )),
 
                   //
-                  //
+
+
                   Expanded(
                       child: Padding(
                           padding: const EdgeInsets.only(left: 3.0),
@@ -296,7 +330,9 @@ class _CreateEventState extends State<CreateEvent> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               hintText: "Enter the Batch",
-                              hintStyle: TextStyle(
+
+                              hintStyle: const TextStyle(
+
                                 fontWeight: FontWeight.w400,
                                 fontSize: 15,
                                 height: 0,
@@ -331,7 +367,9 @@ class _CreateEventState extends State<CreateEvent> {
         Step(
           state: _activeStepIndex <= 3 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 2,
-          title: Text(
+
+          title: const Text(
+
             "Registration link & Image",
             style: TextStyle(
                 color: Colors.yellow,
@@ -341,7 +379,9 @@ class _CreateEventState extends State<CreateEvent> {
           content: Container(
               child: Column(
             children: [
-              SizedBox(
+
+              const SizedBox(
+
                 height: 5,
               ),
               TextFormField(
@@ -350,7 +390,9 @@ class _CreateEventState extends State<CreateEvent> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   hintText: "Give link so that user can register for event",
-                  hintStyle: TextStyle(
+
+                  hintStyle: const TextStyle(
+
                     fontWeight: FontWeight.w400,
                     fontSize: 15,
                     height: 0,
@@ -366,25 +408,17 @@ class _CreateEventState extends State<CreateEvent> {
                   }),
                 ),
               ),
-              SizedBox(
+
+
+              const SizedBox(
                 height: 5,
               ),
-              // ElevatedButton(
-              //   child: Text(
-              //     "Upload Poster of the Event",
-              //     style: TextStyle(color: Colors.black, fontSize: 20),
-              //   ),
-              //   style: TextButton.styleFrom(
-              //       backgroundColor: Colors.lightGreenAccent,
-              //       minimumSize: Size(300, 40)),
-              //   onPressed: () {
-              //     Navigator.pushNamed(context, MyRoutes.image_input);
-              //   },
-              // ),
+
             ],
           )),
         ),
       ];
+
 
   @override
   Widget build(BuildContext context) {
