@@ -6,7 +6,9 @@ import 'package:flutter_application_1/pages/signup.dart';
 import 'package:flutter_application_1/pages/splashscreen.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +36,8 @@ class MyApp extends StatelessWidget {
         MyRoutes.splashscreen: (context) => Splashscreen(),
         MyRoutes.homeRoute: (context) => const Homepage(),
         MyRoutes.loginRoute: (context) => const Loginpage(),
-        MyRoutes.signupscreen: (context) => const Signupscreen(),
+        MyRoutes.signupscreen: (context) =>
+            const Signupscreen(), //const Signupscreen()
         MyRoutes.profilepage: (context) => const Profile(),
       },
     );

@@ -6,6 +6,7 @@ import 'package:flutter_application_1/utils/routes.dart';
 import 'package:flutter_application_1/widgets/textform.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:flutter_application_1/pages/profilepage.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -15,6 +16,8 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
+  final TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
   bool changebutton1 = false;
   bool changebutton2 = false;
   final formkey = GlobalKey<FormState>();
@@ -34,6 +37,21 @@ class _LoginpageState extends State<Loginpage> {
       await Navigator.pushNamed(context, MyRoutes.homeRoute);
     }
   }
+
+  // void _logIn() async {
+  //   final User? user = (await FirebaseAuth.instance.signInWithEmailAndPassword(
+  //           email: _emailTextController.text,
+  //           password: _passwordTextController.text))
+  //       .user;
+
+  //   if (user != null) {
+  //     Get.to(() => const Profile(),
+  //         transition: Transition.cupertinoDialog,
+  //         duration: const Duration(milliseconds: 1500));
+  //   } else {
+  //     Get.snackbar('Warning', 'Email or Password is in-valid.');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -69,19 +87,35 @@ class _LoginpageState extends State<Loginpage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const textform(
+            textform(
+                //const textform(
+                controller: _emailTextController,
                 labeltxt: "E-mail",
                 hinttxt: "Enter your E-mail",
                 icon: Icons.email,
-                obscure: false),
+                bool: false,
+                validator: (String input) {
+                  if (input.isEmpty) {
+                    Get.snackbar('Warning', 'Email is empty');
+                    return '';
+                  }
+                }),
             const SizedBox(
               height: 20,
             ),
-            const textform(
+            textform(
+                //const textform(
+                controller: _passwordTextController,
                 labeltxt: "Password",
                 hinttxt: "Enter your Password",
                 icon: Icons.key,
-                obscure: true),
+                bool: true,
+                validator: (String input) {
+                  if (input.isEmpty) {
+                    Get.snackbar('Warning', 'Password is empty');
+                    return '';
+                  }
+                }),
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
@@ -93,11 +127,24 @@ class _LoginpageState extends State<Loginpage> {
               child: ElevatedButton(
                 //onPressed: () => movetohome(context),
                 onPressed: () {
+                  //_logIn();
+                  if (formkey.currentState != null) {
+                    if (!formkey.currentState!.validate()) {
+                      return;
+                    }
+                  }
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(
-                          email: _emailTextController.text, password: password)
+                          email: _emailTextController.text,
+                          password: _passwordTextController.text)
                       .then((value) {
-                    movetohome(context);
+                    Get.to(() => const Profile(),
+                        transition: Transition.cupertinoDialog,
+                        duration: const Duration(milliseconds: 1500));
+                  }).onError((error, stackTrace) {
+                    print("Error ${error.toString()}");
+
+                    Get.snackbar('Warning', 'Email or Password is in-valid.');
                   });
                 },
 
@@ -136,7 +183,7 @@ class _LoginpageState extends State<Loginpage> {
             ),
             TextButton(
               onPressed: () {
-                Get.to(const Signupscreen(),
+                Get.to(() => Signupscreen(), //const Signupscreen(),
                     transition: Transition.cupertino,
                     duration: const Duration(milliseconds: 1500));
               },

@@ -32,10 +32,7 @@ class Homepage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
           child: Column(
             children: [
-              const ListTile(
-                
-
-              ),
+              const ListTile(),
             ],
           ),
         ),
