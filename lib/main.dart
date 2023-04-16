@@ -11,6 +11,10 @@ import 'package:campuskonnect/pages/splashscreen.dart';
 import 'package:campuskonnect/utils/routes.dart';
 import 'package:get/get.dart';
 
+import 'package:campuskonnect/pages/img_input.dart';
+import 'dart:io';
+
+
 // import 'package:google_fonts/google_fonts.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';

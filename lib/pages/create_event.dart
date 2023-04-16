@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/utils/routes.dart';
 
 class CreateEvent extends StatefulWidget {
   const CreateEvent({super.key});
@@ -15,7 +16,10 @@ class _CreateEventState extends State<CreateEvent> {
             state:
                 _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
             isActive: _activeStepIndex >= 0,
+
+
             title: const Text(
+
               "Name & Description ",
               style: TextStyle(
                   color: Colors.yellow,
@@ -25,7 +29,10 @@ class _CreateEventState extends State<CreateEvent> {
             content: Container(
                 child: Column(
               children: [
+
+
                 const SizedBox(
+
                   height: 5,
                 ),
                 TextFormField(
@@ -34,7 +41,10 @@ class _CreateEventState extends State<CreateEvent> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     hintText: "Write your event name",
+
+
                     hintStyle: const TextStyle(
+
                       fontWeight: FontWeight.w400,
                       fontSize: 15,
                       height: 0,
@@ -57,7 +67,9 @@ class _CreateEventState extends State<CreateEvent> {
                     return null;
                   },
                 ),
+
                 const SizedBox(
+
                   height: 5,
                 ),
                 //
@@ -69,7 +81,9 @@ class _CreateEventState extends State<CreateEvent> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     hintText: "What the event is all about",
+
                     hintStyle: const TextStyle(
+
                       fontWeight: FontWeight.w400,
                       fontSize: 15,
                       height: 0,
@@ -92,7 +106,9 @@ class _CreateEventState extends State<CreateEvent> {
                     return null;
                   },
                 ),
+
                 const SizedBox(height: 6),
+
               ],
             ))),
         //
@@ -103,7 +119,9 @@ class _CreateEventState extends State<CreateEvent> {
             state:
                 _activeStepIndex <= 1 ? StepState.editing : StepState.complete,
             isActive: _activeStepIndex >= 1,
+
             title: const Text(
+
               "Location, Time & Date ",
               style: TextStyle(
                   color: Colors.yellow,
@@ -113,7 +131,9 @@ class _CreateEventState extends State<CreateEvent> {
             content: Container(
                 child: Column(
               children: [
+
                 const SizedBox(
+
                   height: 5,
                 ),
                 TextFormField(
@@ -122,7 +142,9 @@ class _CreateEventState extends State<CreateEvent> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     hintText: "Where the event will be",
+
                     hintStyle: const TextStyle(
+
                       fontWeight: FontWeight.w400,
                       fontSize: 15,
                       height: 0,
@@ -145,7 +167,9 @@ class _CreateEventState extends State<CreateEvent> {
                     return null;
                   },
                 ),
+
                 const SizedBox(
+
                   height: 5,
                 ),
                 //
@@ -162,7 +186,9 @@ class _CreateEventState extends State<CreateEvent> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         hintText: "Time of the event",
+
                         hintStyle: const TextStyle(
+
                           fontWeight: FontWeight.w400,
                           fontSize: 15,
                           height: 0,
@@ -199,7 +225,9 @@ class _CreateEventState extends State<CreateEvent> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               hintText: "Date of the event",
+
                               hintStyle: const TextStyle(
+
                                 fontWeight: FontWeight.w400,
                                 fontSize: 15,
                                 height: 0,
@@ -235,7 +263,9 @@ class _CreateEventState extends State<CreateEvent> {
             state:
                 _activeStepIndex <= 2 ? StepState.editing : StepState.complete,
             isActive: _activeStepIndex >= 2,
+
             title: const Text(
+
               "Branch & Batch",
               style: TextStyle(
                   color: Colors.yellow,
@@ -245,7 +275,9 @@ class _CreateEventState extends State<CreateEvent> {
             content: Container(
                 child: Column(
               children: [
+
                 const SizedBox(
+
                   height: 5,
                 ),
                 Row(children: [
@@ -258,7 +290,9 @@ class _CreateEventState extends State<CreateEvent> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         hintText: "Enter the branch",
+
                         hintStyle: const TextStyle(
+
                           fontWeight: FontWeight.w400,
                           fontSize: 15,
                           height: 0,
@@ -285,7 +319,8 @@ class _CreateEventState extends State<CreateEvent> {
                   )),
 
                   //
-//
+
+
                   Expanded(
                       child: Padding(
                           padding: const EdgeInsets.only(left: 3.0),
@@ -295,7 +330,9 @@ class _CreateEventState extends State<CreateEvent> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               hintText: "Enter the Batch",
+
                               hintStyle: const TextStyle(
+
                                 fontWeight: FontWeight.w400,
                                 fontSize: 15,
                                 height: 0,
@@ -330,7 +367,9 @@ class _CreateEventState extends State<CreateEvent> {
         Step(
           state: _activeStepIndex <= 3 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 2,
+
           title: const Text(
+
             "Registration link & Image",
             style: TextStyle(
                 color: Colors.yellow,
@@ -340,7 +379,9 @@ class _CreateEventState extends State<CreateEvent> {
           content: Container(
               child: Column(
             children: [
+
               const SizedBox(
+
                 height: 5,
               ),
               TextFormField(
@@ -349,7 +390,9 @@ class _CreateEventState extends State<CreateEvent> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   hintText: "Give link so that user can register for event",
+
                   hintStyle: const TextStyle(
+
                     fontWeight: FontWeight.w400,
                     fontSize: 15,
                     height: 0,
@@ -365,13 +408,18 @@ class _CreateEventState extends State<CreateEvent> {
                   }),
                 ),
               ),
+
+
               const SizedBox(
                 height: 5,
               ),
+
             ],
           )),
         ),
       ];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
