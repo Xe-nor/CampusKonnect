@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../pages/eventdetail.dart';
+import '../utils/theme.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 Widget eventCard({
   // ignore: non_constant_identifier_names
@@ -11,26 +14,27 @@ Widget eventCard({
   required eventDate,
   required eventLocation,
 }) {
-  return Padding(
-    padding: const EdgeInsets.all(15.0),
-    child: Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: const Color(0xff2D2D3A),
-      ),
-      height: 240,
-      child: GestureDetector(
-        onTap: () {
-          Get.to(const eventdetail());
-        },
+  return GestureDetector(
+    onTap: () {
+      Get.to(const eventdetail());
+    },
+    child: Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Container(
+        // padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Appcolors.secondary,
+        ),
+        height: 240,
         child: Column(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
               child: Image.asset(
                 eventimage,
-                height: 110,
+                height: 130,
                 width: double.infinity,
                 fit: BoxFit.fill,
               ),
@@ -39,7 +43,7 @@ Widget eventCard({
               height: 3,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Column(
                 children: [
                   Row(
@@ -47,32 +51,41 @@ Widget eventCard({
                     children: [
                       Text(
                         eventname,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 25),
+                        style: GoogleFonts.urbanist(
+                          fontSize: 26,
+                        ),
                       ),
                     ],
                   ), //!eventname
                   const SizedBox(
-                    height: 3,
+                    height: 5,
                   ),
                   Row(
                     children: [
-                      const Icon(
-                        Icons.date_range,
-                        size: 15,
-                        color: Colors.grey,
-                      ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: Text(
-                          eventDate,
-                          style: const TextStyle(color: Colors.grey),
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              FontAwesomeIcons.calendar,
+                              size: 15,
+                              color: Appcolors.buttoncolor,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 5),
+                              child: Text(
+                                eventDate,
+                                style: GoogleFonts.urbanist(
+                                  color: Appcolors.buttoncolor,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
+                      ),
                       const Icon(
                         Icons.location_on,
                         size: 15,
@@ -87,6 +100,7 @@ Widget eventCard({
                       )
                     ],
                   ),
+
                   const SizedBox(
                     height: 5,
                   ),
@@ -110,21 +124,6 @@ Widget eventCard({
     ),
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // ignore: camel_case_types
 // class eventcard extends StatelessWidget {

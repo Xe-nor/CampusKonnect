@@ -3,7 +3,7 @@ import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/create_event.dart';
 import 'package:campuskonnect/pages/eventdetail.dart';
-import 'package:campuskonnect/pages/homepage.dart';
+import 'package:campuskonnect/pages/bottomnavbar.dart';
 import 'package:campuskonnect/pages/loginpage.dart';
 import 'package:campuskonnect/pages/profilepage.dart';
 import 'package:campuskonnect/pages/signup.dart';
@@ -11,9 +11,8 @@ import 'package:campuskonnect/pages/splashscreen.dart';
 import 'package:campuskonnect/utils/routes.dart';
 import 'package:get/get.dart';
 
-import 'package:campuskonnect/pages/img_input.dart';
-import 'dart:io';
-
+// import 'package:campuskonnect/pages/img_input.dart';
+// import 'dart:io';
 
 // import 'package:google_fonts/google_fonts.dart';
 // import 'package:firebase_auth/firebase_auth.dart';

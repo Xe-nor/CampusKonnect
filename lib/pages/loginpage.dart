@@ -1,6 +1,4 @@
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_core/firebase_core.dart';
-import 'package:campuskonnect/utils/colors.dart';
+import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/signup.dart';
 import 'package:campuskonnect/utils/routes.dart';
@@ -8,6 +6,7 @@ import 'package:campuskonnect/widgets/textform.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -40,25 +39,29 @@ class _LoginpageState extends State<Loginpage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Material(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 100,
+    return KeyboardDismisser(
+      gestures: const [GestureType.onTap, GestureType.onVerticalDragDown],
+      child: Material(
+        child: SingleChildScrollView(
+          child: KeyboardDismisser(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 100,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 20, top: 100, right: 20, bottom: 30),
+                  child: Image.asset(
+                    "assets/images/nobglogo2.png",
+                    fit: BoxFit.contain,
+                    height: size.height * 0.12,
+                  ),
+                ),
+                loginform(context)
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 20, top: 100, right: 20, bottom: 30),
-              child: Image.asset(
-                "assets/images/nobglogo2.png",
-                fit: BoxFit.contain,
-                height: size.height * 0.12,
-                color: Appcolors.darkprimary,
-              ),
-            ),
-            loginform(context)
-          ],
+          ),
         ),
       ),
     );
@@ -73,67 +76,87 @@ class _LoginpageState extends State<Loginpage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             textform(
-              bool: false,
-              hinttxt: "Enter your Email",
+              hinttxt: "email@example.com",
               labeltxt: "Email",
-              icon: Icons.email,
+              prefixIcon: FontAwesomeIcons.envelope,
+              isEmail: true,
+              isObscure: false,
+              suffixIcon: null,
+              isPrefixIcon: true,
             ),
             const SizedBox(
               height: 20,
             ),
             textform(
-                labeltxt: "Password",
-                hinttxt: "Enter your Password",
-                icon: Icons.key,
-                bool: true),
+              labeltxt: "Password",
+              hinttxt: "Enter your Password",
+              prefixIcon: FontAwesomeIcons.lock,
+              isEmail: false,
+              isObscure: true,
+              suffixIcon: null,
+              isPrefixIcon: true,
+            ),
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                  onPressed: () {}, child: const Text("Forgot Password?")),
-            ),
-            SizedBox(
-              width: double.infinity,
-              height: 40,
-              child: ElevatedButton(
-                onPressed: () => movetohome(context),
-                // onPressed: () {
-                //   FirebaseAuth.instance
-                //       .signInWithEmailAndPassword(
-                //           email: _emailTextController.text, password: password)
-                //       .then((value) {
-                //     movetohome(context);
-                //   });
-                // },
-
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff5669FF)),
+                onPressed: () {},
                 child: Text(
-                  "Log in",
-                  style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.w500,
-                  ),
+                  "Forgot Password?",
+                  style: GoogleFonts.urbanist(
+                      color: Appcolors.buttoncolor,
+                      fontWeight: FontWeight.w500),
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 0),
-              child: Text("OR"),
+            const SizedBox(
+              height: 5,
             ),
             SizedBox(
               width: double.infinity,
-              height: 40,
-              child: OutlinedButton.icon(
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () => movetohome(context),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Appcolors.buttoncolor,
+                    shape: const StadiumBorder(
+                        side: BorderSide(color: Appcolors.buttoncolor))),
+                child: const Text(
+                  "Log in",
+                  style: TextStyle(
+                      color: Appcolors.lightprimary,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 0),
+              child: Text(
+                "OR",
+                style: GoogleFonts.urbanist(
+                    color: Appcolors.lightprimary, fontWeight: FontWeight.w600),
+              ),
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Appcolors.darkprimary,
+                    shape: const StadiumBorder(
+                        side: BorderSide(color: Appcolors.buttoncolor))),
                 onPressed: () => movetohome(context),
                 icon: const Icon(
+                  color: Appcolors.iconcolor,
                   FontAwesomeIcons.google,
                   size: 17,
                 ),
-                label: const Text(
+                label: Text(
                   "Sign in with Google",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 15,
-                  ),
+                  style: GoogleFonts.urbanist(
+                      color: Appcolors.lightprimary,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500),
                 ),
               ),
             ),
@@ -143,14 +166,19 @@ class _LoginpageState extends State<Loginpage> {
                     transition: Transition.cupertino,
                     duration: const Duration(milliseconds: 1500));
               },
-              child: const Text.rich(
+              child: Text.rich(
                 TextSpan(
                   text: "Don't have an account? ",
-                  style: TextStyle(color: Colors.white60),
+                  style: GoogleFonts.urbanist(
+                      color: Appcolors.lightprimary,
+                      fontWeight: FontWeight.w600),
                   children: [
                     TextSpan(
-                        text: "Sign Up!",
-                        style: TextStyle(color: Colors.blueAccent)),
+                      text: "Sign Up!",
+                      style: GoogleFonts.urbanist(
+                          color: Appcolors.buttoncolor,
+                          fontWeight: FontWeight.w600),
+                    ),
                   ],
                 ),
               ),

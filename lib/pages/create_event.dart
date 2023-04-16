@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/utils/routes.dart';
+
+import '../widgets/textform.dart';
 
 class CreateEvent extends StatefulWidget {
   const CreateEvent({super.key});
@@ -13,353 +14,191 @@ int _activeStepIndex = 0;
 class _CreateEventState extends State<CreateEvent> {
   List<Step> stepList() => [
         Step(
-            state:
-                _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
-            isActive: _activeStepIndex >= 0,
+          state: _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
+          isActive: _activeStepIndex >= 0,
+          title: const Text(
+            "Name & Description ",
+            style: TextStyle(
+                // color: Colors.yellow,
+                fontSize: 18,
+                fontWeight: FontWeight.bold),
+          ),
+          content: Column(
+            children: [
+              const SizedBox(
+                height: 5,
+              ),
+              textform(
+                isEmail: false,
+                isObscure: false,
+                hinttxt: "Name of the event",
+                labeltxt: "Name",
+                prefixIcon: null,
+                suffixIcon: null,
+                isPrefixIcon: false,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please name of the event';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              textform(
+                hinttxt: "Description of the event",
+                labeltxt: "Description",
+                prefixIcon: null,
+                suffixIcon: null,
+                isEmail: false,
+                isPrefixIcon: false,
+                isObscure: false,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please name of the event';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 6),
+            ],
+          ),
+        ),
+        //
+        //
+        //
+        Step(
+          state: _activeStepIndex <= 1 ? StepState.editing : StepState.complete,
+          isActive: _activeStepIndex >= 1,
+          title: const Text(
+            "Location, Time & Date ",
+            style: TextStyle(
+                // color: Colors.yellow,
+                fontSize: 18,
+                fontWeight: FontWeight.bold),
+          ),
+          content: Column(
+            children: [
+              const SizedBox(
+                height: 5,
+              ),
+              textform(
+                hinttxt: "Location of the Event",
+                labeltxt: "Location",
+                prefixIcon: null,
+                suffixIcon: null,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please name of the event';
+                  }
+                  return null;
+                },
+              ),
 
+              const SizedBox(
+                height: 5,
+              ),
+              //
+              //
+              //
 
-            title: const Text(
-
-              "Name & Description ",
-              style: TextStyle(
-                  color: Colors.yellow,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold),
-            ),
-            content: Container(
-                child: Column(
-              children: [
-
-
-                const SizedBox(
-
-                  height: 5,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 3.0),
+                      child: textform(
+                        hinttxt: "Time",
+                        labeltxt: "Time of the event",
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please name of the event';
+                          }
+                          return null;
+                        },
+                      ),
                     ),
-                    hintText: "Write your event name",
-
-
-                    hintStyle: const TextStyle(
-
-                      fontWeight: FontWeight.w400,
-                      fontSize: 15,
-                      height: 0,
-                      color: Color(0XFF8d99ae),
-                    ),
-                    labelText: "Event Name",
-                    labelStyle: MaterialStateTextStyle.resolveWith(
-                        (Set<MaterialState> states) {
-                      final Color color = states.contains(MaterialState.error)
-                          ? Theme.of(context).colorScheme.error
-                          : Colors.yellow;
-                      return TextStyle(color: color, letterSpacing: 1.3);
-                    }),
                   ),
-                  // The validator receives the text that the user has entered.
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please name of the event';
-                    }
-                    return null;
-                  },
-                ),
 
-                const SizedBox(
-
-                  height: 5,
-                ),
-                //
-                //
-                //
-                TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                  //
+                  //
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 3.0),
+                      child: textform(
+                        hinttxt: "Date",
+                        labeltxt: "Date of the event",
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please name of the event';
+                          }
+                          return null;
+                        },
+                      ),
                     ),
-                    hintText: "What the event is all about",
-
-                    hintStyle: const TextStyle(
-
-                      fontWeight: FontWeight.w400,
-                      fontSize: 15,
-                      height: 0,
-                      color: Color(0XFF8d99ae),
-                    ),
-                    labelText: "Description",
-                    labelStyle: MaterialStateTextStyle.resolveWith(
-                        (Set<MaterialState> states) {
-                      final Color color = states.contains(MaterialState.error)
-                          ? Theme.of(context).colorScheme.error
-                          : Colors.yellow;
-                      return TextStyle(color: color, letterSpacing: 1.3);
-                    }),
-                  ),
-                  // The validator receives the text that the user has entered.
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please name of the event';
-                    }
-                    return null;
-                  },
-                ),
-
-                const SizedBox(height: 6),
-
-              ],
-            ))),
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
         //
         //
         //
 
         Step(
-            state:
-                _activeStepIndex <= 1 ? StepState.editing : StepState.complete,
-            isActive: _activeStepIndex >= 1,
-
-            title: const Text(
-
-              "Location, Time & Date ",
-              style: TextStyle(
-                  color: Colors.yellow,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold),
-            ),
-            content: Container(
-                child: Column(
-              children: [
-
-                const SizedBox(
-
-                  height: 5,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+          state: _activeStepIndex <= 2 ? StepState.editing : StepState.complete,
+          isActive: _activeStepIndex >= 2,
+          title: const Text(
+            "Branch & Batch",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          content: Column(
+            children: [
+              const SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 3.0),
+                      child: textform(
+                        hinttxt: "Mention the branch of participants",
+                        labeltxt: "Branch",
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please mention the branch';
+                          }
+                          return null;
+                        },
+                      ),
                     ),
-                    hintText: "Where the event will be",
-
-                    hintStyle: const TextStyle(
-
-                      fontWeight: FontWeight.w400,
-                      fontSize: 15,
-                      height: 0,
-                      color: Color(0XFF8d99ae),
-                    ),
-                    labelText: "Location",
-                    labelStyle: MaterialStateTextStyle.resolveWith(
-                        (Set<MaterialState> states) {
-                      final Color color = states.contains(MaterialState.error)
-                          ? Theme.of(context).colorScheme.error
-                          : Colors.yellow;
-                      return TextStyle(color: color, letterSpacing: 1.3);
-                    }),
                   ),
-                  // The validator receives the text that the user has entered.
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please name of the event';
-                    }
-                    return null;
-                  },
-                ),
 
-                const SizedBox(
+                  //
 
-                  height: 5,
-                ),
-                //
-                //
-                //
-
-                Row(children: [
                   Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.only(right: 3.0),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        hintText: "Time of the event",
-
-                        hintStyle: const TextStyle(
-
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
-                          height: 0,
-                          color: Color(0XFF8d99ae),
-                        ),
-                        labelText: "Time",
-                        labelStyle: MaterialStateTextStyle.resolveWith(
-                            (Set<MaterialState> states) {
-                          final Color color =
-                              states.contains(MaterialState.error)
-                                  ? Theme.of(context).colorScheme.error
-                                  : Colors.yellow;
-                          return TextStyle(color: color, letterSpacing: 1.3);
-                        }),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 3.0),
+                      child: textform(
+                        hinttxt: "Batch of the participants",
+                        labeltxt: "Batch",
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please mention the batch';
+                          }
+                          return null;
+                        },
                       ),
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please name of the event';
-                        }
-                        return null;
-                      },
                     ),
-                  )),
-
-                  //
-                  //
-                  Expanded(
-                      child: Padding(
-                          padding: const EdgeInsets.only(left: 3.0),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              hintText: "Date of the event",
-
-                              hintStyle: const TextStyle(
-
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                                height: 0,
-                                color: Color(0XFF8d99ae),
-                              ),
-                              labelText: "Date",
-                              labelStyle: MaterialStateTextStyle.resolveWith(
-                                  (Set<MaterialState> states) {
-                                final Color color =
-                                    states.contains(MaterialState.error)
-                                        ? Theme.of(context).colorScheme.error
-                                        : Colors.yellow;
-                                return TextStyle(
-                                    color: color, letterSpacing: 1.3);
-                              }),
-                            ),
-                            // The validator receives the text that the user has entered.
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please name of the event';
-                              }
-                              return null;
-                            },
-                          )))
-                ])
-              ],
-            ))),
-        //
-        //
-        //
-
-        Step(
-            state:
-                _activeStepIndex <= 2 ? StepState.editing : StepState.complete,
-            isActive: _activeStepIndex >= 2,
-
-            title: const Text(
-
-              "Branch & Batch",
-              style: TextStyle(
-                  color: Colors.yellow,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold),
-            ),
-            content: Container(
-                child: Column(
-              children: [
-
-                const SizedBox(
-
-                  height: 5,
-                ),
-                Row(children: [
-                  Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.only(right: 3.0),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        hintText: "Enter the branch",
-
-                        hintStyle: const TextStyle(
-
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15,
-                          height: 0,
-                          color: Color(0XFF8d99ae),
-                        ),
-                        labelText: "Branch",
-                        labelStyle: MaterialStateTextStyle.resolveWith(
-                            (Set<MaterialState> states) {
-                          final Color color =
-                              states.contains(MaterialState.error)
-                                  ? Theme.of(context).colorScheme.error
-                                  : Colors.yellow;
-                          return TextStyle(color: color, letterSpacing: 1.3);
-                        }),
-                      ),
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please name of the event';
-                        }
-                        return null;
-                      },
-                    ),
-                  )),
-
-                  //
-
-
-                  Expanded(
-                      child: Padding(
-                          padding: const EdgeInsets.only(left: 3.0),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              hintText: "Enter the Batch",
-
-                              hintStyle: const TextStyle(
-
-                                fontWeight: FontWeight.w400,
-                                fontSize: 15,
-                                height: 0,
-                                color: Color(0XFF8d99ae),
-                              ),
-                              labelText: "Batch",
-                              labelStyle: MaterialStateTextStyle.resolveWith(
-                                  (Set<MaterialState> states) {
-                                final Color color =
-                                    states.contains(MaterialState.error)
-                                        ? Theme.of(context).colorScheme.error
-                                        : Colors.yellow;
-                                return TextStyle(
-                                    color: color, letterSpacing: 1.3);
-                              }),
-                            ),
-                            // The validator receives the text that the user has entered.
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please name of the event';
-                              }
-                              return null;
-                            },
-                          )))
-                ])
-              ],
-            ))),
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
         //
         //
         //
@@ -367,70 +206,37 @@ class _CreateEventState extends State<CreateEvent> {
         Step(
           state: _activeStepIndex <= 3 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 2,
-
           title: const Text(
-
             "Registration link & Image",
-            style: TextStyle(
-                color: Colors.yellow,
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          content: Container(
-              child: Column(
+          content: Column(
             children: [
-
-              const SizedBox(
-
-                height: 5,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  hintText: "Give link so that user can register for event",
-
-                  hintStyle: const TextStyle(
-
-                    fontWeight: FontWeight.w400,
-                    fontSize: 15,
-                    height: 0,
-                    color: Color(0XFF8d99ae),
-                  ),
-                  labelText: "Registration link",
-                  labelStyle: MaterialStateTextStyle.resolveWith(
-                      (Set<MaterialState> states) {
-                    final Color color = states.contains(MaterialState.error)
-                        ? Theme.of(context).colorScheme.error
-                        : Colors.yellow;
-                    return TextStyle(color: color, letterSpacing: 1.3);
-                  }),
-                ),
-              ),
-
-
               const SizedBox(
                 height: 5,
               ),
-
+              textform(
+                  hinttxt: "Link for registering in the event",
+                  labeltxt: "Registration link"),
+              const SizedBox(
+                height: 5,
+              ),
             ],
-          )),
+          ),
         ),
       ];
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.blueGrey,
+        // backgroundColor: Colors.blueGrey,
         title: const Text(
-          "CREATE  EVENT",
+          "Create Event",
           style: TextStyle(
-            color: Colors.white,
-            fontSize: 25,
+            // color: Colors.white,
+            // fontSize: 25,
             fontWeight: FontWeight.bold,
           ),
         ),

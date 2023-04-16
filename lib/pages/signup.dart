@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:campuskonnect/pages/homepage.dart';
-import 'package:campuskonnect/pages/loginpage.dart';
+import 'package:campuskonnect/pages/bottomnavbar.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../utils/theme.dart';
 import '../widgets/textform.dart';
 
 class Signupscreen extends StatelessWidget {
@@ -15,13 +17,12 @@ class Signupscreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              Get.to( const Homepage(),
+              Get.to(const Homepage(),
                   transition: Transition.cupertinoDialog,
                   duration: const Duration(milliseconds: 1500));
             },
             icon: const Icon(Icons.arrow_back)),
         elevation: 0,
-        backgroundColor: const Color(0xff22222C),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -60,91 +61,122 @@ class Signupscreen extends StatelessWidget {
                 child: Column(
                   children: [
                     textform(
-                      bool: false,
                       hinttxt: 'Enter your Name',
-                      icon: Icons.person,
+                      prefixIcon: Icons.person,
                       labeltxt: 'Name',
+                      isEmail: false,
+                      isObscure: false,
+                      suffixIcon: null,
+                      isPrefixIcon: true,
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     textform(
-                        bool: false,
+                        isPrefixIcon: true,
+                        isObscure: false,
                         labeltxt: "E-mail",
                         hinttxt: "Enter your E-mail",
-                        icon: Icons.email),
+                        prefixIcon: Icons.email,
+                        isEmail: true,
+                        suffixIcon: null),
                     const SizedBox(
                       height: 20,
                     ),
                     textform(
+                        isPrefixIcon: true,
                         labeltxt: "Password",
+                        isObscure: false,
                         hinttxt: "Enter your Password",
-                        icon: Icons.key,
-                        bool: true),
+                        prefixIcon: Icons.key,
+                        isEmail: false,
+                        suffixIcon: null),
                     const SizedBox(
                       height: 20,
                     ),
                     textform(
+                        isPrefixIcon: true,
                         labeltxt: "Confirm Password",
+                        isObscure: false,
                         hinttxt: "Re-enter your Password",
-                        icon: Icons.key,
-                        bool: true),
+                        prefixIcon: Icons.key,
+                        isEmail: true,
+                        suffixIcon: null),
                     const SizedBox(
                       height: 30,
                     ),
                     SizedBox(
                       width: double.infinity,
-                      height: 40,
+                      height: 50,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () => {},
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xff5669FF)),
+                            backgroundColor: Appcolors.buttoncolor,
+                            shape: const StadiumBorder(
+                                side:
+                                    BorderSide(color: Appcolors.buttoncolor))),
                         child: const Text(
-                          "Sign in",
+                          "Log in",
                           style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 15,
-                          ),
+                              color: Appcolors.lightprimary,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 0),
-                      child: Text("OR"),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 0),
+                      child: Text(
+                        "OR",
+                        style: GoogleFonts.urbanist(
+                            color: Appcolors.lightprimary,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                     SizedBox(
                       width: double.infinity,
-                      height: 40,
-                      child: OutlinedButton.icon(
-                        onPressed: () {},
+                      height: 50,
+                      child: ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Appcolors.darkprimary,
+                            shape: const StadiumBorder(
+                                side:
+                                    BorderSide(color: Appcolors.buttoncolor))),
+                        onPressed: () => {},
                         icon: const Icon(
+                          color: Appcolors.iconcolor,
                           FontAwesomeIcons.google,
                           size: 17,
                         ),
-                        label: const Text(
+                        label: Text(
                           "Sign in with Google",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 15,
-                          ),
+                          style: GoogleFonts.urbanist(
+                              color: Appcolors.lightprimary,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.to(const Loginpage(),
-                            transition: Transition.cupertinoDialog,
+                        Get.to(const Signupscreen(),
+                            transition: Transition.cupertino,
                             duration: const Duration(milliseconds: 1500));
                       },
-                      child: const Text.rich(
+                      child: Text.rich(
                         TextSpan(
-                          text: "Already have an account? ",
-                          style: TextStyle(color: Colors.white60),
+                          text: "Don't have an account? ",
+                          style: GoogleFonts.urbanist(
+                              color: Appcolors.lightprimary,
+                              fontWeight: FontWeight.w600),
                           children: [
                             TextSpan(
-                                text: "Log in!",
-                                style: TextStyle(color: Colors.blueAccent)),
+                              text: "Sign Up!",
+                              style: GoogleFonts.urbanist(
+                                  color: Appcolors.buttoncolor,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ],
                         ),
                       ),

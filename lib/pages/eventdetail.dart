@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:campuskonnect/pages/homepage.dart';
+import 'package:campuskonnect/pages/bottomnavbar.dart';
 import 'package:get/get.dart';
 
 // ignore: camel_case_types
@@ -16,7 +16,7 @@ class _eventdetailState extends State<eventdetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
           width: double.maxFinite,
           height: double.maxFinite,
           child: Stack(
@@ -24,7 +24,7 @@ class _eventdetailState extends State<eventdetail> {
               Positioned(
                 left: 0,
                 right: 0,
-                child: Container(
+                child: SizedBox(
                   width: double.maxFinite,
                   // height: 300,
                   child: Image.asset(

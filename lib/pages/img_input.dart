@@ -3,7 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+// import 'package:image_picker/image_picker.dart';
+//
 class GetImage extends StatefulWidget {
+  // ignore: use_key_in_widget_constructors
   const GetImage({Key? key});
 
   @override

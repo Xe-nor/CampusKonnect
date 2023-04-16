@@ -1,7 +1,7 @@
+// import 'package:campuskonnect/utils/colors.dart';
+import 'package:campuskonnect/utils/theme.dart';
 import 'package:campuskonnect/widgets/themebutton.dart';
 import 'package:flutter/material.dart';
-// import 'package:campuskonnect/pages/homepage.dart';
-// import 'package:campuskonnect/pages/informationpage.dart';
 import 'package:campuskonnect/pages/loginpage.dart';
 import 'package:get/get.dart';
 
@@ -23,22 +23,31 @@ class _profileState extends State<profile> {
     int currentIndex = 3;
     return SafeArea(
       child: Scaffold(
+        // backgroundColor: Appcolors.darkprimary,
         appBar: AppBar(
+          elevation: 0,
           actions: const [ThemeButton()],
         ),
         body: Container(
           padding:
-              const EdgeInsets.only(top: 50, left: 20, right: 20, bottom: 20),
+              const EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 //!-----Profile pic
-                const SizedBox(
+                SizedBox(
                   width: 120,
                   height: 120,
                   child: CircleAvatar(
-                    // foregroundImage: AssetImage("assets/images/#"),
-                    backgroundImage: AssetImage("assets/images/defaultpic.jpg"),
+                    backgroundImage:
+                        const AssetImage("assets/images/defaultpic.jpg"),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: Appcolors.buttoncolor, width: 2),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -57,7 +66,9 @@ class _profileState extends State<profile> {
                 const SizedBox(
                   height: 10,
                 ),
-                const Divider(),
+                const Divider(
+                  color: Appcolors.buttoncolor,
+                ),
                 const SizedBox(
                   height: 10,
                 ),
@@ -65,9 +76,12 @@ class _profileState extends State<profile> {
                 SizedBox(
                   width: 300,
                   height: 50,
-                  child: OutlinedButton.icon(
-                    style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: Colors.yellow)),
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        
+                        shape: const StadiumBorder(
+                            side: BorderSide(color: Appcolors.buttoncolor))),
                     onPressed: () {
                       showAboutDialog(
                         context: context,
@@ -77,7 +91,7 @@ class _profileState extends State<profile> {
                         children: [
                           Text(
                             "Developers",
-                            style: Theme.of(context).textTheme.headlineSmall,
+                            style: Theme.of(context).textTheme.headlineMedium,
                           ),
                           const SizedBox(
                             height: 5,
@@ -115,9 +129,11 @@ class _profileState extends State<profile> {
                 SizedBox(
                   width: 300,
                   height: 50,
-                  child: OutlinedButton.icon(
-                    style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: Colors.yellow)),
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Appcolors.darkprimary,
+                        shape: const StadiumBorder(
+                            side: BorderSide(color: Appcolors.buttoncolor))),
                     onPressed: () {
                       Get.to(const Loginpage());
                     },
