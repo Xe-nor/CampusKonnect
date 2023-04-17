@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           themeMode: themeProvider.themeMode,
           theme: MyTheme.light,
           darkTheme: MyTheme.dark,
-          initialRoute: MyRoutes.loginRoute,
+          initialRoute: MyRoutes.createevent,
           routes: {
             "/": (context) => const Homepage(),
             MyRoutes.splashscreen: (context) => Splashscreen(),

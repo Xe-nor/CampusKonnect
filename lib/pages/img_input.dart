@@ -3,10 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-// import 'package:image_picker/image_picker.dart';
-//
 class GetImage extends StatefulWidget {
-  // ignore: use_key_in_widget_constructors
   const GetImage({Key? key});
 
   @override
@@ -17,12 +14,17 @@ class _GetImageState extends State<GetImage> {
   File? _image;
 
   Future<void> _pickImage(ImageSource source) async {
-    final pickedImage = await ImagePicker().getImage(source: source);
-    setState(() {
+    final pickedImage = await ImagePicker().pickImage(source: source);
+    setState(() async {
       if (pickedImage != null) {
         _image = File(pickedImage.path);
       } else {
-        print('No image selected.');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text('No image selected.'),
+            duration: const Duration(seconds: 2),
+          ),
+        );
       }
     });
   }
