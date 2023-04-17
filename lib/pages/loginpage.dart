@@ -97,9 +97,7 @@ class _LoginpageState extends State<Loginpage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             textform(
-              //const textform(
               controller: _emailTextController,
-
               validator: (String input) {
                 if (input.isEmpty) {
                   Get.snackbar('Warning', 'Email is empty');
@@ -199,10 +197,17 @@ class _LoginpageState extends State<Loginpage> {
             SizedBox(
               width: double.infinity,
               height: 50,
-              child: OutlinedButton.icon(
-                style: OutlinedButton.styleFrom(
-                    shape: const StadiumBorder(
-                        side: BorderSide(color: Appcolors.buttoncolor))),
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  backgroundColor: Appcolors.darkprimary,
+                  shape: const StadiumBorder(
+                    side: BorderSide(color: Appcolors.buttoncolor),
+                  ),
+                ),
+                // style: OutlinedButton.styleFrom(
+                //     shape: const StadiumBorder(
+                //         side: BorderSide(color: Appcolors.buttoncolor))),
                 onPressed: () async {
                   //here sign in with google
                   await FirebaseServices().signInwithGoogle();
@@ -218,7 +223,9 @@ class _LoginpageState extends State<Loginpage> {
                 label: Text(
                   "Sign in with Google",
                   style: GoogleFonts.urbanist(
-                      fontSize: 15, fontWeight: FontWeight.w500),
+                      color: Appcolors.lightprimary,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500),
                 ),
               ),
             ),
@@ -231,7 +238,9 @@ class _LoginpageState extends State<Loginpage> {
               child: Text.rich(
                 TextSpan(
                   text: "Don't have an account? ",
-                  style: GoogleFonts.urbanist(fontWeight: FontWeight.w600),
+                  style: GoogleFonts.urbanist(
+                      fontWeight: FontWeight.w600,
+                      color: Appcolors.lightprimary),
                   children: [
                     TextSpan(
                       text: "Sign Up!",

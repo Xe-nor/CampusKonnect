@@ -1,5 +1,4 @@
 import 'package:campuskonnect/utils/theme.dart';
-import 'package:campuskonnect/widgets/themebutton.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -28,19 +27,19 @@ class _profileState extends State<profile> {
     int currentIndex = 3;
     return SafeArea(
       child: Scaffold(
-        // backgroundColor: Appcolors.darkprimary,
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {},
-            icon: const Icon(FontAwesomeIcons.arrowLeft),
-            color: Appcolors.iconcontrast,
-          ),
-          elevation: 0,
-          actions: const [ThemeButton()],
-        ),
+        //!!DO NOT UNCOMMENT (TOGGLE FOR THEMEMODE)
+        // appBar: AppBar(
+        //   leading: IconButton(
+        //     onPressed: () {},
+        //     icon: const Icon(FontAwesomeIcons.arrowLeft),
+        //     color: Appcolors.iconcontrast,
+        //   ),
+        //   elevation: 0,
+        //   actions: const [ThemeButton()],
+        // ),
         body: Container(
           padding:
-              const EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 20),
+              const EdgeInsets.only(top: 70, left: 20, right: 20, bottom: 20),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -88,10 +87,12 @@ class _profileState extends State<profile> {
                   height: 50,
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        
-                        shape: const StadiumBorder(
-                            side: BorderSide(color: Appcolors.buttoncolor))),
+                      backgroundColor: Appcolors.darkprimary,
+                      elevation: 0,
+                      shape: const StadiumBorder(
+                        side: BorderSide(color: Appcolors.buttoncolor),
+                      ),
+                    ),
                     onPressed: () {
                       showAboutDialog(
                         context: context,
@@ -129,11 +130,12 @@ class _profileState extends State<profile> {
                       Icons.info,
                       color: Appcolors.buttoncolor,
                     ),
-                    label: Text(
+                    label: const Text(
                       "Information",
                       style: TextStyle(
                         fontSize: 20,
-                        color: Appcolors.iconcontrast,
+                        fontWeight: FontWeight.w500,
+                        color: Appcolors.lightprimary,
                       ),
                     ),
                   ),
@@ -146,8 +148,7 @@ class _profileState extends State<profile> {
                   height: 50,
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor: Appcolors.contrast,
+                        backgroundColor: Appcolors.darkprimary,
                         shape: const StadiumBorder(
                             side: BorderSide(color: Appcolors.buttoncolor))),
                     onPressed: () async {
@@ -160,7 +161,10 @@ class _profileState extends State<profile> {
                       color: Colors.red,
                     ),
                     label: const Text("Logout",
-                        style: TextStyle(fontSize: 20, color: Colors.red)),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.red,
+                            fontWeight: FontWeight.w500)),
                   ),
                 ),
               ],

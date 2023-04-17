@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
 import '../widgets/textform.dart';
 
@@ -8,24 +9,27 @@ class search extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.search),
-        elevation: 2,
-        backgroundColor: Colors.black,
-        title: Container(
-          width: double.infinity,
-          height: 35,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(3)),
-          child: textform(
-            prefixIcon: Icons.search,
-            hinttxt: "Enter the event you looking for",
-            labeltxt: null,
-            isObscure: false,
+    return SafeArea(
+      child: KeyboardDismisser(
+        gestures: const [GestureType.onTap, GestureType.onVerticalDragDown],
+        child: Scaffold(
+          appBar: AppBar(
+            leading: const Icon(Icons.search),
+            title: Container(
+              width: double.infinity,
+              height: 55,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(3)),
+              child: textform(
+                prefixIcon: Icons.search,
+                hinttxt: "Enter the event you looking for",
+                labeltxt: null,
+                isObscure: false,
+              ),
+            ),
           ),
+          body: const SingleChildScrollView(),
         ),
       ),
-      body: const SingleChildScrollView(),
     );
   }
 }
