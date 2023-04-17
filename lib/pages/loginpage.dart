@@ -1,4 +1,8 @@
+import 'package:campuskonnect/pages/eventdetail.dart';
+import 'package:campuskonnect/pages/profilepage.dart';
+import 'package:campuskonnect/services/firebase_services.dart';
 import 'package:campuskonnect/utils/theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/signup.dart';
 import 'package:campuskonnect/utils/routes.dart';
@@ -7,6 +11,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+import '../widgets/textform.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -16,6 +21,8 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
+  final TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
   bool changebutton1 = false;
   bool changebutton2 = false;
   final formkey = GlobalKey<FormState>();
@@ -35,6 +42,21 @@ class _LoginpageState extends State<Loginpage> {
       await Navigator.pushNamed(context, MyRoutes.homeRoute);
     }
   }
+
+  // void _logIn() async {
+  //   final User? user = (await FirebaseAuth.instance.signInWithEmailAndPassword(
+  //           email: _emailTextController.text,
+  //           password: _passwordTextController.text))
+  //       .user;
+
+  //   if (user != null) {
+  //     Get.to(() => const Profile(),
+  //         transition: Transition.cupertinoDialog,
+  //         duration: const Duration(milliseconds: 1500));
+  //   } else {
+  //     Get.snackbar('Warning', 'Email or Password is in-valid.');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +98,15 @@ class _LoginpageState extends State<Loginpage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             textform(
+              //const textform(
+              controller: _emailTextController,
+
+              validator: (String input) {
+                if (input.isEmpty) {
+                  Get.snackbar('Warning', 'Email is empty');
+                  return '';
+                }
+              },
               hinttxt: "email@example.com",
               labeltxt: "Email",
               prefixIcon: FontAwesomeIcons.envelope,
@@ -87,7 +118,15 @@ class _LoginpageState extends State<Loginpage> {
             const SizedBox(
               height: 20,
             ),
+
             textform(
+              controller: _passwordTextController,
+              validator: (String input) {
+                if (input.isEmpty) {
+                  Get.snackbar('Warning', 'Password is empty');
+                  return '';
+                }
+              },
               labeltxt: "Password",
               hinttxt: "Enter your Password",
               prefixIcon: FontAwesomeIcons.lock,
@@ -95,7 +134,8 @@ class _LoginpageState extends State<Loginpage> {
               isObscure: true,
               suffixIcon: null,
               isPrefixIcon: true,
-            ),
+            ), // textform
+
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
@@ -111,11 +151,31 @@ class _LoginpageState extends State<Loginpage> {
             const SizedBox(
               height: 5,
             ),
+
             SizedBox(
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: () => movetohome(context),
+                onPressed: () {
+                  if (formkey.currentState != null) {
+                    if (!formkey.currentState!.validate()) {
+                      return;
+                    }
+                  }
+                  FirebaseAuth.instance
+                      .signInWithEmailAndPassword(
+                          email: _emailTextController.text,
+                          password: _passwordTextController.text)
+                      .then((value) {
+                    Get.to(() => const eventdetail(),
+                        transition: Transition.cupertinoDialog,
+                        duration: const Duration(milliseconds: 1500));
+                  }).onError((error, stackTrace) {
+                    print("Error ${error.toString()}");
+
+                    Get.snackbar('Warning', 'Email or Password is in-valid.');
+                  });
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Appcolors.buttoncolor,
                     shape: const StadiumBorder(
@@ -136,6 +196,7 @@ class _LoginpageState extends State<Loginpage> {
                 style: GoogleFonts.urbanist(fontWeight: FontWeight.w600),
               ),
             ),
+
             SizedBox(
               width: double.infinity,
               height: 50,
@@ -143,7 +204,13 @@ class _LoginpageState extends State<Loginpage> {
                 style: OutlinedButton.styleFrom(
                     shape: const StadiumBorder(
                         side: BorderSide(color: Appcolors.buttoncolor))),
-                onPressed: () => movetohome(context),
+                onPressed: () async {
+                  //here sign in with google
+                  await FirebaseServices().signInwithGoogle();
+                  Get.to(() => const profile(),
+                      transition: Transition.cupertinoDialog,
+                      duration: const Duration(milliseconds: 1500));
+                },
                 icon: const Icon(
                   color: Appcolors.iconcolor,
                   FontAwesomeIcons.google,
@@ -158,7 +225,7 @@ class _LoginpageState extends State<Loginpage> {
             ),
             TextButton(
               onPressed: () {
-                Get.to(const Signupscreen(),
+                Get.to(() => const Signupscreen(), //const Signupscreen(),
                     transition: Transition.cupertino,
                     duration: const Duration(milliseconds: 1500));
               },

@@ -37,8 +37,8 @@ class _GetImageState extends State<GetImage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            height: 150,
-            width: 150,
+            height: 170,
+            width: 320,
             decoration: BoxDecoration(
               border: Border.all(
                 width: 1,

@@ -1,6 +1,15 @@
+import 'package:campuskonnect/pages/img_input.dart';
+import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/routes.dart';
 import '../widgets/textform.dart';
+import 'package:get/get.dart';
+
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CreateEvent extends StatefulWidget {
   const CreateEvent({super.key});
@@ -221,6 +230,23 @@ class _CreateEventState extends State<CreateEvent> {
               const SizedBox(
                 height: 5,
               ),
+              ElevatedButton(
+                style: TextButton.styleFrom(
+                    backgroundColor: Appcolors.buttoncolor,
+                    minimumSize: const Size(326, 50),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
+                onPressed: () {
+                  Navigator.pushNamed(context, MyRoutes.image_input);
+                },
+                child: const Text(
+                  "Upload Poster of the Event",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
             ],
           ),
         ),
@@ -242,26 +268,47 @@ class _CreateEventState extends State<CreateEvent> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 3),
-          child: Stepper(
-            currentStep: _activeStepIndex,
-            steps: stepList(),
-            onStepContinue: () {
-              if (_activeStepIndex < (stepList().length - 1)) {
-                _activeStepIndex += 1;
-              }
-              setState(() {});
-            },
-            onStepCancel: () {
-              if (_activeStepIndex == 0) {
-                return;
-              }
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 3),
+              child: Stepper(
+                currentStep: _activeStepIndex,
+                steps: stepList(),
+                onStepContinue: () {
+                  if (_activeStepIndex < (stepList().length - 1)) {
+                    _activeStepIndex += 1;
+                  }
+                  setState(() {});
+                },
+                onStepCancel: () {
+                  if (_activeStepIndex == 0) {
+                    return;
+                  }
 
-              _activeStepIndex -= 1;
-              setState(() {});
-            },
-          ),
+                  _activeStepIndex -= 1;
+                  setState(() {});
+                },
+              ),
+            ),
+            Container(
+              child: ElevatedButton(
+                style: TextButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    minimumSize: const Size(100, 50)),
+                onPressed: () {},
+                child: const Text(
+                  "Submit",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,4 +1,5 @@
 // import 'package:campuskonnect/utils/colors.dart';
+import 'package:campuskonnect/pages/img_input.dart';
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/create_event.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
           themeMode: themeProvider.themeMode,
           theme: MyTheme.light,
           darkTheme: MyTheme.dark,
-          initialRoute: MyRoutes.homeRoute,
+          initialRoute: MyRoutes.loginRoute,
           routes: {
             "/": (context) => const Homepage(),
             MyRoutes.splashscreen: (context) => Splashscreen(),
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
             MyRoutes.profilepage: (context) => const profile(),
             MyRoutes.eventdetail: (context) => const eventdetail(),
             MyRoutes.createevent: (context) => const CreateEvent(),
+            MyRoutes.image_input: (context) => const GetImage(),
           },
         );
       },
