@@ -42,8 +42,8 @@ class MyTheme {
 class Appcolors extends ChangeNotifier {
   ThemeMode themeMode = ThemeMode.dark;
 
-  static Color contrast = Color(0xffff);
-  static Color iconcontrast = Color(0xffff);
+  static Color contrast = const Color(0x0000ffff);
+  static Color iconcontrast = const Color(0x0000ffff);
   bool get isDark => themeMode == ThemeMode.dark;
   void toggleTheme(bool isOn) {
     Appcolors.contrast =

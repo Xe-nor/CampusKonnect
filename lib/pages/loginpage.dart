@@ -133,16 +133,14 @@ class _LoginpageState extends State<Loginpage> {
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 0),
               child: Text(
                 "OR",
-                style: GoogleFonts.urbanist(
-                    color: Appcolors.lightprimary, fontWeight: FontWeight.w600),
+                style: GoogleFonts.urbanist(fontWeight: FontWeight.w600),
               ),
             ),
             SizedBox(
               width: double.infinity,
               height: 50,
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Appcolors.darkprimary,
+              child: OutlinedButton.icon(
+                style: OutlinedButton.styleFrom(
                     shape: const StadiumBorder(
                         side: BorderSide(color: Appcolors.buttoncolor))),
                 onPressed: () => movetohome(context),
@@ -154,9 +152,7 @@ class _LoginpageState extends State<Loginpage> {
                 label: Text(
                   "Sign in with Google",
                   style: GoogleFonts.urbanist(
-                      color: Appcolors.lightprimary,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500),
+                      fontSize: 15, fontWeight: FontWeight.w500),
                 ),
               ),
             ),
@@ -169,9 +165,7 @@ class _LoginpageState extends State<Loginpage> {
               child: Text.rich(
                 TextSpan(
                   text: "Don't have an account? ",
-                  style: GoogleFonts.urbanist(
-                      color: Appcolors.lightprimary,
-                      fontWeight: FontWeight.w600),
+                  style: GoogleFonts.urbanist(fontWeight: FontWeight.w600),
                   children: [
                     TextSpan(
                       text: "Sign Up!",
