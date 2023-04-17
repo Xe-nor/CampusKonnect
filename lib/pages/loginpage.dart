@@ -1,3 +1,4 @@
+import 'package:campuskonnect/pages/bottomnavbar.dart';
 import 'package:campuskonnect/pages/dashboard.dart';
 import 'package:campuskonnect/pages/eventdetail.dart';
 import 'package:campuskonnect/pages/profilepage.dart';
@@ -182,7 +183,7 @@ class _LoginpageState extends State<Loginpage> {
                     shape: const StadiumBorder(
                         side: BorderSide(color: Appcolors.buttoncolor))),
                 child: const Text(
-                  "Log in",
+                  "Sign in",
                   style: TextStyle(
                       color: Appcolors.lightprimary,
                       fontSize: 16,
@@ -210,7 +211,7 @@ class _LoginpageState extends State<Loginpage> {
                 onPressed: () async {
                   //here sign in with google
                   await FirebaseServices().signInwithGoogle();
-                  Get.to(() => const dashboard(),
+                  Get.to(() => const Homepage(),
                       transition: Transition.cupertinoDialog,
                       duration: const Duration(milliseconds: 1500));
                 },

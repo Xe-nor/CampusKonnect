@@ -110,15 +110,15 @@ class _SignupscreenState extends State<Signupscreen> {
                     textform(
                         controller: _emailTextController,
                         validator: (String input) {
-                            if (input.isEmpty) {
-                              Get.snackbar('Warning', 'Email is empty');
-                              return '';
-                            }
-                            if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                                .hasMatch(input)) {
-                              Get.snackbar('Warning', 'Email is in-valid.');
-                              return '';
-                            }
+                          if (input.isEmpty) {
+                            Get.snackbar('Warning', 'Email is empty');
+                            return '';
+                          }
+                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                              .hasMatch(input)) {
+                            Get.snackbar('Warning', 'Email is in-valid.');
+                            return '';
+                          }
                         },
                         isPrefixIcon: true,
                         isObscure: false,
@@ -159,25 +159,24 @@ class _SignupscreenState extends State<Signupscreen> {
                     //   height: 20,
                     // ),
                     textform(
-                      controller: _passwordTextController,
-                      labeltxt: "Password",
-                      hinttxt: "Enter your Password",
-                      validator: (String input) {
-                        if (input.isEmpty) {
-                          Get.snackbar('Warning', 'Password is empty');
-                          return '';
-                        }
-                        if (input.length < 6) {
-                          Get.snackbar('Warning', 'Enter Strong password');
-                          return '';
-                        }
-                      },
-                      isPrefixIcon: true,
-                      isObscure: false,
-                      prefixIcon: Icons.key,
-                      isEmail: true,
-                      suffixIcon: null
-                    ),
+                        controller: _passwordTextController,
+                        labeltxt: "Password",
+                        hinttxt: "Enter your Password",
+                        validator: (String input) {
+                          if (input.isEmpty) {
+                            Get.snackbar('Warning', 'Password is empty');
+                            return '';
+                          }
+                          if (input.length < 6) {
+                            Get.snackbar('Warning', 'Enter Strong password');
+                            return '';
+                          }
+                        },
+                        isPrefixIcon: true,
+                        isObscure: false,
+                        prefixIcon: Icons.key,
+                        isEmail: true,
+                        suffixIcon: null),
                     const SizedBox(
                       height: 20,
                     ),
@@ -196,8 +195,7 @@ class _SignupscreenState extends State<Signupscreen> {
                         },
                         prefixIcon: Icons.key,
                         isEmail: true,
-                        suffixIcon: null
-                    ),
+                        suffixIcon: null),
                     const SizedBox(
                       height: 30,
                     ),
@@ -234,7 +232,7 @@ class _SignupscreenState extends State<Signupscreen> {
                                 side:
                                     BorderSide(color: Appcolors.buttoncolor))),
                         child: const Text(
-                          "Sign in",
+                          "Sign up",
                           style: TextStyle(
                               color: Appcolors.lightprimary,
                               fontSize: 16,
@@ -262,12 +260,12 @@ class _SignupscreenState extends State<Signupscreen> {
                                 side:
                                     BorderSide(color: Appcolors.buttoncolor))),
                         onPressed: () async {
-                  //here sign in with google
+                          //here sign in with google
                           await FirebaseServices().signInwithGoogle();
                           Get.to(() => const dashboard(),
-                          transition: Transition.cupertinoDialog,
-                          duration: const Duration(milliseconds: 1500));
-                },
+                              transition: Transition.cupertinoDialog,
+                              duration: const Duration(milliseconds: 1500));
+                        },
                         icon: const Icon(
                           color: Appcolors.iconcolor,
                           FontAwesomeIcons.google,
@@ -284,19 +282,19 @@ class _SignupscreenState extends State<Signupscreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.to(const Signupscreen(),
+                        Get.to(const Loginpage(),
                             transition: Transition.cupertino,
                             duration: const Duration(milliseconds: 1500));
                       },
                       child: Text.rich(
                         TextSpan(
-                          text: "Don't have an account? ",
+                          text: "Already have an account? ",
                           style: GoogleFonts.urbanist(
                               color: Appcolors.lightprimary,
                               fontWeight: FontWeight.w600),
                           children: [
                             TextSpan(
-                              text: "Sign Up!",
+                              text: "Sign In!",
                               style: GoogleFonts.urbanist(
                                   color: Appcolors.buttoncolor,
                                   fontWeight: FontWeight.w600),
