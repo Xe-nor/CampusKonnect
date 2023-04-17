@@ -247,9 +247,9 @@ class _CreateEventState extends State<CreateEvent> {
                                     BorderRadius.all(Radius.circular(20))),
                             child: Center(
                                 child: Text(
-                              "SELECT AN IMAGE",
+                              "UPLOAD EVENT POSTER",
                               style: TextStyle(
-                                  fontSize: 25, fontWeight: FontWeight.bold),
+                                  fontSize: 24, fontWeight: FontWeight.bold),
                             ))),
                     Padding(
                       padding: const EdgeInsets.only(left: 0, right: 0, top: 9),

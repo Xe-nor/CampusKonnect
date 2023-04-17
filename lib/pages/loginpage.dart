@@ -1,7 +1,5 @@
 import 'package:campuskonnect/pages/bottomnavbar.dart';
-import 'package:campuskonnect/pages/dashboard.dart';
 import 'package:campuskonnect/pages/eventdetail.dart';
-import 'package:campuskonnect/pages/profilepage.dart';
 import 'package:campuskonnect/services/firebase_services.dart';
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,7 +11,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
-import '../widgets/textform.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
