@@ -1,7 +1,10 @@
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/eventdetail.dart';
 import 'package:flutter_application_1/pages/signup.dart';
+import 'package:flutter_application_1/services/firebase_services.dart';
 import 'package:flutter_application_1/utils/routes.dart';
 import 'package:flutter_application_1/widgets/textform.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -138,7 +141,7 @@ class _LoginpageState extends State<Loginpage> {
                           email: _emailTextController.text,
                           password: _passwordTextController.text)
                       .then((value) {
-                    Get.to(() => const Profile(),
+                    Get.to(() => const eventdetail(),
                         transition: Transition.cupertinoDialog,
                         duration: const Duration(milliseconds: 1500));
                   }).onError((error, stackTrace) {
@@ -167,7 +170,13 @@ class _LoginpageState extends State<Loginpage> {
               width: double.infinity,
               height: 40,
               child: OutlinedButton.icon(
-                onPressed: () => movetohome(context),
+                onPressed: () async {
+                  //here sign in with google
+                  await FirebaseServices().signInwithGoogle();
+                  Get.to(() => const profile(),
+                      transition: Transition.cupertinoDialog,
+                      duration: const Duration(milliseconds: 1500));
+                },
                 icon: const Icon(
                   FontAwesomeIcons.google,
                   size: 17,
@@ -183,7 +192,7 @@ class _LoginpageState extends State<Loginpage> {
             ),
             TextButton(
               onPressed: () {
-                Get.to(() => Signupscreen(), //const Signupscreen(),
+                Get.to(() => const Signupscreen(), //const Signupscreen(),
                     transition: Transition.cupertino,
                     duration: const Duration(milliseconds: 1500));
               },

@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_application_1/pages/homepage.dart';
 // import 'package:flutter_application_1/pages/informationpage.dart';
 import 'package:flutter_application_1/pages/loginpage.dart';
+import 'package:flutter_application_1/services/firebase_services.dart';
 import 'package:get/get.dart';
 
 // import 'loginpage.dart';
@@ -114,8 +117,10 @@ class _profileState extends State<profile> {
                   child: OutlinedButton.icon(
                     style: OutlinedButton.styleFrom(
                         side: const BorderSide(color: Colors.yellow)),
-                    onPressed: () {
-                      Get.to(const Loginpage());
+                    onPressed: () async {
+                      await FirebaseServices().signOut();
+                      FirebaseAuth.instance.signOut();
+                      Get.to(() => const Loginpage());
                     },
                     icon: const Icon(
                       Icons.logout,

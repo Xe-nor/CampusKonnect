@@ -136,7 +136,6 @@ class CreateEvent extends StatelessWidget {
       darkTheme: ThemeData(
         canvasColor: const Color(0xff22222C),
         brightness: Brightness.dark,
-        
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -206,10 +205,10 @@ class MyCustomFormState extends State<MyCustomForm> {
                 return null;
               },
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             TextFormField(
               decoration: InputDecoration(
-                  labelText: "Location", hintText: "Where the event will be  "),
+                  labelText: "Location", hintText: "Where the event will be "),
 
               // The validator receives the text that the user has entered.
               validator: (value) {

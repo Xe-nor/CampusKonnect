@@ -48,19 +48,16 @@ class _HomepageState extends State<Homepage> {
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
       ),
-<<<<<<< HEAD
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-          child: Column(
-            children: [
-              const ListTile(),
-            ],
-          ),
-        ),
-      ),
-=======
->>>>>>> 63186731752331c46212bfc52e097af37efd3ae3
+      // body: SingleChildScrollView(
+      //   child: Container(
+      //     padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+      //     child: Column(
+      //       children: [
+      //         const ListTile(),
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
