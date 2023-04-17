@@ -7,8 +7,8 @@ Widget textform(
     {required hinttxt,
     final isdark = false,
     required labeltxt,
-    IconData? prefixIcon = null,
-    IconData? suffixIcon = null,
+    IconData? prefixIcon,
+    IconData? suffixIcon,
     bool isEmail = false,
     bool isPrefixIcon = false,
     // required bool isSuffixIcon,
@@ -32,7 +32,7 @@ Widget textform(
           fontSize: 14,
         ),
         hintText: hinttxt,
-        fillColor: const Color(0xff1f222a),
+        fillColor: Appcolors.contrast,
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
@@ -46,6 +46,7 @@ Widget textform(
             ? Icon(
                 prefixIcon,
                 size: 16,
+                color: Appcolors.iconcolor,
               )
             : null,
         prefixIconColor: const Color(0xffffffff),

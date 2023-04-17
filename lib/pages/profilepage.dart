@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 // import 'package:campuskonnect/pages/homepage.dart';
 // import 'package:campuskonnect/pages/informationpage.dart';
 import 'package:campuskonnect/pages/loginpage.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:campuskonnect/services/firebase_services.dart';
 import 'package:get/get.dart';
 
@@ -29,6 +30,11 @@ class _profileState extends State<profile> {
       child: Scaffold(
         // backgroundColor: Appcolors.darkprimary,
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(FontAwesomeIcons.arrowLeft),
+            color: Appcolors.iconcontrast,
+          ),
           elevation: 0,
           actions: const [ThemeButton()],
         ),
@@ -83,6 +89,7 @@ class _profileState extends State<profile> {
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
+                        
                         shape: const StadiumBorder(
                             side: BorderSide(color: Appcolors.buttoncolor))),
                     onPressed: () {
@@ -120,10 +127,15 @@ class _profileState extends State<profile> {
                     },
                     icon: const Icon(
                       Icons.info,
-                      color: Colors.grey,
+                      color: Appcolors.buttoncolor,
                     ),
-                    label: const Text("Information",
-                        style: TextStyle(fontSize: 20, color: Colors.white)),
+                    label: Text(
+                      "Information",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Appcolors.iconcontrast,
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -134,7 +146,8 @@ class _profileState extends State<profile> {
                   height: 50,
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Appcolors.darkprimary,
+                        elevation: 0,
+                        backgroundColor: Appcolors.contrast,
                         shape: const StadiumBorder(
                             side: BorderSide(color: Appcolors.buttoncolor))),
                     onPressed: () async {
@@ -144,7 +157,7 @@ class _profileState extends State<profile> {
                     },
                     icon: const Icon(
                       Icons.logout,
-                      color: Colors.grey,
+                      color: Colors.red,
                     ),
                     label: const Text("Logout",
                         style: TextStyle(fontSize: 20, color: Colors.red)),

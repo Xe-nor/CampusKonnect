@@ -26,7 +26,8 @@ Widget eventCard({
         // padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Appcolors.secondary,
+          border: Border.all(color: Appcolors.buttoncolor),
+          color: Appcolors.contrast,
         ),
         height: 240,
         child: Column(

@@ -15,7 +15,7 @@ class _GetImageState extends State<GetImage> {
 
   Future<void> _pickImage(ImageSource source) async {
     final pickedImage = await ImagePicker().pickImage(source: source);
-    setState(() async {
+    setState(() {
       if (pickedImage != null) {
         _image = File(pickedImage.path);
       } else {
