@@ -1,8 +1,12 @@
-// import 'package:campuskonnect/utils/colors.dart';
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:campuskonnect/widgets/themebutton.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+// import 'package:campuskonnect/pages/homepage.dart';
+// import 'package:campuskonnect/pages/informationpage.dart';
 import 'package:campuskonnect/pages/loginpage.dart';
+import 'package:campuskonnect/services/firebase_services.dart';
 import 'package:get/get.dart';
 
 // import 'loginpage.dart';
@@ -79,7 +83,6 @@ class _profileState extends State<profile> {
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
-                        
                         shape: const StadiumBorder(
                             side: BorderSide(color: Appcolors.buttoncolor))),
                     onPressed: () {
@@ -134,8 +137,10 @@ class _profileState extends State<profile> {
                         backgroundColor: Appcolors.darkprimary,
                         shape: const StadiumBorder(
                             side: BorderSide(color: Appcolors.buttoncolor))),
-                    onPressed: () {
-                      Get.to(const Loginpage());
+                    onPressed: () async {
+                      await FirebaseServices().signOut();
+                      FirebaseAuth.instance.signOut();
+                      Get.to(() => const Loginpage());
                     },
                     icon: const Icon(
                       Icons.logout,
