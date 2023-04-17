@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:campuskonnect/pages/bottomnavbar.dart';
+import 'package:get/get.dart';
 
 // ignore: camel_case_types
 class eventdetail extends StatefulWidget {
@@ -13,131 +15,150 @@ class _eventdetailState extends State<eventdetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.maxFinite,
-        height: double.maxFinite,
-        child: Stack(
-          children: [
-            Positioned(
-                left: 20,
-                top: 70,
-                child: Row(
-                  children: [
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.menu))
-                  ],
-                )),
-            Positioned(
-              left: 0,
-              right: 0,
-              child: Container(
-                width: double.maxFinite,
-                height: 320,
-                child: Image.asset(
-                  "assets/images/event.jpg",
-                  fit: BoxFit.contain,
+      body: SafeArea(
+        child: SizedBox(
+          width: double.maxFinite,
+          height: double.maxFinite,
+          child: Stack(
+            children: [
+              Positioned(
+                left: 0,
+                right: 0,
+                child: SizedBox(
+                  width: double.maxFinite,
+                  // height: 300,
+                  child: Image.asset(
+                    "assets/images/event.jpg",
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-                top: 330,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 500,
-                  decoration: const BoxDecoration(
-                      color: Color(0xff22222C),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30))),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: const [
-                          Text(
-                            "EVENT-NAME",
-                            style: TextStyle(fontSize: 30),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: const [
-                          Icon(Icons.bookmark_add, color: Colors.white),
-                          Text(
-                            "date and time",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: const [
-                          Icon(Icons.bookmark_add, color: Colors.white),
-                          Text(
-                            "location",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 60,
-                      ),
-                      Row(
-                        children: const [
-                          Text(
-                            "MORE INFORMATION",
-                            style: TextStyle(fontSize: 30),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: const [
-                          Icon(Icons.bookmark_add, color: Colors.white),
-                          Text(
-                            "TOTAL-TIME",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: const [
-                          Icon(Icons.bookmark_add, color: Colors.white),
-                          Text(
-                            "BATCH",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 60,
-                      ),
-                      Row(
-                        children: const [
-                          Text(
-                            "DESCRIPTION",
-                            style: TextStyle(fontSize: 30),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 100,
-                      ),
-                      Row(
+              Positioned(
+                left: 10,
+                top: 0,
+                child: Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Get.to(const Homepage());
+                        },
+                        icon: const Icon(Icons.menu))
+                  ],
+                ),
+              ),
+              Positioned(
+                  top: 200,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 29, 29, 51),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            topRight: Radius.circular(30))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
                         children: [
-                          IconButton(
-                            style: const ButtonStyle(),
-                            onPressed: () {},
-                            icon: const Icon(Icons.favorite_border_outlined),
+                          Row(
+                            children: [
+                              Text(
+                                "EVENT-NAME",
+                                style:
+                                    Theme.of(context).textTheme.headlineSmall,
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Row(
+                            children: const [
+                              Icon(Icons.date_range, color: Colors.grey),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 5),
+                                child: Text(
+                                  "date and time",
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const Icon(Icons.location_on, color: Colors.white),
+                              Text(
+                                "location",
+                                style: Theme.of(context).textTheme.labelLarge,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 60,
+                          ),
+                          Row(
+                            children: const [
+                              Text(
+                                "MORE INFORMATION",
+                                style: TextStyle(fontSize: 30),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: const [
+                              Icon(Icons.bookmark_add, color: Colors.white),
+                              Text(
+                                "TOTAL-TIME",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: const [
+                              Icon(Icons.bookmark_add, color: Colors.white),
+                              Text(
+                                "BATCH",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 60,
+                          ),
+                          Row(
+                            children: const [
+                              Text(
+                                "DESCRIPTION",
+                                style: TextStyle(fontSize: 30),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 100,
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            left: 10,
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  style: const ButtonStyle(),
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                      Icons.favorite_border_outlined),
+                                )
+                              ],
+                            ),
                           )
                         ],
-                      )
-                    ],
-                  ),
-                ))
-          ],
+                      ),
+                    ),
+                  ))
+            ],
+          ),
         ),
       ),
     );

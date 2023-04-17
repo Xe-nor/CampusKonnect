@@ -1,6 +1,8 @@
+// import 'package:campuskonnect/pages/splashscreen.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:flutter_application_1/pages/splashscreen.dart';
+// import 'package:get/get.dart';
+
+import '../widgets/eventcard.dart';
 
 // ignore: camel_case_types
 class dashboard extends StatefulWidget {
@@ -14,87 +16,47 @@ class dashboard extends StatefulWidget {
 class _dashboardState extends State<dashboard> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Get.to(Splashscreen());
+    return SafeArea(
+      child: Scaffold(
+        // extendBody: true,
+        // extendBodyBehindAppBar: true,
+        appBar: _appbar(),
+        body: ListView.builder(
+          itemCount: 6,
+          itemBuilder: (BuildContext context, int index) {
+            return Column(
+              children: [
+                eventCard(
+                  Context: context,
+                  eventDescription:
+                      "Cupidatat dolor elit proident fugiat eiusmod esse commodo irure. Ex officia incididunt nisi eiusmod id eiusmod enim cupidatat exercitation cillum ipsum. Amet tempor sint quis id non cillum aliquip esse nisi anim et eu adipisicing. Incididunt consequat consequat consectetur culpa id ut do quis mollit nisi et aliqua. Veniam non elit reprehenderit magna commodo commodo ex consectetur. Ullamco fugiat irure anim do tempor consequat enim cupidatat excepteur voluptate dolore. Pariatur dolore aliquip labore ullamco voluptate labore ipsum laboris fugiat labore officia voluptate do.",
+                  eventDate: "12th october",
+                  eventimage: "assets/images/event.jpg",
+                  eventname: "Music Festival",
+                  eventLocation: "Campus15",
+                ),
+              ],
+            );
           },
         ),
-        elevation: 0,
-        title: const Text("CampusKonnect"),
-        centerTitle: true,
-      ),
-      body: ListView.builder(
-        itemCount: 5,
-        itemBuilder: (BuildContext context, int index) {
-          return Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color.fromARGB(255, 48, 45, 36)),
-                  height: 230,
-                  // color: Color.fromARGB(255, 78, 26, 26),
-                  child: Column(
-                    children: [
-                      ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.asset(
-                            "assets/images/event.jpg",
-                            height: 100,
-                            width: double.infinity,
-                            fit: BoxFit.fill,
-                          )),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "EVENT NAME",
-                            style: Theme.of(context).textTheme.headlineSmall,
-                          ),
-                          OutlinedButton(
-                            onPressed: () {},
-                            child: const Text(
-                              "Register",
-                            ),
-                          )
-                        ],
-                      ),
-                      Row(
-                        children: const [
-                          Icon(
-                            Icons.date_range,
-                            size: 15,
-                          ),
-                          Text(" date of event")
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        children: const [
-                          Expanded(
-                              child: Text(
-                            "awdadawd wadawdawd awddddddawdawd awdddddddddddddaw dawwwwwwwwww awdddddddd awdd awddddddd adw daw wad awd  aw da wd aw dawdaw d awd aw da wd aw dw ad ",
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          ))
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              )
-            ],
-          );
-        },
       ),
     );
   }
+}
+
+_appbar() {
+  return PreferredSize(
+    preferredSize: const Size.fromHeight(100),
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+      child: Row(
+        children: [
+          Image.asset(
+            "assets/images/onlyName.png",
+            scale: 6,
+          ),
+        ],
+      ),
+    ),
+  );
 }

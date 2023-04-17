@@ -1,61 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-// // ignore: camel_case_types
-// class textform extends StatelessWidget {
-//   const textform({
-//     super.key,
-//     required this.labeltxt,
-//     required this.hinttxt,
-//     required this.icon,
-//     required this.obscure,
-//   });
-//   final String labeltxt, hinttxt;
-//   final IconData icon;
-//   final bool obscure;
-//   @override
-//   Widget build(BuildContext context) {
-//     return TextFormField(
-//       obscureText: obscure,
-//       decoration: InputDecoration(
-//         labelText: labeltxt,
-//         hintText: hinttxt,
-//         fillColor: const Color(0xff393948),
-//         filled: true,
-//         enabledBorder: const OutlineInputBorder(borderSide: BorderSide.none),
-//         prefixIcon: Icon(icon),
-//         border: const OutlineInputBorder(),
-//       ),
-//     );
-//   }
-// }
+import '../utils/theme.dart';
+
 Widget textform(
-    {hinttxt,
-    labeltxt,
-    IconData? icon,
-    bool,
+    {required hinttxt,
+    final isdark = false,
+    required labeltxt,
+    IconData? prefixIcon = null,
+    IconData? suffixIcon = null,
+    bool isEmail = false,
+    bool isPrefixIcon = false,
+    // required bool isSuffixIcon,
+    bool isObscure = true,
     TextEditingController? controller,
-    Function? validator,
-    Function? onSaved}) {
-  return Container(
-    height: 45,
+    Function? validator}) {
+  return SizedBox(
+    height: 55,
     child: TextFormField(
-      onSaved: (newValue) => newValue,
+      //onSaved: (newValue) => newValue,
       validator: (input) => validator!(input),
-      obscureText: bool,
+      obscureText: isObscure,
+      keyboardType: isEmail ? TextInputType.emailAddress : null,
       controller: controller,
       decoration: InputDecoration(
-        // contentPadding:EdgeInsets.only(top: 5),
-        // errorStyle: TextStyle(fontSize: 0),
-        // hintStyle: TextStyle(
-        //   color: AppColors.genderTextColor,
-        // ),
+        labelStyle: GoogleFonts.montserrat(
+          fontSize: 15,
+        ),
         labelText: labeltxt,
+        hintStyle: GoogleFonts.montserrat(
+          fontSize: 14,
+        ),
         hintText: hinttxt,
-        fillColor: const Color(0xff393948),
+        fillColor: const Color(0xff1f222a),
         filled: true,
-        enabledBorder: const OutlineInputBorder(borderSide: BorderSide.none),
-        prefixIcon: Icon(icon),
-        border: const OutlineInputBorder(),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: const BorderSide(color: Appcolors.buttoncolor, width: 1),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(15),
+          borderSide: const BorderSide(color: Appcolors.buttoncolor, width: 1),
+        ),
+        prefixIcon: isPrefixIcon
+            ? Icon(
+                prefixIcon,
+                size: 16,
+              )
+            : null,
+        prefixIconColor: const Color(0xffffffff),
       ),
     ),
   );

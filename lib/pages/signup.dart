@@ -2,11 +2,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/homepage.dart';
-import 'package:flutter_application_1/pages/loginpage.dart';
-import 'package:flutter_application_1/pages/profilepage.dart';
+import 'package:campuskonnect/pages/homepage.dart';
+import 'package:campuskonnect/pages/loginpage.dart';
+import 'package:campuskonnect/pages/profilepage.dart';
+import 'package:campuskonnect/pages/bottomnavbar.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../utils/theme.dart';
 import '../widgets/textform.dart';
 
 class Signupscreen extends StatefulWidget {
@@ -46,7 +50,6 @@ class _SignupscreenState extends State<Signupscreen> {
             },
             icon: const Icon(Icons.arrow_back)),
         elevation: 0,
-        backgroundColor: const Color(0xff22222C),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -86,14 +89,14 @@ class _SignupscreenState extends State<Signupscreen> {
                 child: Column(
                   children: [
                     textform(
-                        onSaved: (String usn) {
-                          username = usn;
-                        },
                         controller: _usernameTextController,
-                        bool: false,
                         hinttxt: 'Enter your Name',
-                        icon: Icons.person,
+                        prefixIcon: Icons.person,
                         labeltxt: 'Name',
+                        isEmail: false,
+                        isObscure: false,
+                        suffixIcon: null,
+                        isPrefixIcon: true,
                         validator: (String input) {
                           if (input.isEmpty) {
                             Get.snackbar('Warning', 'Username is empty');
@@ -104,42 +107,47 @@ class _SignupscreenState extends State<Signupscreen> {
                       height: 20,
                     ),
                     textform(
-                      onSaved: (String eml) {
-                        email = eml;
-                      },
-                      controller: _emailTextController,
-                      bool: false,
-                      labeltxt: "E-mail",
-                      hinttxt: "Enter your E-mail",
-                      icon: Icons.email,
-                      validator: (String input) {
-                        if (input.isEmpty) {
-                          Get.snackbar('Warning', 'Email is empty');
-                          return '';
-                        }
-                        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                            .hasMatch(input)) {
-                          Get.snackbar('Warning', 'Email is in-valid.');
-                          return '';
-                        }
-                        // if (!input.contains('@')) {
-                        //   Get.snackbar('Warning', 'Email is in-valid.');
-                        //   return '';
-                        // }
-                      },
-                    ),
+                        isPrefixIcon: true,
+                        isObscure: false,
+                        labeltxt: "E-mail",
+                        hinttxt: "Enter your E-mail",
+                        prefixIcon: Icons.email,
+                        isEmail: true,
+                        suffixIcon: null),
                     const SizedBox(
                       height: 20,
                     ),
                     textform(
-                      onSaved: (String pass) {
-                        password = pass;
-                      },
+                        controller: _emailTextController,
+                        validator: (String input) {
+                          if (input.isEmpty) {
+                            Get.snackbar('Warning', 'Email is empty');
+                            return '';
+                          }
+                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                              .hasMatch(input)) {
+                            Get.snackbar('Warning', 'Email is in-valid.');
+                            return '';
+                          }
+                          // if (!input.contains('@')) {
+                          //   Get.snackbar('Warning', 'Email is in-valid.');
+                          //   return '';
+                          // }
+                        },
+                        isPrefixIcon: true,
+                        labeltxt: "Password",
+                        isObscure: false,
+                        hinttxt: "Enter your Password",
+                        prefixIcon: Icons.key,
+                        isEmail: false,
+                        suffixIcon: null),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    textform(
                       controller: _passwordTextController,
                       labeltxt: "Password",
                       hinttxt: "Enter your Password",
-                      icon: Icons.key,
-                      bool: false,
                       validator: (String input) {
                         if (input.isEmpty) {
                           Get.snackbar('Warning', 'Password is empty');
@@ -148,36 +156,34 @@ class _SignupscreenState extends State<Signupscreen> {
                         if (input.length < 6) {
                           Get.snackbar('Warning', 'Enter Strong password');
                           return '';
-                          //return "Password do not match";
                         }
                       },
-                      //onSaved: (value) => password = value,
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     textform(
-                        onSaved: (String conpass) {
-                          confirmpassword = conpass;
-                        },
                         controller: _confirmPasswordTextController,
+                        isPrefixIcon: true,
                         labeltxt: "Confirm Password",
+                        isObscure: false,
                         hinttxt: "Re-enter your Password",
-                        icon: Icons.key,
-                        bool: true,
                         validator: (String input) {
                           if (input != _passwordTextController.text) {
                             Get.snackbar('Warning', 'Password do not match');
                             return '';
                             //return "Password do not match";
                           }
-                        }),
+                        },
+                        prefixIcon: Icons.key,
+                        isEmail: true,
+                        suffixIcon: null),
                     const SizedBox(
                       height: 30,
                     ),
                     SizedBox(
                       width: double.infinity,
-                      height: 40,
+                      height: 50,
                       child: ElevatedButton(
                         onPressed: () {
                           // here
@@ -203,55 +209,72 @@ class _SignupscreenState extends State<Signupscreen> {
                           });
                         },
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xff5669FF)),
+                            backgroundColor: Appcolors.buttoncolor,
+                            shape: const StadiumBorder(
+                                side:
+                                    BorderSide(color: Appcolors.buttoncolor))),
                         child: const Text(
-                          "Sign in",
+                          "Log in",
                           style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 15,
-                          ),
+                              color: Appcolors.lightprimary,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 0),
-                      child: Text("OR"),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 0),
+                      child: Text(
+                        "OR",
+                        style: GoogleFonts.urbanist(
+                            color: Appcolors.lightprimary,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                     SizedBox(
                       width: double.infinity,
-                      height: 40,
-                      child: OutlinedButton.icon(
-                        onPressed: () {
-                          //Here
-                        },
+                      height: 50,
+                      child: ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Appcolors.darkprimary,
+                            shape: const StadiumBorder(
+                                side:
+                                    BorderSide(color: Appcolors.buttoncolor))),
+                        onPressed: () => {},
                         icon: const Icon(
+                          color: Appcolors.iconcolor,
                           FontAwesomeIcons.google,
                           size: 17,
                         ),
-                        label: const Text(
+                        label: Text(
                           "Sign in with Google",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 15,
-                          ),
+                          style: GoogleFonts.urbanist(
+                              color: Appcolors.lightprimary,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.to(() => const Loginpage(),
-                            transition: Transition.cupertinoDialog,
+                        Get.to(const Signupscreen(),
+                            transition: Transition.cupertino,
                             duration: const Duration(milliseconds: 1500));
                       },
-                      child: const Text.rich(
+                      child: Text.rich(
                         TextSpan(
-                          text: "Already have an account? ",
-                          style: TextStyle(color: Colors.white60),
+                          text: "Don't have an account? ",
+                          style: GoogleFonts.urbanist(
+                              color: Appcolors.lightprimary,
+                              fontWeight: FontWeight.w600),
                           children: [
                             TextSpan(
-                                text: "Log in!",
-                                style: TextStyle(color: Colors.blueAccent)),
+                              text: "Sign Up!",
+                              style: GoogleFonts.urbanist(
+                                  color: Appcolors.buttoncolor,
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ],
                         ),
                       ),

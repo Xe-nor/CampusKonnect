@@ -1,15 +1,17 @@
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:campuskonnect/pages/eventdetail.dart';
+import 'package:campuskonnect/pages/profilepage.dart';
+import 'package:campuskonnect/services/firebase_services.dart';
+import 'package:campuskonnect/utils/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/eventdetail.dart';
-import 'package:flutter_application_1/pages/signup.dart';
-import 'package:flutter_application_1/services/firebase_services.dart';
-import 'package:flutter_application_1/utils/routes.dart';
-import 'package:flutter_application_1/widgets/textform.dart';
+import 'package:campuskonnect/pages/signup.dart';
+import 'package:campuskonnect/utils/routes.dart';
+import 'package:campuskonnect/widgets/textform.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:flutter_application_1/pages/profilepage.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+import '../widgets/textform.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -59,24 +61,29 @@ class _LoginpageState extends State<Loginpage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Material(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 100,
+    return KeyboardDismisser(
+      gestures: const [GestureType.onTap, GestureType.onVerticalDragDown],
+      child: Material(
+        child: SingleChildScrollView(
+          child: KeyboardDismisser(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 100,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 20, top: 100, right: 20, bottom: 30),
+                  child: Image.asset(
+                    "assets/images/nobglogo2.png",
+                    fit: BoxFit.contain,
+                    height: size.height * 0.12,
+                  ),
+                ),
+                loginform(context)
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 20, top: 100, right: 20, bottom: 30),
-              child: Image.asset(
-                "assets/images/nobglogo2.png",
-                fit: BoxFit.contain,
-                height: size.height * 0.12,
-              ),
-            ),
-            loginform(context)
-          ],
+          ),
         ),
       ),
     );
@@ -91,46 +98,65 @@ class _LoginpageState extends State<Loginpage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             textform(
-                //const textform(
-                controller: _emailTextController,
-                labeltxt: "E-mail",
-                hinttxt: "Enter your E-mail",
-                icon: Icons.email,
-                bool: false,
-                validator: (String input) {
-                  if (input.isEmpty) {
-                    Get.snackbar('Warning', 'Email is empty');
-                    return '';
-                  }
-                }),
+              //const textform(
+              controller: _emailTextController,
+
+              validator: (String input) {
+                if (input.isEmpty) {
+                  Get.snackbar('Warning', 'Email is empty');
+                  return '';
+                }
+              },
+              hinttxt: "email@example.com",
+              labeltxt: "Email",
+              prefixIcon: FontAwesomeIcons.envelope,
+              isEmail: true,
+              isObscure: false,
+              suffixIcon: null,
+              isPrefixIcon: true,
+            ),
             const SizedBox(
               height: 20,
             ),
+
             textform(
-                //const textform(
-                controller: _passwordTextController,
-                labeltxt: "Password",
-                hinttxt: "Enter your Password",
-                icon: Icons.key,
-                bool: true,
-                validator: (String input) {
-                  if (input.isEmpty) {
-                    Get.snackbar('Warning', 'Password is empty');
-                    return '';
-                  }
-                }),
+              controller: _passwordTextController,
+              validator: (String input) {
+                if (input.isEmpty) {
+                  Get.snackbar('Warning', 'Password is empty');
+                  return '';
+                }
+              },
+              labeltxt: "Password",
+              hinttxt: "Enter your Password",
+              prefixIcon: FontAwesomeIcons.lock,
+              isEmail: false,
+              isObscure: true,
+              suffixIcon: null,
+              isPrefixIcon: true,
+            ), // textform
+
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                  onPressed: () {}, child: const Text("Forgot Password?")),
+                onPressed: () {},
+                child: Text(
+                  "Forgot Password?",
+                  style: GoogleFonts.urbanist(
+                      color: Appcolors.buttoncolor,
+                      fontWeight: FontWeight.w500),
+                ),
+              ),
             ),
+            const SizedBox(
+              height: 5,
+            ),
+
             SizedBox(
               width: double.infinity,
-              height: 40,
+              height: 50,
               child: ElevatedButton(
-                //onPressed: () => movetohome(context),
                 onPressed: () {
-                  //_logIn();
                   if (formkey.currentState != null) {
                     if (!formkey.currentState!.validate()) {
                       return;
@@ -150,26 +176,36 @@ class _LoginpageState extends State<Loginpage> {
                     Get.snackbar('Warning', 'Email or Password is in-valid.');
                   });
                 },
-
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff5669FF)),
+                    backgroundColor: Appcolors.buttoncolor,
+                    shape: const StadiumBorder(
+                        side: BorderSide(color: Appcolors.buttoncolor))),
                 child: const Text(
                   "Log in",
                   style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 15,
-                  ),
+                      color: Appcolors.lightprimary,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500),
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 0),
-              child: Text("OR"),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 0),
+              child: Text(
+                "OR",
+                style: GoogleFonts.urbanist(
+                    color: Appcolors.lightprimary, fontWeight: FontWeight.w600),
+              ),
             ),
+
             SizedBox(
               width: double.infinity,
-              height: 40,
-              child: OutlinedButton.icon(
+              height: 50,
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Appcolors.darkprimary,
+                    shape: const StadiumBorder(
+                        side: BorderSide(color: Appcolors.buttoncolor))),
                 onPressed: () async {
                   //here sign in with google
                   await FirebaseServices().signInwithGoogle();
@@ -178,15 +214,16 @@ class _LoginpageState extends State<Loginpage> {
                       duration: const Duration(milliseconds: 1500));
                 },
                 icon: const Icon(
+                  color: Appcolors.iconcolor,
                   FontAwesomeIcons.google,
                   size: 17,
                 ),
-                label: const Text(
+                label: Text(
                   "Sign in with Google",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 15,
-                  ),
+                  style: GoogleFonts.urbanist(
+                      color: Appcolors.lightprimary,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500),
                 ),
               ),
             ),
@@ -196,14 +233,19 @@ class _LoginpageState extends State<Loginpage> {
                     transition: Transition.cupertino,
                     duration: const Duration(milliseconds: 1500));
               },
-              child: const Text.rich(
+              child: Text.rich(
                 TextSpan(
                   text: "Don't have an account? ",
-                  style: TextStyle(color: Colors.white60),
+                  style: GoogleFonts.urbanist(
+                      color: Appcolors.lightprimary,
+                      fontWeight: FontWeight.w600),
                   children: [
                     TextSpan(
-                        text: "Sign Up!",
-                        style: TextStyle(color: Colors.blueAccent)),
+                      text: "Sign Up!",
+                      style: GoogleFonts.urbanist(
+                          color: Appcolors.buttoncolor,
+                          fontWeight: FontWeight.w600),
+                    ),
                   ],
                 ),
               ),
