@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/bottomnavbar.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // ignore: camel_case_types
 class eventdetail extends StatefulWidget {
@@ -62,11 +64,10 @@ class _eventdetailState extends State<eventdetail> {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                "EVENT-NAME",
-                                style:
-                                    Theme.of(context).textTheme.headlineSmall,
-                              )
+                              Text("EVENT-NAME",
+                                  style: GoogleFonts.urbanist(
+                                      fontSize: 26.0,
+                                      fontWeight: FontWeight.w700))
                             ],
                           ),
                           const SizedBox(
@@ -86,7 +87,8 @@ class _eventdetailState extends State<eventdetail> {
                           ),
                           Row(
                             children: [
-                              const Icon(Icons.location_on, color: Colors.white),
+                              const Icon(Icons.location_on,
+                                  color: Colors.white),
                               Text(
                                 "location",
                                 style: Theme.of(context).textTheme.labelLarge,
