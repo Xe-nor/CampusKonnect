@@ -1,4 +1,6 @@
 //import 'dart:html';
+import 'package:campuskonnect/pages/dashboard.dart';
+import 'package:campuskonnect/services/firebase_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -106,17 +108,6 @@ class _SignupscreenState extends State<Signupscreen> {
                       height: 20,
                     ),
                     textform(
-                        isPrefixIcon: true,
-                        isObscure: false,
-                        labeltxt: "E-mail",
-                        hinttxt: "Enter your E-mail",
-                        prefixIcon: Icons.email,
-                        isEmail: true,
-                        suffixIcon: null),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    textform(
                         controller: _emailTextController,
                         validator: (String input) {
                           if (input.isEmpty) {
@@ -128,36 +119,64 @@ class _SignupscreenState extends State<Signupscreen> {
                             Get.snackbar('Warning', 'Email is in-valid.');
                             return '';
                           }
-                          // if (!input.contains('@')) {
-                          //   Get.snackbar('Warning', 'Email is in-valid.');
-                          //   return '';
-                          // }
                         },
                         isPrefixIcon: true,
-                        labeltxt: "Password",
                         isObscure: false,
-                        hinttxt: "Enter your Password",
-                        prefixIcon: Icons.key,
-                        isEmail: false,
+                        labeltxt: "E-mail",
+                        hinttxt: "Enter your E-mail",
+                        prefixIcon: Icons.email,
+                        isEmail: true,
                         suffixIcon: null),
                     const SizedBox(
                       height: 20,
                     ),
+                    // textform(
+                    //     controller: _emailTextController,
+                    //     validator: (String input) {
+                    //       if (input.isEmpty) {
+                    //         Get.snackbar('Warning', 'Email is empty');
+                    //         return '';
+                    //       }
+                    //       if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                    //           .hasMatch(input)) {
+                    //         Get.snackbar('Warning', 'Email is in-valid.');
+                    //         return '';
+                    //       }
+                    //       // if (!input.contains('@')) {
+                    //       //   Get.snackbar('Warning', 'Email is in-valid.');
+                    //       //   return '';
+                    //       // }
+                    //     },
+                    //     isPrefixIcon: true,
+                    //     labeltxt: "Password",
+                    //     isObscure: false,
+                    //     hinttxt: "Enter your Password",
+                    //     prefixIcon: Icons.key,
+                    //     isEmail: false,
+                    //     suffixIcon: null
+                    // ),
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
                     textform(
-                      controller: _passwordTextController,
-                      labeltxt: "Password",
-                      hinttxt: "Enter your Password",
-                      validator: (String input) {
-                        if (input.isEmpty) {
-                          Get.snackbar('Warning', 'Password is empty');
-                          return '';
-                        }
-                        if (input.length < 6) {
-                          Get.snackbar('Warning', 'Enter Strong password');
-                          return '';
-                        }
-                      },
-                    ),
+                        controller: _passwordTextController,
+                        labeltxt: "Password",
+                        hinttxt: "Enter your Password",
+                        validator: (String input) {
+                          if (input.isEmpty) {
+                            Get.snackbar('Warning', 'Password is empty');
+                            return '';
+                          }
+                          if (input.length < 6) {
+                            Get.snackbar('Warning', 'Enter Strong password');
+                            return '';
+                          }
+                        },
+                        isPrefixIcon: true,
+                        isObscure: false,
+                        prefixIcon: Icons.key,
+                        isEmail: true,
+                        suffixIcon: null),
                     const SizedBox(
                       height: 20,
                     ),
@@ -213,7 +232,7 @@ class _SignupscreenState extends State<Signupscreen> {
                                 side:
                                     BorderSide(color: Appcolors.buttoncolor))),
                         child: const Text(
-                          "Log in",
+                          "Sign up",
                           style: TextStyle(
                               color: Appcolors.lightprimary,
                               fontSize: 16,
@@ -240,7 +259,13 @@ class _SignupscreenState extends State<Signupscreen> {
                             shape: const StadiumBorder(
                                 side:
                                     BorderSide(color: Appcolors.buttoncolor))),
-                        onPressed: () => {},
+                        onPressed: () async {
+                          //here sign in with google
+                          await FirebaseServices().signInwithGoogle();
+                          Get.to(() => const dashboard(),
+                              transition: Transition.cupertinoDialog,
+                              duration: const Duration(milliseconds: 1500));
+                        },
                         icon: const Icon(
                           color: Appcolors.iconcolor,
                           FontAwesomeIcons.google,
@@ -257,19 +282,19 @@ class _SignupscreenState extends State<Signupscreen> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Get.to(const Signupscreen(),
+                        Get.to(const Loginpage(),
                             transition: Transition.cupertino,
                             duration: const Duration(milliseconds: 1500));
                       },
                       child: Text.rich(
                         TextSpan(
-                          text: "Don't have an account? ",
+                          text: "Already have an account? ",
                           style: GoogleFonts.urbanist(
                               color: Appcolors.lightprimary,
                               fontWeight: FontWeight.w600),
                           children: [
                             TextSpan(
-                              text: "Sign Up!",
+                              text: "Sign In!",
                               style: GoogleFonts.urbanist(
                                   color: Appcolors.buttoncolor,
                                   fontWeight: FontWeight.w600),
