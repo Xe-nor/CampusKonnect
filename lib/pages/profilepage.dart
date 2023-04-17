@@ -3,6 +3,7 @@ import 'package:campuskonnect/utils/theme.dart';
 import 'package:campuskonnect/widgets/themebutton.dart';
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/loginpage.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // import 'loginpage.dart';
@@ -25,6 +26,11 @@ class _profileState extends State<profile> {
       child: Scaffold(
         // backgroundColor: Appcolors.darkprimary,
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(FontAwesomeIcons.arrowLeft),
+            color: Appcolors.iconcontrast,
+          ),
           elevation: 0,
           actions: const [ThemeButton()],
         ),
@@ -79,7 +85,6 @@ class _profileState extends State<profile> {
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
-                        
                         shape: const StadiumBorder(
                             side: BorderSide(color: Appcolors.buttoncolor))),
                     onPressed: () {

@@ -39,9 +39,22 @@ class MyTheme {
   );
 }
 
-class Appcolors {
+class Appcolors extends ChangeNotifier {
+  ThemeMode themeMode = ThemeMode.dark;
+
+  static Color contrast = Color(0xffff);
+  static Color iconcontrast = Color(0xffff);
+  bool get isDark => themeMode == ThemeMode.dark;
+  void toggleTheme(bool isOn) {
+    Appcolors.contrast =
+        isOn ? const Color(0xff1f222a) : const Color(0xff858c94);
+    Appcolors.iconcontrast =
+        isOn ? const Color(0xff858c94) : const Color(0xff1f222a);
+    notifyListeners();
+  }
+
   static const Color darkprimary = Color(0xff181A20);
-  // static const Color darkprimary = Color.fromARGB(255, 0, 0, 0);
+  // Color primary = Color(0xff181A20);
   static const Color secondary = Color(0xff1f222a);
   static const Color buttoncolor = Color(0xff584cf4);
   static const Color lightprimary = Color(0xffffffff);
