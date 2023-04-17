@@ -1,15 +1,13 @@
-import 'package:campuskonnect/pages/img_input.dart';
-import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-import '../utils/routes.dart';
 import '../widgets/textform.dart';
-import 'package:get/get.dart';
 
 import 'dart:io';
 
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart';
 
 class CreateEvent extends StatefulWidget {
   const CreateEvent({super.key});
@@ -222,35 +220,85 @@ class _CreateEventState extends State<CreateEvent> {
           content: Column(
             children: [
               const SizedBox(
-                height: 5,
+                height: 10,
               ),
               textform(
                   hinttxt: "Link for registering in the event",
                   labeltxt: "Registration link"),
               const SizedBox(
-                height: 5,
+                height: 8,
               ),
-              ElevatedButton(
-                style: TextButton.styleFrom(
-                    backgroundColor: Appcolors.buttoncolor,
-                    minimumSize: const Size(326, 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
-                onPressed: () {
-                  Navigator.pushNamed(context, MyRoutes.image_input);
-                },
-                child: const Text(
-                  "Upload Poster of the Event",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+              SizedBox(
+                child: Column(
+                  children: [
+                    _image != null
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.file(_image!,
+                                width: 370, height: 200, fit: BoxFit.cover),
+                          )
+                        : Container(
+                            height: 200,
+                            width: 370,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.deepPurpleAccent),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
+                            child: Center(
+                                child: Text(
+                              "SELECT AN IMAGE",
+                              style: TextStyle(
+                                  fontSize: 25, fontWeight: FontWeight.bold),
+                            ))),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 0, right: 0, top: 9),
+                      child: CUstomButton(
+                        title: "Pick From gallery",
+                        icon: Icons.image_outlined,
+                        onClick: () => getImage(ImageSource.gallery),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 0, right: 0, top: 5),
+                      child: CUstomButton(
+                        title: "Take photo",
+                        icon: Icons.camera,
+                        onClick: () => getImage(ImageSource.camera),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+              )
             ],
           ),
         ),
       ];
+
+  File? _image;
+
+  Future getImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+
+      // final imgageTemporary = File(image.path);
+      final imagePermanent = await saveFilePermanently(image.path);
+
+      setState(() {
+        this._image = imagePermanent;
+      });
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
+  Future<File> saveFilePermanently(String imagePath) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final name = basename(imagePath);
+    final image = File('${directory.path}/$name');
+    return File(imagePath).copy(image.path);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -271,7 +319,7 @@ class _CreateEventState extends State<CreateEvent> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 3),
+              padding: const EdgeInsets.only(top: 1),
               child: Stepper(
                 currentStep: _activeStepIndex,
                 steps: stepList(),
@@ -291,26 +339,34 @@ class _CreateEventState extends State<CreateEvent> {
                 },
               ),
             ),
-            Container(
-              child: ElevatedButton(
-                style: TextButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    minimumSize: const Size(100, 50)),
-                onPressed: () {},
-                child: const Text(
-                  "Submit",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
+            SizedBox(
+              height: 100,
+            )
           ],
         ),
       ),
     );
   }
+}
+
+Widget CUstomButton({
+  required String title,
+  required IconData icon,
+  required VoidCallback onClick,
+}) {
+  return Container(
+    width: 320,
+    height: 40,
+    child: ElevatedButton(
+        onPressed: onClick,
+        child: Row(
+          children: [
+            Icon(icon),
+            Text(title),
+            SizedBox(
+              width: 20,
+            )
+          ],
+        )),
+  );
 }
