@@ -1,15 +1,8 @@
-import 'package:campuskonnect/pages/img_input.dart';
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/routes.dart';
 import '../widgets/textform.dart';
-import 'package:get/get.dart';
-
-import 'dart:io';
-
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class CreateEvent extends StatefulWidget {
   const CreateEvent({super.key});
@@ -291,21 +284,19 @@ class _CreateEventState extends State<CreateEvent> {
                 },
               ),
             ),
-            Container(
-              child: ElevatedButton(
-                style: TextButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    minimumSize: const Size(100, 50)),
-                onPressed: () {},
-                child: const Text(
-                  "Submit",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
-                ),
+            ElevatedButton(
+              style: TextButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
+                  minimumSize: const Size(100, 50)),
+              onPressed: () {},
+              child: const Text(
+                "Submit",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ],

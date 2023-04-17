@@ -37,11 +37,10 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           title: "campuskonnect",
           themeMode: themeProvider.themeMode,
-          theme: MyTheme.light,
           darkTheme: MyTheme.dark,
           initialRoute: MyRoutes.loginRoute,
           routes: {
-            "/": (context) => const Homepage(),
+            // "/": (context) => const Homepage(),
             MyRoutes.splashscreen: (context) => Splashscreen(),
             MyRoutes.homeRoute: (context) => const Homepage(),
             MyRoutes.loginRoute: (context) => const Loginpage(),

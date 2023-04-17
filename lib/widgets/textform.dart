@@ -32,7 +32,7 @@ Widget textform(
           fontSize: 14,
         ),
         hintText: hinttxt,
-        fillColor: Appcolors.contrast,
+        fillColor: Appcolors.secondary,
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
@@ -45,11 +45,11 @@ Widget textform(
         prefixIcon: isPrefixIcon
             ? Icon(
                 prefixIcon,
-                size: 16,
+                size: 18,
                 color: Appcolors.iconcolor,
               )
             : null,
-        prefixIconColor: const Color(0xffffffff),
+        // prefixIconColor: const Color(0xffffffff),
       ),
     ),
   );

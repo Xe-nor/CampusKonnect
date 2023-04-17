@@ -25,9 +25,19 @@ Widget eventCard({
       child: Container(
         // padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
+          // boxShadow: const [
+          //   BoxShadow(
+          //     blurStyle: BlurStyle.normal,
+          //     offset: Offset(0, 0),
+          //     spreadRadius: 5,
+          //     blurRadius: 2,
+          //     color: Color.fromRGBO(0, 0, 0, 1),
+          //   )
+          // ],
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Appcolors.buttoncolor),
-          color: Appcolors.contrast,
+          // border: Border.all(color: Appcolors.buttoncolor),
+          border: Border.all(color: const Color.fromARGB(255, 20, 20, 26)),
+          color: Appcolors.secondary,
         ),
         height: 240,
         child: Column(
