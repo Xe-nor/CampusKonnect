@@ -1,4 +1,6 @@
 //import 'dart:html';
+import 'package:campuskonnect/pages/dashboard.dart';
+import 'package:campuskonnect/services/firebase_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -106,6 +108,18 @@ class _SignupscreenState extends State<Signupscreen> {
                       height: 20,
                     ),
                     textform(
+                        controller: _emailTextController,
+                        validator: (String input) {
+                            if (input.isEmpty) {
+                              Get.snackbar('Warning', 'Email is empty');
+                              return '';
+                            }
+                            if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                .hasMatch(input)) {
+                              Get.snackbar('Warning', 'Email is in-valid.');
+                              return '';
+                            }
+                        },
                         isPrefixIcon: true,
                         isObscure: false,
                         labeltxt: "E-mail",
@@ -116,33 +130,34 @@ class _SignupscreenState extends State<Signupscreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    textform(
-                        controller: _emailTextController,
-                        validator: (String input) {
-                          if (input.isEmpty) {
-                            Get.snackbar('Warning', 'Email is empty');
-                            return '';
-                          }
-                          if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                              .hasMatch(input)) {
-                            Get.snackbar('Warning', 'Email is in-valid.');
-                            return '';
-                          }
-                          // if (!input.contains('@')) {
-                          //   Get.snackbar('Warning', 'Email is in-valid.');
-                          //   return '';
-                          // }
-                        },
-                        isPrefixIcon: true,
-                        labeltxt: "Password",
-                        isObscure: false,
-                        hinttxt: "Enter your Password",
-                        prefixIcon: Icons.key,
-                        isEmail: false,
-                        suffixIcon: null),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    // textform(
+                    //     controller: _emailTextController,
+                    //     validator: (String input) {
+                    //       if (input.isEmpty) {
+                    //         Get.snackbar('Warning', 'Email is empty');
+                    //         return '';
+                    //       }
+                    //       if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                    //           .hasMatch(input)) {
+                    //         Get.snackbar('Warning', 'Email is in-valid.');
+                    //         return '';
+                    //       }
+                    //       // if (!input.contains('@')) {
+                    //       //   Get.snackbar('Warning', 'Email is in-valid.');
+                    //       //   return '';
+                    //       // }
+                    //     },
+                    //     isPrefixIcon: true,
+                    //     labeltxt: "Password",
+                    //     isObscure: false,
+                    //     hinttxt: "Enter your Password",
+                    //     prefixIcon: Icons.key,
+                    //     isEmail: false,
+                    //     suffixIcon: null
+                    // ),
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
                     textform(
                       controller: _passwordTextController,
                       labeltxt: "Password",
@@ -157,6 +172,11 @@ class _SignupscreenState extends State<Signupscreen> {
                           return '';
                         }
                       },
+                      isPrefixIcon: true,
+                      isObscure: false,
+                      prefixIcon: Icons.key,
+                      isEmail: true,
+                      suffixIcon: null
                     ),
                     const SizedBox(
                       height: 20,
@@ -176,7 +196,8 @@ class _SignupscreenState extends State<Signupscreen> {
                         },
                         prefixIcon: Icons.key,
                         isEmail: true,
-                        suffixIcon: null),
+                        suffixIcon: null
+                    ),
                     const SizedBox(
                       height: 30,
                     ),
@@ -213,7 +234,7 @@ class _SignupscreenState extends State<Signupscreen> {
                                 side:
                                     BorderSide(color: Appcolors.buttoncolor))),
                         child: const Text(
-                          "Log in",
+                          "Sign in",
                           style: TextStyle(
                               color: Appcolors.lightprimary,
                               fontSize: 16,
@@ -240,7 +261,13 @@ class _SignupscreenState extends State<Signupscreen> {
                             shape: const StadiumBorder(
                                 side:
                                     BorderSide(color: Appcolors.buttoncolor))),
-                        onPressed: () => {},
+                        onPressed: () async {
+                  //here sign in with google
+                          await FirebaseServices().signInwithGoogle();
+                          Get.to(() => const dashboard(),
+                          transition: Transition.cupertinoDialog,
+                          duration: const Duration(milliseconds: 1500));
+                },
                         icon: const Icon(
                           color: Appcolors.iconcolor,
                           FontAwesomeIcons.google,

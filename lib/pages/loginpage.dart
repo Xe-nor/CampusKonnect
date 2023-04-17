@@ -1,3 +1,4 @@
+import 'package:campuskonnect/pages/dashboard.dart';
 import 'package:campuskonnect/pages/eventdetail.dart';
 import 'package:campuskonnect/pages/profilepage.dart';
 import 'package:campuskonnect/services/firebase_services.dart';
@@ -209,7 +210,7 @@ class _LoginpageState extends State<Loginpage> {
                 onPressed: () async {
                   //here sign in with google
                   await FirebaseServices().signInwithGoogle();
-                  Get.to(() => const profile(),
+                  Get.to(() => const dashboard(),
                       transition: Transition.cupertinoDialog,
                       duration: const Duration(milliseconds: 1500));
                 },
