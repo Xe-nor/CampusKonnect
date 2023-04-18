@@ -1,5 +1,7 @@
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
 import '../utils/routes.dart';
 import '../widgets/textform.dart';
@@ -46,7 +48,7 @@ class _CreateEventState extends State<CreateEvent> {
                 },
               ),
               const SizedBox(
-                height: 5,
+                height: 10,
               ),
               textform(
                 hinttxt: "Description of the event",
@@ -99,7 +101,7 @@ class _CreateEventState extends State<CreateEvent> {
               ),
 
               const SizedBox(
-                height: 5,
+                height: 10,
               ),
               //
               //
@@ -112,7 +114,7 @@ class _CreateEventState extends State<CreateEvent> {
                       padding: const EdgeInsets.only(right: 3.0),
                       child: textform(
                         hinttxt: "Time",
-                        labeltxt: "Time of the event",
+                        labeltxt: "Time ",
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please name of the event';
@@ -130,7 +132,7 @@ class _CreateEventState extends State<CreateEvent> {
                       padding: const EdgeInsets.only(left: 3.0),
                       child: textform(
                         hinttxt: "Date",
-                        labeltxt: "Date of the event",
+                        labeltxt: "Date ",
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please name of the event';
@@ -221,23 +223,23 @@ class _CreateEventState extends State<CreateEvent> {
                   hinttxt: "Link for registering in the event",
                   labeltxt: "Registration link"),
               const SizedBox(
-                height: 5,
+                height: 10,
               ),
               ElevatedButton(
                 style: TextButton.styleFrom(
                     backgroundColor: Appcolors.buttoncolor,
-                    minimumSize: const Size(326, 50),
+                    minimumSize: const Size(320, 40),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 onPressed: () {
                   Navigator.pushNamed(context, MyRoutes.image_input);
                 },
-                child: const Text(
-                  "Upload Poster of the Event",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                child: Text(
+                  "Upload event image",
+                  style: GoogleFonts.urbanist(
+                      color: Appcolors.lightprimary,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
                 ),
               ),
             ],
@@ -247,59 +249,75 @@ class _CreateEventState extends State<CreateEvent> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        // backgroundColor: Colors.blueGrey,
-        title: const Text(
-          "Create Event",
-          style: TextStyle(
-            // color: Colors.white,
-            // fontSize: 25,
-            fontWeight: FontWeight.bold,
+    return KeyboardDismisser(
+      gestures: const [GestureType.onTap, GestureType.onVerticalDragDown],
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          // backgroundColor: Colors.blueGrey,
+          title: const Text(
+            "Create Event",
+            style: TextStyle(
+              // color: Colors.white,
+              // fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 3),
-              child: Stepper(
-                currentStep: _activeStepIndex,
-                steps: stepList(),
-                onStepContinue: () {
-                  if (_activeStepIndex < (stepList().length - 1)) {
-                    _activeStepIndex += 1;
-                  }
-                  setState(() {});
-                },
-                onStepCancel: () {
-                  if (_activeStepIndex == 0) {
-                    return;
-                  }
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 3),
+                  child: Theme(
+                    data: ThemeData(
+                        colorScheme: Theme.of(context).colorScheme.copyWith(
+                            secondary: Colors.green,
+                            background: Appcolors.buttoncolor)),
+                    child: Stepper(
+                      currentStep: _activeStepIndex,
+                      steps: stepList(),
+                      onStepContinue: () {
+                        if (_activeStepIndex < (stepList().length - 1)) {
+                          _activeStepIndex += 1;
+                        }
+                        setState(() {});
+                      },
+                      onStepCancel: () {
+                        if (_activeStepIndex == 0) {
+                          return;
+                        }
 
-                  _activeStepIndex -= 1;
-                  setState(() {});
-                },
-              ),
+                        _activeStepIndex -= 1;
+                        setState(() {});
+                      },
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  width: 200,
+                  height: 40,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Appcolors.buttoncolor,
+                        shape: const StadiumBorder(
+                            side: BorderSide(color: Appcolors.buttoncolor))),
+                    child: Text("Submit",
+                        style: GoogleFonts.urbanist(
+                            fontSize: 16,
+                            color: Appcolors.lightprimary,
+                            fontWeight: FontWeight.w600)),
+                  ),
+                ),
+              ],
             ),
-            ElevatedButton(
-              style: TextButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  minimumSize: const Size(100, 50)),
-              onPressed: () {},
-              child: const Text(
-                "Submit",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

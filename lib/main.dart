@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           title: "campuskonnect",
           themeMode: themeProvider.themeMode,
           darkTheme: MyTheme.dark,
-          initialRoute: MyRoutes.createevent,
+          initialRoute: MyRoutes.homeRoute,
           routes: {
             // "/": (context) => const Homepage(),
             MyRoutes.splashscreen: (context) => Splashscreen(),

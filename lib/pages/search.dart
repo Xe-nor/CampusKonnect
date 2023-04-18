@@ -20,6 +20,7 @@ class search extends StatelessWidget {
               height: 55,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(3)),
               child: textform(
+                isautofocus: true,
                 prefixIcon: Icons.search,
                 hinttxt: "Enter the event you looking for",
                 labeltxt: null,
