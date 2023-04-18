@@ -1,14 +1,15 @@
+import 'package:campuskonnect/utils/routes.dart';
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:path_provider/path_provider.dart';
 import '../widgets/textform.dart';
 import 'package:get/get.dart';
-
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
+import 'package:intl/intl.dart';
 
 class CreateEvent extends StatefulWidget {
   const CreateEvent({super.key});
@@ -119,12 +120,6 @@ class _CreateEventState extends State<CreateEvent> {
                       child: textform(
                         hinttxt: "Time",
                         labeltxt: "Time of the event",
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please name of the event';
-                          }
-                          return null;
-                        },
                       ),
                     ),
                   ),
@@ -137,12 +132,6 @@ class _CreateEventState extends State<CreateEvent> {
                       child: textform(
                         hinttxt: "Date",
                         labeltxt: "Date of the event",
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please name of the event';
-                          }
-                          return null;
-                        },
                       ),
                     ),
                   )
@@ -213,7 +202,7 @@ class _CreateEventState extends State<CreateEvent> {
 
         Step(
           state: _activeStepIndex <= 3 ? StepState.editing : StepState.complete,
-          isActive: _activeStepIndex >= 2,
+          isActive: _activeStepIndex >= 3,
           title: const Text(
             "Registration link & Image",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -329,6 +318,11 @@ class _CreateEventState extends State<CreateEvent> {
                     _activeStepIndex += 1;
                   }
                   setState(() {});
+
+                  if (_activeStepIndex == (stepList().length - 1)) {
+                    Navigator.pushNamed(context, MyRoutes.homeRoute);
+                  }
+                  setState(() {});
                 },
                 onStepCancel: () {
                   if (_activeStepIndex == 0) {
@@ -338,23 +332,6 @@ class _CreateEventState extends State<CreateEvent> {
                   _activeStepIndex -= 1;
                   setState(() {});
                 },
-              ),
-            ),
-            Container(
-              child: ElevatedButton(
-                style: TextButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    minimumSize: const Size(100, 50)),
-                onPressed: () {},
-                child: const Text(
-                  "Submit",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
-                ),
               ),
             ),
           ],
