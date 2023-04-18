@@ -270,6 +270,7 @@ class _CreateEventState extends State<CreateEvent> {
                             icon: const Icon(
                               FontAwesomeIcons.image,
                               size: 15,
+                              color: Appcolors.lightprimary,
                             ),
                             label: Text(
                               "Pick from gallery",
@@ -290,6 +291,7 @@ class _CreateEventState extends State<CreateEvent> {
                             icon: const Icon(
                               FontAwesomeIcons.camera,
                               size: 15,
+                              color: Appcolors.lightprimary,
                             ),
                             label: Text(
                               "Take Photo",
@@ -361,7 +363,7 @@ class _CreateEventState extends State<CreateEvent> {
                     setState(() {});
 
                     if (_activeStepIndex == (stepList().length - 1)) {
-                      Navigator.pushNamed(context, MyRoutes.homeRoute);
+                      // Navigator.pushNamed(context, MyRoutes.homeRoute);
                     }
                     setState(() {});
                   },
