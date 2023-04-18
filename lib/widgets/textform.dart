@@ -11,13 +11,14 @@ Widget textform(
     IconData? suffixIcon,
     bool isEmail = false,
     bool isPrefixIcon = false,
-    // required bool isSuffixIcon,
+    bool isautofocus = false,
     bool isObscure = true,
     TextEditingController? controller,
     Function? validator}) {
   return SizedBox(
     height: 55,
     child: TextFormField(
+      autofocus: isautofocus,
       //onSaved: (newValue) => newValue,
       validator: (input) => validator!(input),
       obscureText: isObscure,

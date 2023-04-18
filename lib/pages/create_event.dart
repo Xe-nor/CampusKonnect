@@ -2,7 +2,12 @@ import 'package:campuskonnect/utils/routes.dart';
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+import 'package:path/path.dart' as Path;
 import 'package:path_provider/path_provider.dart';
+
 import '../widgets/textform.dart';
 import 'package:get/get.dart';
 import 'dart:io';
@@ -53,7 +58,7 @@ class _CreateEventState extends State<CreateEvent> {
                 },
               ),
               const SizedBox(
-                height: 5,
+                height: 10,
               ),
               textform(
                 hinttxt: "Description of the event",
@@ -106,7 +111,7 @@ class _CreateEventState extends State<CreateEvent> {
               ),
 
               const SizedBox(
-                height: 5,
+                height: 10,
               ),
               //
               //
@@ -119,7 +124,13 @@ class _CreateEventState extends State<CreateEvent> {
                       padding: const EdgeInsets.only(right: 3.0),
                       child: textform(
                         hinttxt: "Time",
-                        labeltxt: "Time of the event",
+                        labeltxt: "Time ",
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please name of the event';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                   ),
@@ -131,7 +142,13 @@ class _CreateEventState extends State<CreateEvent> {
                       padding: const EdgeInsets.only(left: 3.0),
                       child: textform(
                         hinttxt: "Date",
-                        labeltxt: "Date of the event",
+                        labeltxt: "Date ",
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please name of the event';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                   )
@@ -228,35 +245,64 @@ class _CreateEventState extends State<CreateEvent> {
                                 width: 370, height: 200, fit: BoxFit.cover),
                           )
                         : Container(
-                            height: 200,
-                            width: 370,
+                            height: 130,
+                            width: double.infinity,
                             decoration: BoxDecoration(
                                 border:
                                     Border.all(color: Colors.deepPurpleAccent),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20))),
                             child: Center(
-                                child: Text(
-                              "UPLOAD EVENT POSTER",
-                              style: TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.bold),
-                            ))),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 0, right: 0, top: 9),
-                      child: CUstomButton(
-                        title: "Pick From gallery",
-                        icon: Icons.image_outlined,
-                        onClick: () => getImage(ImageSource.gallery),
-                      ),
+                                child: Text("Upload event image",
+                                    style: GoogleFonts.urbanist()))),
+                    const SizedBox(
+                      height: 10,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 0, right: 0, top: 5),
-                      child: CUstomButton(
-                        title: "Take photo",
-                        icon: Icons.camera,
-                        onClick: () => getImage(ImageSource.camera),
-                      ),
-                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 155,
+                          height: 35,
+                          child: ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Appcolors.buttoncolor),
+                            onPressed: () => getImage(ImageSource.gallery),
+                            icon: const Icon(
+                              FontAwesomeIcons.image,
+                              size: 15,
+                            ),
+                            label: Text(
+                              "Pick from gallery",
+                              style: GoogleFonts.urbanist(
+                                  fontSize: 14,
+                                  color: Appcolors.lightprimary,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 155,
+                          height: 35,
+                          child: ElevatedButton.icon(
+                            onPressed: () => getImage(ImageSource.camera),
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Appcolors.buttoncolor),
+                            icon: const Icon(
+                              FontAwesomeIcons.camera,
+                              size: 15,
+                            ),
+                            label: Text(
+                              "Take Photo",
+                              style: GoogleFonts.urbanist(
+                                  fontSize: 14,
+                                  color: Appcolors.lightprimary,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               )
@@ -285,24 +331,21 @@ class _CreateEventState extends State<CreateEvent> {
 
   Future<File> saveFilePermanently(String imagePath) async {
     final directory = await getApplicationDocumentsDirectory();
-    final name = basename(imagePath);
+    final name = Path.basename(imagePath);
     final image = File('${directory.path}/$name');
     return File(imagePath).copy(image.path);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        // backgroundColor: Colors.blueGrey,
-        title: const Text(
-          "Create Event",
-          style: TextStyle(
-            // color: Colors.white,
-            // fontSize: 25,
-            fontWeight: FontWeight.bold,
-          ),
+    return KeyboardDismisser(
+      gestures: const [GestureType.onTap, GestureType.onVerticalDragDown],
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          // backgroundColor: Colors.blueGrey,
+          title:
+              Text("Create Event", style: GoogleFonts.urbanist(fontSize: 30)),
         ),
       ),
       body: SingleChildScrollView(
@@ -334,31 +377,26 @@ class _CreateEventState extends State<CreateEvent> {
                 },
               ),
             ),
+            Container(
+              child: ElevatedButton(
+                style: TextButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    minimumSize: const Size(100, 50)),
+                onPressed: () {},
+                child: const Text(
+                  "Submit",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
-}
-
-Widget CUstomButton({
-  required String title,
-  required IconData icon,
-  required VoidCallback onClick,
-}) {
-  return Container(
-    width: 320,
-    height: 40,
-    child: ElevatedButton(
-        onPressed: onClick,
-        child: Row(
-          children: [
-            Icon(icon),
-            Text(title),
-            SizedBox(
-              width: 20,
-            )
-          ],
-        )),
-  );
 }

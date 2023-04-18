@@ -4,7 +4,6 @@ import '../pages/eventdetail.dart';
 import '../utils/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'icondetailpair.dart';
 
 Widget eventCard({
@@ -21,22 +20,11 @@ Widget eventCard({
       Get.to(const eventdetail());
     },
     child: Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
       child: Container(
-        // padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          // boxShadow: const [
-          //   BoxShadow(
-          //     blurStyle: BlurStyle.normal,
-          //     offset: Offset(0, 0),
-          //     spreadRadius: 5,
-          //     blurRadius: 2,
-          //     color: Color.fromRGBO(0, 0, 0, 1),
-          //   )
-          // ],
           borderRadius: BorderRadius.circular(10),
-          // border: Border.all(color: Appcolors.buttoncolor),
-          border: Border.all(color: const Color.fromARGB(255, 20, 20, 26)),
+          border: Border.all(color: Color.fromARGB(255, 13, 16, 22), width: 2),
           color: Appcolors.secondary,
         ),
         height: 240,
@@ -80,7 +68,7 @@ Widget eventCard({
                       icondetailpair(
                           detail: '1300hrs', icon: FontAwesomeIcons.clock),
                       icondetailpair(
-                          detail: 'Campus15',
+                          detail: 'Campus 15',
                           icon: FontAwesomeIcons.locationPin),
                     ],
                   ),
