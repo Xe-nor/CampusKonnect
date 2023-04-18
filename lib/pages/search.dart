@@ -14,7 +14,7 @@ class search extends StatelessWidget {
         gestures: const [GestureType.onTap, GestureType.onVerticalDragDown],
         child: Scaffold(
           appBar: AppBar(
-            leading: const Icon(Icons.search),
+            automaticallyImplyLeading: false,
             title: Container(
               width: double.infinity,
               height: 55,
@@ -22,6 +22,7 @@ class search extends StatelessWidget {
               child: textform(
                 isautofocus: true,
                 prefixIcon: Icons.search,
+                isPrefixIcon: true,
                 hinttxt: "Enter the event you looking for",
                 labeltxt: null,
                 isObscure: false,

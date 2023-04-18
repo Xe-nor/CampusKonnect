@@ -18,11 +18,11 @@ class _dashboardState extends State<dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 2,
+        elevation: 1,
         automaticallyImplyLeading: false,
         title: const Image(
           image: AssetImage("assets/images/onlyName.png"),
-          height: 100,
+          height: 150,
           width: 170,
         ),
         centerTitle: true,
@@ -48,25 +48,3 @@ class _dashboardState extends State<dashboard> {
     );
   }
 }
-
-// _appbar() {
-//   return PreferredSize(
-//     preferredSize: const Size.fromHeight(100),
-//     child: Padding(
-//       padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-//       child: Container(
-//         padding: const EdgeInsets.only(top: 50, left: 10, bottom: 10),
-//         color: Colors.black,
-//         child: Row(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Image.asset(
-//               "assets/images/onlyName.png",
-//               scale: 5.5,
-//             ),
-//           ],
-//         ),
-//       ),
-//     ),
-//   );
-// }
