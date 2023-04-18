@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
             MyRoutes.profilepage: (context) => const profile(),
             MyRoutes.eventdetail: (context) => const eventdetail(),
             MyRoutes.createevent: (context) => const CreateEvent(),
-            // MyRoutes.image_input: (context) => const GetImage(),
+            
           },
         );
       },
