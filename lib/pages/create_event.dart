@@ -9,7 +9,6 @@ import 'package:path/path.dart' as Path;
 import 'package:path_provider/path_provider.dart';
 
 import '../widgets/textform.dart';
-import 'package:get/get.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -347,54 +346,37 @@ class _CreateEventState extends State<CreateEvent> {
           title:
               Text("Create Event", style: GoogleFonts.urbanist(fontSize: 30)),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 1),
-              child: Stepper(
-                currentStep: _activeStepIndex,
-                steps: stepList(),
-                onStepContinue: () {
-                  if (_activeStepIndex < (stepList().length - 1)) {
-                    _activeStepIndex += 1;
-                  }
-                  setState(() {});
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 1),
+                child: Stepper(
+                  currentStep: _activeStepIndex,
+                  steps: stepList(),
+                  onStepContinue: () {
+                    if (_activeStepIndex < (stepList().length - 1)) {
+                      _activeStepIndex += 1;
+                    }
+                    setState(() {});
 
-                  if (_activeStepIndex == (stepList().length - 1)) {
-                    Navigator.pushNamed(context, MyRoutes.homeRoute);
-                  }
-                  setState(() {});
-                },
-                onStepCancel: () {
-                  if (_activeStepIndex == 0) {
-                    return;
-                  }
+                    if (_activeStepIndex == (stepList().length - 1)) {
+                      Navigator.pushNamed(context, MyRoutes.homeRoute);
+                    }
+                    setState(() {});
+                  },
+                  onStepCancel: () {
+                    if (_activeStepIndex == 0) {
+                      return;
+                    }
 
-                  _activeStepIndex -= 1;
-                  setState(() {});
-                },
-              ),
-            ),
-            Container(
-              child: ElevatedButton(
-                style: TextButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    minimumSize: const Size(100, 50)),
-                onPressed: () {},
-                child: const Text(
-                  "Submit",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
+                    _activeStepIndex -= 1;
+                    setState(() {});
+                  },
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
