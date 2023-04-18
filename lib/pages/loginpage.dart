@@ -72,7 +72,7 @@ class _LoginpageState extends State<Loginpage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                      left: 20, top: 100, right: 20, bottom: 30),
+                      left: 20, top: 65, right: 20, bottom: 30),
                   child: Image.asset(
                     "assets/images/nobglogo2.png",
                     fit: BoxFit.contain,
@@ -164,7 +164,7 @@ class _LoginpageState extends State<Loginpage> {
                           email: _emailTextController.text,
                           password: _passwordTextController.text)
                       .then((value) {
-                    Get.to(() => const eventdetail(),
+                    Get.to(() => const Homepage(),
                         transition: Transition.cupertinoDialog,
                         duration: const Duration(milliseconds: 1500));
                   }).onError((error, stackTrace) {

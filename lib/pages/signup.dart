@@ -225,7 +225,7 @@ class _SignupscreenState extends State<Signupscreen> {
                                 .then((value) {
                               print("Created new account");
 
-                              Get.to(() => const profile(),
+                              Get.to(() => const Loginpage(),
                                   transition: Transition.cupertinoDialog,
                                   duration: const Duration(milliseconds: 1500));
                             }).onError((error, stackTrace) {

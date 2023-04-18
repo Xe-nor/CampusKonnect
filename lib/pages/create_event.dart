@@ -1,5 +1,6 @@
 import 'package:campuskonnect/utils/routes.dart';
 import 'package:campuskonnect/utils/theme.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,12 +30,11 @@ class _CreateEventState extends State<CreateEvent> {
         Step(
           state: _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 0,
-          title: const Text(
+          title: Text(
             "Name & Description ",
-            style: TextStyle(
-                // color: Colors.yellow,
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
+            style: GoogleFonts.urbanist(
+              fontSize: 18,
+            ),
           ),
           content: Column(
             children: [
@@ -69,12 +69,11 @@ class _CreateEventState extends State<CreateEvent> {
                 isObscure: false,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please name of the event';
+                    return 'Please provide a description';
                   }
                   return null;
                 },
               ),
-              const SizedBox(height: 6),
             ],
           ),
         ),
@@ -84,12 +83,11 @@ class _CreateEventState extends State<CreateEvent> {
         Step(
           state: _activeStepIndex <= 1 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 1,
-          title: const Text(
+          title: Text(
             "Location, Time & Date ",
-            style: TextStyle(
-                // color: Colors.yellow,
-                fontSize: 18,
-                fontWeight: FontWeight.bold),
+            style: GoogleFonts.urbanist(
+              fontSize: 18,
+            ),
           ),
           content: Column(
             children: [
@@ -103,7 +101,7 @@ class _CreateEventState extends State<CreateEvent> {
                 suffixIcon: null,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please name of the event';
+                    return 'Please provide the location';
                   }
                   return null;
                 },
@@ -163,9 +161,11 @@ class _CreateEventState extends State<CreateEvent> {
         Step(
           state: _activeStepIndex <= 2 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 2,
-          title: const Text(
+          title: Text(
             "Branch & Batch",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: GoogleFonts.urbanist(
+              fontSize: 18,
+            ),
           ),
           content: Column(
             children: [
@@ -219,9 +219,11 @@ class _CreateEventState extends State<CreateEvent> {
         Step(
           state: _activeStepIndex <= 3 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 3,
-          title: const Text(
+          title: Text(
             "Registration link & Image",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: GoogleFonts.urbanist(
+              fontSize: 18,
+            ),
           ),
           content: Column(
             children: [
@@ -241,11 +243,11 @@ class _CreateEventState extends State<CreateEvent> {
                         ? ClipRRect(
                             borderRadius: BorderRadius.circular(10),
                             child: Image.file(_image!,
-                                width: 370, height: 200, fit: BoxFit.cover),
+                                width: 270, height: 100, fit: BoxFit.cover),
                           )
                         : Container(
-                            height: 130,
-                            width: double.infinity,
+                            height: 100,
+                            width: double.maxFinite,
                             decoration: BoxDecoration(
                                 border:
                                     Border.all(color: Colors.deepPurpleAccent),
@@ -257,9 +259,12 @@ class _CreateEventState extends State<CreateEvent> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Row(
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        const SizedBox(
+                          height: 5,
+                        ),
                         SizedBox(
                           width: 155,
                           height: 35,
@@ -279,6 +284,14 @@ class _CreateEventState extends State<CreateEvent> {
                                   color: Appcolors.lightprimary,
                                   fontWeight: FontWeight.w500),
                             ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Text(
+                            "OR",
+                            style: GoogleFonts.urbanist(
+                                fontWeight: FontWeight.w500),
                           ),
                         ),
                         SizedBox(
@@ -323,10 +336,12 @@ class _CreateEventState extends State<CreateEvent> {
       final imagePermanent = await saveFilePermanently(image.path);
 
       setState(() {
-        this._image = imagePermanent;
+        _image = imagePermanent;
       });
     } on PlatformException catch (e) {
-      print('Failed to pick image: $e');
+      if (kDebugMode) {
+        print('Failed to pick image: $e');
+      }
     }
   }
 
@@ -348,37 +363,41 @@ class _CreateEventState extends State<CreateEvent> {
           title:
               Text("Create Event", style: GoogleFonts.urbanist(fontSize: 30)),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 1),
-                child: Stepper(
-                  currentStep: _activeStepIndex,
-                  steps: stepList(),
-                  onStepContinue: () {
-                    if (_activeStepIndex < (stepList().length - 1)) {
-                      _activeStepIndex += 1;
-                    }
-                    setState(() {});
+        body: ListView(
+          children: [
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(1),
+                  child: Stepper(
+                    physics: const BouncingScrollPhysics(
+                        decelerationRate: ScrollDecelerationRate.normal),
+                    currentStep: _activeStepIndex,
+                    steps: stepList(),
+                    onStepContinue: () {
+                      if (_activeStepIndex < (stepList().length - 1)) {
+                        _activeStepIndex += 1;
+                      }
+                      setState(() {});
 
-                    if (_activeStepIndex == (stepList().length - 1)) {
-                      // Navigator.pushNamed(context, MyRoutes.homeRoute);
-                    }
-                    setState(() {});
-                  },
-                  onStepCancel: () {
-                    if (_activeStepIndex == 0) {
-                      return;
-                    }
+                      if (_activeStepIndex == (stepList().length - 1)) {
+                        // Navigator.pushNamed(context, MyRoutes.homeRoute);
+                      }
+                      setState(() {});
+                    },
+                    onStepCancel: () {
+                      if (_activeStepIndex == 0) {
+                        return;
+                      }
 
-                    _activeStepIndex -= 1;
-                    setState(() {});
-                  },
+                      _activeStepIndex -= 1;
+                      setState(() {});
+                    },
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          ],
         ),
       ),
     );
