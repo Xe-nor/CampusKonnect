@@ -1,10 +1,17 @@
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
-import '../utils/routes.dart';
+
 import '../widgets/textform.dart';
+import 'package:get/get.dart';
+
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CreateEvent extends StatefulWidget {
   const CreateEvent({super.key});
@@ -217,35 +224,87 @@ class _CreateEventState extends State<CreateEvent> {
           content: Column(
             children: [
               const SizedBox(
-                height: 5,
+                height: 10,
               ),
               textform(
                   hinttxt: "Link for registering in the event",
                   labeltxt: "Registration link"),
               const SizedBox(
-                height: 10,
+
+                height: 8,
               ),
-              ElevatedButton(
-                style: TextButton.styleFrom(
-                    backgroundColor: Appcolors.buttoncolor,
-                    minimumSize: const Size(320, 40),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
-                onPressed: () {
-                  Navigator.pushNamed(context, MyRoutes.image_input);
-                },
-                child: Text(
-                  "Upload event image",
-                  style: GoogleFonts.urbanist(
-                      color: Appcolors.lightprimary,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600),
+              SizedBox(
+                child: Column(
+                  children: [
+                    _image != null
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.file(_image!,
+                                width: 370, height: 200, fit: BoxFit.cover),
+                          )
+                        : Container(
+                            height: 200,
+                            width: 370,
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.deepPurpleAccent),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
+                            child: Center(
+                                child: Text(
+                              "UPLOAD EVENT POSTER",
+                              style: TextStyle(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            ))),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 0, right: 0, top: 9),
+                      child: CUstomButton(
+                        title: "Pick From gallery",
+                        icon: Icons.image_outlined,
+                        onClick: () => getImage(ImageSource.gallery),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 0, right: 0, top: 5),
+                      child: CUstomButton(
+                        title: "Take photo",
+                        icon: Icons.camera,
+                        onClick: () => getImage(ImageSource.camera),
+                      ),
+                    ),
+                  ],
+
                 ),
-              ),
+              )
             ],
           ),
         ),
       ];
+
+  File? _image;
+
+  Future getImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+
+      // final imgageTemporary = File(image.path);
+      final imagePermanent = await saveFilePermanently(image.path);
+
+      setState(() {
+        this._image = imagePermanent;
+      });
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
+  Future<File> saveFilePermanently(String imagePath) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final name = basename(imagePath);
+    final image = File('${directory.path}/$name');
+    return File(imagePath).copy(image.path);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -264,62 +323,75 @@ class _CreateEventState extends State<CreateEvent> {
             ),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 3),
-                  child: Theme(
-                    data: ThemeData(
-                        colorScheme: Theme.of(context).colorScheme.copyWith(
-                            secondary: Colors.green,
-                            background: Appcolors.buttoncolor)),
-                    child: Stepper(
-                      currentStep: _activeStepIndex,
-                      steps: stepList(),
-                      onStepContinue: () {
-                        if (_activeStepIndex < (stepList().length - 1)) {
-                          _activeStepIndex += 1;
-                        }
-                        setState(() {});
-                      },
-                      onStepCancel: () {
-                        if (_activeStepIndex == 0) {
-                          return;
-                        }
 
-                        _activeStepIndex -= 1;
-                        setState(() {});
-                      },
-                    ),
-                  ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 1),
+              child: Stepper(
+                currentStep: _activeStepIndex,
+                steps: stepList(),
+                onStepContinue: () {
+                  if (_activeStepIndex < (stepList().length - 1)) {
+                    _activeStepIndex += 1;
+                  }
+                  setState(() {});
+                },
+                onStepCancel: () {
+                  if (_activeStepIndex == 0) {
+                    return;
+                  }
+
+                  _activeStepIndex -= 1;
+                  setState(() {});
+                },
+              ),
+            ),
+            Container(
+              child: ElevatedButton(
+                style: TextButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    minimumSize: const Size(100, 50)),
+                onPressed: () {},
+                child: const Text(
+                  "Submit",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  width: 200,
-                  height: 40,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Appcolors.buttoncolor,
-                        shape: const StadiumBorder(
-                            side: BorderSide(color: Appcolors.buttoncolor))),
-                    child: Text("Submit",
-                        style: GoogleFonts.urbanist(
-                            fontSize: 16,
-                            color: Appcolors.lightprimary,
-                            fontWeight: FontWeight.w600)),
-                  ),
-                ),
-              ],
+              ),
+
             ),
           ),
         ),
       ),
     );
   }
+}
+
+Widget CUstomButton({
+  required String title,
+  required IconData icon,
+  required VoidCallback onClick,
+}) {
+  return Container(
+    width: 320,
+    height: 40,
+    child: ElevatedButton(
+        onPressed: onClick,
+        child: Row(
+          children: [
+            Icon(icon),
+            Text(title),
+            SizedBox(
+              width: 20,
+            )
+          ],
+        )),
+  );
 }
