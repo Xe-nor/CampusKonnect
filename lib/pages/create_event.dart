@@ -1,6 +1,9 @@
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+
 
 import '../widgets/textform.dart';
 import 'package:get/get.dart';
@@ -52,7 +55,7 @@ class _CreateEventState extends State<CreateEvent> {
                 },
               ),
               const SizedBox(
-                height: 5,
+                height: 10,
               ),
               textform(
                 hinttxt: "Description of the event",
@@ -105,7 +108,7 @@ class _CreateEventState extends State<CreateEvent> {
               ),
 
               const SizedBox(
-                height: 5,
+                height: 10,
               ),
               //
               //
@@ -118,7 +121,7 @@ class _CreateEventState extends State<CreateEvent> {
                       padding: const EdgeInsets.only(right: 3.0),
                       child: textform(
                         hinttxt: "Time",
-                        labeltxt: "Time of the event",
+                        labeltxt: "Time ",
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please name of the event';
@@ -136,7 +139,7 @@ class _CreateEventState extends State<CreateEvent> {
                       padding: const EdgeInsets.only(left: 3.0),
                       child: textform(
                         hinttxt: "Date",
-                        labeltxt: "Date of the event",
+                        labeltxt: "Date ",
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please name of the event';
@@ -227,6 +230,7 @@ class _CreateEventState extends State<CreateEvent> {
                   hinttxt: "Link for registering in the event",
                   labeltxt: "Registration link"),
               const SizedBox(
+
                 height: 8,
               ),
               SizedBox(
@@ -269,6 +273,7 @@ class _CreateEventState extends State<CreateEvent> {
                       ),
                     ),
                   ],
+
                 ),
               )
             ],
@@ -303,18 +308,22 @@ class _CreateEventState extends State<CreateEvent> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        // backgroundColor: Colors.blueGrey,
-        title: const Text(
-          "Create Event",
-          style: TextStyle(
-            // color: Colors.white,
-            // fontSize: 25,
-            fontWeight: FontWeight.bold,
+    return KeyboardDismisser(
+      gestures: const [GestureType.onTap, GestureType.onVerticalDragDown],
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          // backgroundColor: Colors.blueGrey,
+          title: const Text(
+            "Create Event",
+            style: TextStyle(
+              // color: Colors.white,
+              // fontSize: 25,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
+
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -356,8 +365,9 @@ class _CreateEventState extends State<CreateEvent> {
                       fontWeight: FontWeight.bold),
                 ),
               ),
+
             ),
-          ],
+          ),
         ),
       ),
     );
