@@ -1,3 +1,4 @@
+import 'package:campuskonnect/utils/routes.dart';
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,12 +9,11 @@ import 'package:path/path.dart' as Path;
 import 'package:path_provider/path_provider.dart';
 
 import '../widgets/textform.dart';
-import 'package:get/get.dart';
-
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
+import 'package:intl/intl.dart';
 
 class CreateEvent extends StatefulWidget {
   const CreateEvent({super.key});
@@ -218,7 +218,7 @@ class _CreateEventState extends State<CreateEvent> {
 
         Step(
           state: _activeStepIndex <= 3 ? StepState.editing : StepState.complete,
-          isActive: _activeStepIndex >= 2,
+          isActive: _activeStepIndex >= 3,
           title: const Text(
             "Registration link & Image",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -346,55 +346,33 @@ class _CreateEventState extends State<CreateEvent> {
           title:
               Text("Create Event", style: GoogleFonts.urbanist(fontSize: 30)),
         ),
-        extendBody: false,
-        extendBodyBehindAppBar: false,
         body: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Theme(
-                  data: ThemeData(
-                    colorScheme: Theme.of(context).colorScheme.copyWith(
-                          background: Appcolors.buttoncolor,
-                        ),
-                  ),
-                  child: Stepper(
-                    currentStep: _activeStepIndex,
-                    steps: stepList(),
-                    onStepContinue: () {
-                      if (_activeStepIndex < (stepList().length - 1)) {
-                        _activeStepIndex += 1;
-                      }
-                      setState(() {});
-                    },
-                    onStepCancel: () {
-                      if (_activeStepIndex == 0) {
-                        return;
-                      }
+                padding: const EdgeInsets.only(top: 1),
+                child: Stepper(
+                  currentStep: _activeStepIndex,
+                  steps: stepList(),
+                  onStepContinue: () {
+                    if (_activeStepIndex < (stepList().length - 1)) {
+                      _activeStepIndex += 1;
+                    }
+                    setState(() {});
 
-                      _activeStepIndex -= 1;
-                      setState(() {});
-                    },
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: 200,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Appcolors.buttoncolor,
-                      shape: const StadiumBorder(
-                          side: BorderSide(color: Appcolors.buttoncolor))),
-                  child: Text(
-                    "Submit",
-                    style: GoogleFonts.urbanist(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Appcolors.lightprimary),
-                  ),
+                    if (_activeStepIndex == (stepList().length - 1)) {
+                      Navigator.pushNamed(context, MyRoutes.homeRoute);
+                    }
+                    setState(() {});
+                  },
+                  onStepCancel: () {
+                    if (_activeStepIndex == 0) {
+                      return;
+                    }
+
+                    _activeStepIndex -= 1;
+                    setState(() {});
+                  },
                 ),
               ),
             ],
