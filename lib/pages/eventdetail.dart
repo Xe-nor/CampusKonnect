@@ -70,12 +70,12 @@ class _eventdetailState extends State<eventdetail> {
                           children: [
                             Text("EVENT-NAME",
                                 style: GoogleFonts.urbanist(
-                                    fontSize: 26.0,
-                                    fontWeight: FontWeight.w700))
+                                    fontSize: 24.0,
+                                    fontWeight: FontWeight.w500))
                           ],
                         ),
                         const SizedBox(
-                          height: 5,
+                          height: 10,
                         ),
                         icondetailpair(
                             detail: 'Location',
@@ -86,21 +86,18 @@ class _eventdetailState extends State<eventdetail> {
                         icondetailpair(
                             detail: 'Date', icon: FontAwesomeIcons.calendar),
                         const SizedBox(
-                          height: 8,
-                        ),
-                        const SizedBox(
-                          height: 60,
+                          height: 15,
                         ),
                         Row(
                           children: [
                             Text("MORE INFORMATION",
                                 style: GoogleFonts.urbanist(
-                                    fontSize: 26.0,
-                                    fontWeight: FontWeight.w700))
+                                    fontSize: 24.0,
+                                    fontWeight: FontWeight.w500))
                           ],
                         ),
-                        SizedBox(
-                          height: 5,
+                        const SizedBox(
+                          height: 10,
                         ),
                         icondetailpair(
                             detail: 'Total-Time', icon: FontAwesomeIcons.clock),
@@ -116,21 +113,25 @@ class _eventdetailState extends State<eventdetail> {
                         icondetailpair(
                             detail: 'Batch', icon: FontAwesomeIcons.user),
                         const SizedBox(
-                          height: 10,
-                        ),
-                        const SizedBox(
-                          height: 40,
+                          height: 15,
                         ),
                         Row(
                           children: [
                             Text("DESCRIPTION",
                                 style: GoogleFonts.urbanist(
-                                    fontSize: 26.0,
-                                    fontWeight: FontWeight.w700))
+                                    fontSize: 24.0,
+                                    fontWeight: FontWeight.w500))
                           ],
                         ),
                         const SizedBox(
-                          height: 90,
+                          height: 15,
+                        ),
+                        const SizedBox(
+                          height: 160,
+                          child: Text(
+                            "Velit magna eu sunt eu laboris pariatur. Duis sunt exercitation occaecat irure duis consectetur. Tempor deserunt fugiat do veniam sit dolor non. Tempor consequat consequat non eu officia ut minim reprehenderit ea. Cillum nostrud eu nulla et amet. Esse cillum ipsum nulla reprehenderit ut ut occaecat ullamco cupidatat ut id id occaecat. Nostrud sint fugiat et incididunt adipisicing reprehenderit aliquip duis.",
+                            maxLines: 8,
+                          ),
                         ),
                         Positioned(
                           bottom: 0,
@@ -139,13 +140,14 @@ class _eventdetailState extends State<eventdetail> {
                             children: [
                               AppButtons(
                                   size: 60,
-                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
                                   isIcon: true,
                                   icon: FontAwesomeIcons.heart,
                                   backgroundColor:
-                                      Color.fromARGB(87, 87, 76, 244),
+                                      const Color.fromARGB(87, 87, 76, 244),
                                   borderColor: Appcolors.buttoncolor),
-                              SizedBox(
+                              const SizedBox(
                                 width: 15,
                               ),
                               ResponsiveButton(
