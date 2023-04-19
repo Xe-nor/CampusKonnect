@@ -119,7 +119,7 @@ class _eventdetailState extends State<eventdetail> {
                           height: 10,
                         ),
                         const SizedBox(
-                          height: 60,
+                          height: 40,
                         ),
                         Row(
                           children: [
@@ -130,11 +130,12 @@ class _eventdetailState extends State<eventdetail> {
                           ],
                         ),
                         const SizedBox(
-                          height: 230,
+                          height: 90,
                         ),
                         Positioned(
                           bottom: 0,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               AppButtons(
                                   size: 60,
@@ -145,14 +146,14 @@ class _eventdetailState extends State<eventdetail> {
                                       Color.fromARGB(87, 87, 76, 244),
                                   borderColor: Appcolors.buttoncolor),
                               SizedBox(
-                                width: 5,
+                                width: 15,
                               ),
                               ResponsiveButton(
                                 isResponsive: true,
                                 width: double.maxFinite,
                               ),
                               const SizedBox(
-                                width: 20,
+                                width: 10,
                               ),
                             ],
                           ),
@@ -203,7 +204,10 @@ class AppButtons extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           color: backgroundColor),
       child: isIcon == false
-          ? Center(child: Text("Register"))
+          ? Center(
+              child: Text("Register",
+                  style: GoogleFonts.urbanist(
+                      fontSize: 80, fontWeight: FontWeight.w700)))
           : Center(child: Icon(icon, color: color)),
     );
   }
@@ -230,9 +234,14 @@ class ResponsiveButton extends StatelessWidget {
           children: [
             isResponsive == true
                 ? Container(
-                    margin: const EdgeInsets.only(left: 20),
-                    child: const Text("Register"),
-                    color: Colors.blue,
+                    margin: const EdgeInsets.only(left: 100),
+                    child: Text(
+                      "Register",
+                      style: GoogleFonts.urbanist(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black),
+                    ),
                   )
                 : Container(),
             //sImage.asset("img/button-one.png"),/
