@@ -10,6 +10,7 @@ import 'package:campuskonnect/pages/signup.dart';
 import 'package:campuskonnect/pages/splashscreen.dart';
 import 'package:campuskonnect/utils/routes.dart';
 import 'package:get/get.dart';
+// import 'package:image_form_field/image_form_field.dart';
 
 // import 'package:campuskonnect/pages/img_input.dart';
 // import 'dart:io';
@@ -36,11 +37,10 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           title: "campuskonnect",
           themeMode: themeProvider.themeMode,
-          theme: MyTheme.light,
           darkTheme: MyTheme.dark,
           initialRoute: MyRoutes.homeRoute,
           routes: {
-            "/": (context) => const Homepage(),
+            // "/": (context) => const Homepage(),
             MyRoutes.splashscreen: (context) => Splashscreen(),
             MyRoutes.homeRoute: (context) => const Homepage(),
             MyRoutes.loginRoute: (context) => const Loginpage(),

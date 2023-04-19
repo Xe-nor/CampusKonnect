@@ -30,6 +30,8 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       body: pages[currentIndex],
       bottomNavigationBar: SnakeNavigationBar.color(
+        shadowColor: Appcolors.buttoncolor,
+        shape: Border.all(color: const Color.fromARGB(255, 0, 0, 0)),
         currentIndex: currentIndex,
         onTap: (index) {
           setState(() {
@@ -44,7 +46,7 @@ class _HomepageState extends State<Homepage> {
         unselectedItemColor: Appcolors.buttoncolor,
         showSelectedLabels: true,
         showUnselectedLabels: false,
-        selectedLabelStyle: const TextStyle(fontSize: 10),
+        selectedLabelStyle: const TextStyle(fontSize: 12),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
