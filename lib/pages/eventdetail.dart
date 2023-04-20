@@ -48,7 +48,7 @@ class _eventdetailState extends State<eventdetail> {
                         onPressed: () {
                           Get.to(const Homepage());
                         },
-                        icon: const Icon(Icons.menu))
+                        icon: const Icon(FontAwesomeIcons.arrowLeft))
                   ],
                 ),
               ),
@@ -131,6 +131,7 @@ class _eventdetailState extends State<eventdetail> {
                           child: Text(
                             "Velit magna eu sunt eu laboris pariatur. Duis sunt exercitation occaecat irure duis consectetur. Tempor deserunt fugiat do veniam sit dolor non. Tempor consequat consequat non eu officia ut minim reprehenderit ea. Cillum nostrud eu nulla et amet. Esse cillum ipsum nulla reprehenderit ut ut occaecat ullamco cupidatat ut id id occaecat. Nostrud sint fugiat et incididunt adipisicing reprehenderit aliquip duis.",
                             maxLines: 8,
+                            overflow: TextOverflow.clip,
                           ),
                         ),
                         Positioned(
@@ -228,7 +229,9 @@ class ResponsiveButton extends StatelessWidget {
         width: isResponsive == true ? double.maxFinite : width,
         height: 60,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: Colors.white),
+          color: Appcolors.buttoncolor,
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Row(
           mainAxisAlignment: isResponsive == true
               ? MainAxisAlignment.spaceBetween
@@ -241,8 +244,8 @@ class ResponsiveButton extends StatelessWidget {
                       "Register",
                       style: GoogleFonts.urbanist(
                           fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.black),
+                          fontWeight: FontWeight.w500,
+                          color: Appcolors.lightprimary),
                     ),
                   )
                 : Container(),
