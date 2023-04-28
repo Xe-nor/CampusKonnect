@@ -5,8 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../utils/theme.dart';
 
 Widget icondetailpair({
-  required String detail,
-  required IconData icon,
+  required String detail, //28 april
+  required IconData icon, //28 april
 }) {
   return Padding(
     padding: const EdgeInsets.only(right: 20.0),

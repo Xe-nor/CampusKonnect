@@ -14,6 +14,7 @@ Widget eventCard({
   required eventDescription,
   required eventDate,
   required eventLocation,
+  required eventTime,
 }) {
   return GestureDetector(
     onTap: () {
@@ -64,11 +65,11 @@ Widget eventCard({
                   Row(
                     children: [
                       icondetailpair(
-                          detail: '05 MAY', icon: FontAwesomeIcons.calendar),
+                          detail: eventDate, icon: FontAwesomeIcons.calendar),
                       icondetailpair(
-                          detail: '1300hrs', icon: FontAwesomeIcons.clock),
+                          detail: eventTime, icon: FontAwesomeIcons.clock),
                       icondetailpair(
-                          detail: 'Campus 15',
+                          detail: eventLocation,
                           icon: FontAwesomeIcons.locationPin),
                     ],
                   ),

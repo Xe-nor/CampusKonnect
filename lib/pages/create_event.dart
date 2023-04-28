@@ -26,6 +26,9 @@ class CreateEvent extends StatefulWidget {
 int _activeStepIndex = 0;
 
 class _CreateEventState extends State<CreateEvent> {
+  final formkey = GlobalKey<FormState>();
+
+  String? eventName, descrp;
   List<Step> stepList() => [
         Step(
           state: _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
@@ -37,25 +40,30 @@ class _CreateEventState extends State<CreateEvent> {
             ),
           ),
           content: Column(
+            //key: formkey, // added formkey
+            
             children: [
               const SizedBox(
                 height: 5,
               ),
               textform(
-                isEmail: false,
-                isObscure: false,
-                hinttxt: "Name of the event",
-                labeltxt: "Name",
-                prefixIcon: null,
-                suffixIcon: null,
-                isPrefixIcon: false,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please name of the event';
-                  }
-                  return null;
-                },
-              ),
+                
+                  isEmail: false,
+                  isObscure: false,
+                  hinttxt: "Name of the event",
+                  labeltxt: "Name",
+                  prefixIcon: null,
+                  suffixIcon: null,
+                  isPrefixIcon: false,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please name of the event';
+                    }
+                    return null;
+                  },
+                  onSaved: (String name) {
+                    eventName = name;
+                  }),
               const SizedBox(
                 height: 10,
               ),
@@ -72,6 +80,9 @@ class _CreateEventState extends State<CreateEvent> {
                     return 'Please provide a description';
                   }
                   return null;
+                },
+                onSaved: (String input) {
+                  descrp = input;
                 },
               ),
             ],
@@ -90,6 +101,7 @@ class _CreateEventState extends State<CreateEvent> {
             ),
           ),
           content: Column(
+            key: formkey,
             children: [
               const SizedBox(
                 height: 5,
@@ -168,6 +180,7 @@ class _CreateEventState extends State<CreateEvent> {
             ),
           ),
           content: Column(
+            key: formkey,
             children: [
               const SizedBox(
                 height: 5,
@@ -226,6 +239,7 @@ class _CreateEventState extends State<CreateEvent> {
             ),
           ),
           content: Column(
+            key: formkey,
             children: [
               const SizedBox(
                 height: 10,
@@ -366,15 +380,23 @@ class _CreateEventState extends State<CreateEvent> {
         body: ListView(
           children: [
             Column(
+              //key: formkey, //here
               children: [
                 Padding(
+                  //key: formkey, //here
                   padding: const EdgeInsets.all(1),
                   child: Stepper(
+                    key: formkey,
                     physics: const BouncingScrollPhysics(
                         decelerationRate: ScrollDecelerationRate.normal),
                     currentStep: _activeStepIndex,
                     steps: stepList(),
                     onStepContinue: () {
+                      if (formkey.currentState != null) {
+                        if (!formkey.currentState!.validate()) {
+                          return;
+                        }
+                      }
                       if (_activeStepIndex < (stepList().length - 1)) {
                         _activeStepIndex += 1;
                       }
@@ -382,6 +404,9 @@ class _CreateEventState extends State<CreateEvent> {
 
                       if (_activeStepIndex == (stepList().length - 1)) {
                         // Navigator.pushNamed(context, MyRoutes.homeRoute);
+                        if (formkey.currentState!.validate()) {
+                          formkey.currentState!.save();
+                        }
                       }
                       setState(() {});
                     },

@@ -1,8 +1,9 @@
 // import 'package:campuskonnect/pages/splashscreen.dart';
 import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
-
-import '../widgets/eventcard.dart';
+import 'package:campuskonnect/pages/add_event.dart';
+//import '../widgets/eventcard.dart';
+import 'package:campuskonnect/widgets/event_item.dart';
 
 // ignore: camel_case_types
 class dashboard extends StatefulWidget {
@@ -14,8 +15,43 @@ class dashboard extends StatefulWidget {
 
 // ignore: camel_case_types
 class _dashboardState extends State<dashboard> {
+  final List<EventItem> _eventItm = [];
+
+  void _addItem() async {
+    final newItem = await Navigator.of(context).push<EventItem>(
+      MaterialPageRoute(
+        builder: (ctx) => const EventCreate(),
+      ),
+    );
+    if (newItem == null) {
+      return;
+    }
+    setState(() {
+      _eventItm.add(newItem);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    Widget content = const Center(child: Text('No Events Available'));
+    if(_eventItm.isNotEmpty) {
+      content = ListView.builder(
+        itemCount: _eventItm.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Column(
+            children: [
+              EventItem(
+                  eventDescription: _eventItm[index].eventDescription,
+                  eventDate: "12th october",
+                  eventImage: "assets/images/event.jpg",
+                  eventName: _eventItm[index].eventName,
+                  eventLocation: _eventItm[index].eventLocation,
+                  eventTime: '12:30hrs'),
+            ],
+          );
+        },
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -26,25 +62,9 @@ class _dashboardState extends State<dashboard> {
           width: 170,
         ),
         centerTitle: true,
+        actions: [IconButton(onPressed: _addItem, icon: const Icon(Icons.add))],
       ),
-      body: ListView.builder(
-        itemCount: 6,
-        itemBuilder: (BuildContext context, int index) {
-          return Column(
-            children: [
-              eventCard(
-                Context: context,
-                eventDescription:
-                    "Cupidatat dolor elit proident fugiat eiusmod esse commodo irure. Ex officia incididunt nisi eiusmod id eiusmod enim cupidatat exercitation cillum ipsum. Amet tempor sint quis id non cillum aliquip esse nisi anim et eu adipisicing. Incididunt consequat consequat consectetur culpa id ut do quis mollit nisi et aliqua. Veniam non elit reprehenderit magna commodo commodo ex consectetur. Ullamco fugiat irure anim do tempor consequat enim cupidatat excepteur voluptate dolore. Pariatur dolore aliquip labore ullamco voluptate labore ipsum laboris fugiat labore officia voluptate do.",
-                eventDate: "12th october",
-                eventimage: "assets/images/event.jpg",
-                eventname: "Music Festival",
-                eventLocation: "Campus15",
-              ),
-            ],
-          );
-        },
-      ),
+      body: content,
     );
   }
 }
