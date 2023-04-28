@@ -58,7 +58,7 @@ class _eventdetailState extends State<eventdetail> {
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
                   decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 29, 29, 51),
+                      color: Appcolors.darkprimary,
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30))),

@@ -1,5 +1,6 @@
 import 'package:campuskonnect/pages/bottomnavbar.dart';
 import 'package:campuskonnect/pages/eventdetail.dart';
+import 'package:campuskonnect/pages/forgotPassword.dart';
 import 'package:campuskonnect/services/firebase_services.dart';
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,6 +12,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+import 'package:neopop/neopop.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -136,7 +138,9 @@ class _LoginpageState extends State<Loginpage> {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  bottomsheet(context);
+                },
                 child: Text(
                   "Forgot Password?",
                   style: GoogleFonts.urbanist(
@@ -174,15 +178,18 @@ class _LoginpageState extends State<Loginpage> {
                   });
                 },
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Appcolors.buttoncolor,
-                    shape: const StadiumBorder(
-                        side: BorderSide(color: Appcolors.buttoncolor))),
-                child: const Text(
+                  backgroundColor: Appcolors.buttoncolor,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    side: BorderSide(color: Appcolors.buttoncolor),
+                  ),
+                ),
+                child: Text(
                   "Sign in",
-                  style: TextStyle(
-                      color: Appcolors.lightprimary,
+                  style: GoogleFonts.urbanist(
+                      fontWeight: FontWeight.w600,
                       fontSize: 16,
-                      fontWeight: FontWeight.w500),
+                      color: Appcolors.lightprimary),
                 ),
               ),
             ),
@@ -201,7 +208,8 @@ class _LoginpageState extends State<Loginpage> {
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
                   backgroundColor: Appcolors.darkprimary,
-                  shape: const StadiumBorder(
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
                     side: BorderSide(color: Appcolors.buttoncolor),
                   ),
                 ),
@@ -250,6 +258,83 @@ class _LoginpageState extends State<Loginpage> {
                     ),
                   ],
                 ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<dynamic> bottomsheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      elevation: 10,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
+      builder: (context) => Container(
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              "FORGOT \nPASSWORD?",
+              textAlign: TextAlign.center,
+              style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w600, fontSize: 30),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Enter your Registered Email Id to recieve the verification code.",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.urbanist(),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  textform(
+                    isEmail: true,
+                    isPrefixIcon: true,
+                    prefixIcon: FontAwesomeIcons.envelope,
+                    hinttxt: "email@example.com",
+                    labeltxt: "Email",
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Get.to(const ForgotPassword());
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Appcolors.buttoncolor,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              side: BorderSide(color: Appcolors.buttoncolor))),
+                      child: Text(
+                        "Send",
+                        style: GoogleFonts.urbanist(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            color: Appcolors.lightprimary),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
