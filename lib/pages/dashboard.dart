@@ -28,7 +28,7 @@ class _dashboardState extends State<dashboard> {
 
   void _loadItems() async {
     final url = Uri.https(
-        'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list2.json');
+        'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list3.json');
     final response = await http.get(url);
     //print(response.body);
     if (response.body == 'null') {

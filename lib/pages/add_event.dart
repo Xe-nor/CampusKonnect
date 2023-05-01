@@ -22,7 +22,7 @@ class _EventCreateState extends State<EventCreate> {
       }
     }
     final url = Uri.https(
-        'campuskonnect-3e383-default-rtdb.firebaseio.com','event-list2.json');
+        'campuskonnect-3e383-default-rtdb.firebaseio.com','event-list3.json');
     final response = await http.post(url,
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
