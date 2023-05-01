@@ -1,11 +1,8 @@
-// import 'package:campuskonnect/pages/splashscreen.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
 import 'package:campuskonnect/pages/add_event.dart';
-//import '../widgets/eventcard.dart';
 import 'package:campuskonnect/widgets/event_item.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 // ignore: camel_case_types
 class dashboard extends StatefulWidget {
@@ -21,19 +18,18 @@ class _dashboardState extends State<dashboard> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loadItems();
   }
 
   void _loadItems() async {
     final url = Uri.https(
-        'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list3.json');
+        'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list2.json');
     final response = await http.get(url);
     //print(response.body);
-    if (response.body == 'null') {
-      return;
-    }
+    // if (response == null || response.body == 'null') {
+    //   return;
+    // }
     final Map<String, dynamic> listData = json.decode(response.body);
     final List<EventItem> loadedItems = [];
     for (final item in listData.entries) {
@@ -70,30 +66,31 @@ class _dashboardState extends State<dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    Widget content = const Center(child: Text('No Events Available'));
+    Widget content = const Center(child: Text('No items added yet.'));
+
     if (_eventItm.isNotEmpty) {
       content = ListView.builder(
         itemCount: _eventItm.length,
-        itemBuilder:(BuildContext context, int index) {
-          return Column(
-            
+        itemBuilder: (ctx, index) => Dismissible(
+            onDismissed: (direction) {
+              _removeItem(_eventItm[index]);
+            },
             key: ValueKey(_eventItm[index].id),
-            children: [
-              EventItem(
-                  id: _eventItm[index].id ,//DateTime.now().toString(),
-                  eventName: _eventItm[index].eventName,
-                  eventDescription: _eventItm[index].eventDescription,
-                  eventDate: _eventItm[index].eventDate,
-                  //eventImage: "assets/images/event.jpg",
+            
+            child: ListTile(
+              title: Text(_eventItm[index].eventName),
+              leading: Text(_eventItm[index].eventDescription),
+              trailing: Text(
+                _eventItm[index].eventLocation,
+              ),
+            ),
 
-                  eventLocation: _eventItm[index].eventLocation,
-                  eventTime: _eventItm[index].eventTime
-               ),
-            ],
-          );
-        },
-     );
+            
+      ));
     }
+
+    //
+
     return Scaffold(
       appBar: AppBar(
         elevation: 1,

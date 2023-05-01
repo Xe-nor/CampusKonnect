@@ -1,6 +1,8 @@
 import 'package:campuskonnect/pages/bottomnavbar.dart';
+
 import 'package:campuskonnect/pages/eventdetail.dart';
 import 'package:campuskonnect/pages/forgotPassword.dart';
+
 import 'package:campuskonnect/services/firebase_services.dart';
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -113,6 +115,7 @@ class _LoginpageState extends State<Loginpage> {
               isObscure: false,
               suffixIcon: null,
               isPrefixIcon: true,
+              onSaved: (String value) {}
             ),
             const SizedBox(
               height: 20,
@@ -133,6 +136,7 @@ class _LoginpageState extends State<Loginpage> {
               isObscure: true,
               suffixIcon: null,
               isPrefixIcon: true,
+              onSaved: (String value) {}
             ), // textform
 
             Align(

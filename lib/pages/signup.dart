@@ -36,7 +36,18 @@ class _SignupscreenState extends State<Signupscreen> {
       TextEditingController();
   final TextEditingController _usernameTextController = TextEditingController();
 
-  String? email, password, username, confirmpassword;
+  String? email, password, confirmpassword;
+  String username = "";
+
+  // void _savedData() {
+  //   if (formKey.currentState != null) {
+  //     if (!formKey.currentState!.validate()) {
+  //       return;
+  //     }
+  //   }
+  //   formKey.currentState!.save();
+  //   print(username);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -103,10 +114,16 @@ class _SignupscreenState extends State<Signupscreen> {
                           suffixIcon: null,
                           isPrefixIcon: true,
                           validator: (String input) {
+                            print("From validator");
+                            print(input);
                             if (input.isEmpty) {
-                              Get.snackbar('Warning', 'Username is empty');
-                              return '';
+                              //Get.snackbar('Warning', 'Username is empty');
+                              return 'Username is empty';
                             }
+                          },
+                          onSaved: (value) {
+                            print(value);
+                            username = value;
                           }),
                       const SizedBox(
                         height: 20,
@@ -115,14 +132,14 @@ class _SignupscreenState extends State<Signupscreen> {
                           controller: _emailTextController,
                           validator: (String input) {
                             if (input.isEmpty) {
-                              Get.snackbar('Warning', 'Email is empty');
-                              return '';
+                              //Get.snackbar('Warning', 'Email is empty');
+                              return 'Email is empty';
                             }
                             if (!RegExp(
                                     "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                                 .hasMatch(input)) {
-                              Get.snackbar('Warning', 'Email is in-valid.');
-                              return '';
+                              //Get.snackbar('Warning', 'Email is in-valid.');
+                              return 'Email is in-valid.';
                             }
                           },
                           isPrefixIcon: true,
@@ -131,57 +148,37 @@ class _SignupscreenState extends State<Signupscreen> {
                           hinttxt: "Enter your E-mail",
                           prefixIcon: Icons.email,
                           isEmail: true,
-                          suffixIcon: null),
+                          suffixIcon: null,
+                          onSaved: (String value) {
+                            //print(value);
+                            email = value;
+                          }),
                       const SizedBox(
                         height: 20,
                       ),
-                      // textform(
-                      //     controller: _emailTextController,
-                      //     validator: (String input) {
-                      //       if (input.isEmpty) {
-                      //         Get.snackbar('Warning', 'Email is empty');
-                      //         return '';
-                      //       }
-                      //       if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                      //           .hasMatch(input)) {
-                      //         Get.snackbar('Warning', 'Email is in-valid.');
-                      //         return '';
-                      //       }
-                      //       // if (!input.contains('@')) {
-                      //       //   Get.snackbar('Warning', 'Email is in-valid.');
-                      //       //   return '';
-                      //       // }
-                      //     },
-                      //     isPrefixIcon: true,
-                      //     labeltxt: "Password",
-                      //     isObscure: false,
-                      //     hinttxt: "Enter your Password",
-                      //     prefixIcon: Icons.key,
-                      //     isEmail: false,
-                      //     suffixIcon: null
-                      // ),
-                      // const SizedBox(
-                      //   height: 20,
-                      // ),
                       textform(
                           controller: _passwordTextController,
                           labeltxt: "Password",
                           hinttxt: "Enter your Password",
                           validator: (String input) {
                             if (input.isEmpty) {
-                              Get.snackbar('Warning', 'Password is empty');
-                              return '';
+                              //Get.snackbar('Warning', 'Password is empty');
+                              return 'Password is empty';
                             }
                             if (input.length < 6) {
-                              Get.snackbar('Warning', 'Enter Strong password');
-                              return '';
+                              //Get.snackbar('Warning', 'Enter Strong password');
+                              return 'Enter Strong password';
                             }
                           },
                           isPrefixIcon: true,
                           isObscure: false,
                           prefixIcon: Icons.key,
                           isEmail: true,
-                          suffixIcon: null),
+                          suffixIcon: null,
+                          onSaved: (String value) {
+                            //print(value);
+                            password = value;
+                          }),
                       const SizedBox(
                         height: 20,
                       ),
@@ -189,18 +186,22 @@ class _SignupscreenState extends State<Signupscreen> {
                           controller: _confirmPasswordTextController,
                           isPrefixIcon: true,
                           labeltxt: "Confirm Password",
-                          isObscure: false,
+                          isObscure: true,
                           hinttxt: "Re-enter your Password",
                           validator: (String input) {
                             if (input != _passwordTextController.text) {
-                              Get.snackbar('Warning', 'Password do not match');
-                              return '';
+                              //Get.snackbar('Warning', 'Password do not match');
+                              return 'Password do not match';
                               //return "Password do not match";
                             }
                           },
                           prefixIcon: Icons.key,
                           isEmail: true,
-                          suffixIcon: null),
+                          suffixIcon: null,
+                          onSaved: (String value) {
+                            //print(value);
+                            confirmpassword = value;
+                          }),
                       const SizedBox(
                         height: 30,
                       ),
@@ -210,11 +211,14 @@ class _SignupscreenState extends State<Signupscreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             // here
-
-                            if (formKey.currentState != null) {
-                              if (!formKey.currentState!.validate()) {
-                                return;
-                              }
+                            //_savedData();
+                            // if (formKey.currentState != null) {
+                            //   if (!formKey.currentState!.validate()) {
+                            //     return;
+                            //   }
+                            // }
+                            if (formKey.currentState!.validate()) {
+                              formKey.currentState!.save();
                             }
 
                             FirebaseAuth.instance
@@ -224,8 +228,8 @@ class _SignupscreenState extends State<Signupscreen> {
                                         _passwordTextController.text.trim())
                                 .then((value) {
                               print("Created new account");
-
-                              Get.to(() => const Loginpage(),
+                              print(username);
+                              Get.to(() => const dashboard(),
                                   transition: Transition.cupertinoDialog,
                                   duration: const Duration(milliseconds: 1500));
                             }).onError((error, stackTrace) {
