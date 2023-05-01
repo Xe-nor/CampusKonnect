@@ -1,18 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/utils/theme.dart';
 //import 'package:campuskonnect/widgets/eventcard.dart';
-import 'package:campuskonnect/widgets/event_item.dart';
+//import 'package:campuskonnect/widgets/event_item.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class EventCreate extends StatefulWidget {
   const EventCreate({super.key});
-
   @override
   State<EventCreate> createState() => _EventCreateState();
 }
 
 class _EventCreateState extends State<EventCreate> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String evName = '', location = '', description = '';
+  String evName = '', location = '', description = '', time = '', date = '';
+
+  void _saveItem() async {
+    if (formKey.currentState != null) {
+      if (!formKey.currentState!.validate()) {
+        formKey.currentState!.save();
+      }
+    }
+    final url = Uri.https(
+        'campuskonnect-3e383-default-rtdb.firebaseio.com','event-list2.json');
+    final response = await http.post(url,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({
+          'eventDate': date,
+          'eventDescription': description,
+          'eventLocation': location,
+          'eventTime': time,
+          //'eventImage': "assets/images/event.jpg",
+          'eventName': evName,
+        }));
+    //print(response.body);
+    //print(response.statusCode);
+
+    if (!context.mounted) {
+      return;
+    }
+
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +49,8 @@ class _EventCreateState extends State<EventCreate> {
       appBar: AppBar(
         title: const Text('Create a new event'),
       ),
-      body: Padding(
+      body: SingleChildScrollView  ( 
+        child:  Padding(
         padding: const EdgeInsets.all(12),
         child: Form(
           key: formKey,
@@ -73,35 +103,46 @@ class _EventCreateState extends State<EventCreate> {
                 }
               },
             ),
+            TextFormField(
+              decoration: const InputDecoration(
+                label: Text('Time'),
+              ),
+              validator: (input) {
+                if (input == null || input.isEmpty) {
+                  return 'Time is empty';
+                }
+                return '';
+              },
+              onSaved: (input) {
+                if (input != null) {
+                  time = input;
+                }
+              },
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                label: Text('Date'),
+              ),
+              validator: (input) {
+                if (input == null || input.isEmpty) {
+                  return 'Date is empty';
+                }
+                return '';
+              },
+              onSaved: (input) {
+                if (input != null) {
+                  date = input;
+                }
+              },
+            ),
             const SizedBox(
-              height: 50,
+              height: 10,
             ),
             SizedBox(
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {
-                  // if (formKey.currentState!.validate()) {
-                  //   formKey.currentState!.save();
-                  // }
-
-                  if (formKey.currentState != null) {
-                    if (!formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                    }
-                  }
-                  print(description);
-                  print(location);
-                  print(evName);
-                  Navigator.of(context).pop(EventItem(
-                    eventDate: "27/04/23",
-                    eventDescription: description,
-                    eventLocation: location,
-                    eventTime: "12:30Hrs",
-                    eventImage: "assets/images/event.jpg",
-                    eventName: evName,
-                  ));
-                },
+                onPressed: _saveItem,
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Appcolors.buttoncolor,
                     shape: const StadiumBorder(
@@ -118,6 +159,7 @@ class _EventCreateState extends State<EventCreate> {
           ]),
         ),
       ),
+      )
     );
   }
 }

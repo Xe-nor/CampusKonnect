@@ -6,11 +6,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icondetailpair.dart';
 
+// 
+
+
 class EventItem extends StatelessWidget {
   const EventItem({
     Key? key,
     //required this.context,
-    required this.eventImage,
+    required this.id,
+    //required this.eventImage,
     required this.eventName,
     required this.eventDescription,
     required this.eventDate,
@@ -19,7 +23,8 @@ class EventItem extends StatelessWidget {
   }) : super(key: key);
 
   //final BuildContext context;
-  final String eventImage;
+  final String id;
+  //final String eventImage= "assets/images/event.jpg";
   final String eventName;
   final String eventDescription;
   final String eventDate;
@@ -49,7 +54,7 @@ class EventItem extends StatelessWidget {
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
                 child: Image.asset(
-                  eventImage,
+                  "assets/images/event.jpg",
                   height: 130,
                   width: double.infinity,
                   fit: BoxFit.fill,
