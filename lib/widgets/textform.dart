@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/theme.dart';
@@ -7,6 +8,7 @@ Widget textform(
     {required hinttxt,
     final isdark = false,
     required labeltxt,
+    MaxLengthEnforcement? maxlen,
     IconData? prefixIcon,
     IconData? suffixIcon,
     bool isEmail = false,
@@ -18,7 +20,6 @@ Widget textform(
   return SizedBox(
     height: 55,
     child: TextFormField(
-      
       autofocus: isautofocus,
       onSaved: (newValue)=> onSaved!(newValue) ,
         
@@ -27,6 +28,7 @@ Widget textform(
       obscureText: isObscure,
       keyboardType: isEmail ? TextInputType.emailAddress : null,
       controller: controller,
+      maxLengthEnforcement: maxlen,
       decoration: InputDecoration(
         labelStyle: GoogleFonts.montserrat(
           fontSize: 15,
@@ -38,19 +40,19 @@ Widget textform(
         hintText: hinttxt,
         fillColor: Appcolors.secondary,
         filled: true,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: Appcolors.buttoncolor, width: 1),
+        enabledBorder: const OutlineInputBorder(
+          // borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide(color: Appcolors.buttoncolor, width: 1),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: Appcolors.buttoncolor, width: 1),
+        focusedBorder: const OutlineInputBorder(
+          // borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide(color: Appcolors.buttoncolor, width: 1),
         ),
         prefixIcon: isPrefixIcon
             ? Icon(
                 prefixIcon,
                 size: 18,
-                color: Appcolors.iconcolor,
+                color: Color.fromARGB(255, 255, 255, 255),
               )
             : null,
         // prefixIconColor: const Color(0xffffffff),

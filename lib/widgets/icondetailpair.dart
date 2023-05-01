@@ -12,8 +12,8 @@ Widget icondetailpair({
     padding: const EdgeInsets.only(right: 20.0),
     child: Row(
       children: [
-        const Icon(
-          FontAwesomeIcons.calendar,
+        Icon(
+          icon,
           size: 15,
           color: Appcolors.buttoncolor,
         ),

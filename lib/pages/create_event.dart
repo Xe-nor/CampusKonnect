@@ -70,6 +70,7 @@ class _CreateEventState extends State<CreateEvent> {
               textform(
                 hinttxt: "Description of the event",
                 labeltxt: "Description",
+                maxlen: MaxLengthEnforcement.enforced,
                 prefixIcon: null,
                 suffixIcon: null,
                 isEmail: false,

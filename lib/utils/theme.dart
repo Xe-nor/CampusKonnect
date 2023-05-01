@@ -23,6 +23,7 @@ class MyTheme {
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: Appcolors.darkprimary),
+    // scaffoldBackgroundColor: Appcolors.darkprimary,
     scaffoldBackgroundColor: Appcolors.darkprimary,
     canvasColor: Appcolors.darkprimary,
     appBarTheme: const AppBarTheme(color: Appcolors.darkprimary),
