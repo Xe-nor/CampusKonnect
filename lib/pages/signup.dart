@@ -233,10 +233,13 @@ class _SignupscreenState extends State<Signupscreen> {
                             });
                           },
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Appcolors.buttoncolor,
-                              shape: const StadiumBorder(
-                                  side: BorderSide(
-                                      color: Appcolors.buttoncolor))),
+                            backgroundColor: Appcolors.buttoncolor,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              side: BorderSide(color: Appcolors.buttoncolor),
+                            ),
+                          ),
                           child: const Text(
                             "Sign up",
                             style: TextStyle(
@@ -261,10 +264,13 @@ class _SignupscreenState extends State<Signupscreen> {
                         height: 50,
                         child: ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Appcolors.darkprimary,
-                              shape: const StadiumBorder(
-                                  side: BorderSide(
-                                      color: Appcolors.buttoncolor))),
+                            backgroundColor: Appcolors.darkprimary,
+                            shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              side: BorderSide(color: Appcolors.buttoncolor),
+                            ),
+                          ),
                           onPressed: () async {
                             //here sign in with google
                             await FirebaseServices().signInwithGoogle();
