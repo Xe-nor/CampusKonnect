@@ -1,8 +1,6 @@
 import 'package:campuskonnect/pages/bottomnavbar.dart';
-
 import 'package:campuskonnect/pages/eventdetail.dart';
 import 'package:campuskonnect/pages/forgotPassword.dart';
-
 import 'package:campuskonnect/services/firebase_services.dart';
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,7 +12,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
-import 'package:neopop/neopop.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -26,6 +24,9 @@ class Loginpage extends StatefulWidget {
 class _LoginpageState extends State<Loginpage> {
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _phonenumber = TextEditingController();
+  final TextEditingController countrycode = TextEditingController();
+  var phone = "";
   bool changebutton1 = false;
   bool changebutton2 = false;
   final formkey = GlobalKey<FormState>();
@@ -62,6 +63,11 @@ class _LoginpageState extends State<Loginpage> {
   // }
 
   @override
+  void initState() {
+    countrycode.text = "+91";
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return KeyboardDismisser(
@@ -101,43 +107,40 @@ class _LoginpageState extends State<Loginpage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             textform(
-              controller: _emailTextController,
-              validator: (String input) {
-                if (input.isEmpty) {
-                  Get.snackbar('Warning', 'Email is empty');
-                  return '';
-                }
-              },
-              hinttxt: "email@example.com",
-              labeltxt: "Email",
-              prefixIcon: FontAwesomeIcons.envelope,
-              isEmail: true,
-              isObscure: false,
-              suffixIcon: null,
-              isPrefixIcon: true,
-              onSaved: (String value) {}
-            ),
+                controller: _emailTextController,
+                validator: (String input) {
+                  if (input.isEmpty) {
+                    Get.snackbar('Warning', 'Email is empty');
+                    return '';
+                  }
+                },
+                hinttxt: "email@example.com",
+                labeltxt: "Email",
+                prefixIcon: FontAwesomeIcons.envelope,
+                type: TextInputType.emailAddress,
+                isObscure: false,
+                suffixIcon: null,
+                isPrefixIcon: true,
+                onSaved: (String value) {}),
             const SizedBox(
               height: 20,
             ),
 
             textform(
-              controller: _passwordTextController,
-              validator: (String input) {
-                if (input.isEmpty) {
-                  Get.snackbar('Warning', 'Password is empty');
-                  return '';
-                }
-              },
-              labeltxt: "Password",
-              hinttxt: "Enter your Password",
-              prefixIcon: FontAwesomeIcons.lock,
-              isEmail: false,
-              isObscure: true,
-              suffixIcon: null,
-              isPrefixIcon: true,
-              onSaved: (String value) {}
-            ), // textform
+                controller: _passwordTextController,
+                validator: (String input) {
+                  if (input.isEmpty) {
+                    Get.snackbar('Warning', 'Password is empty');
+                    return '';
+                  }
+                },
+                labeltxt: "Password",
+                hinttxt: "Enter your Password",
+                prefixIcon: FontAwesomeIcons.lock,
+                isObscure: true,
+                suffixIcon: null,
+                isPrefixIcon: true,
+                onSaved: (String value) {}), // textform
 
             Align(
               alignment: Alignment.centerRight,
@@ -172,6 +175,7 @@ class _LoginpageState extends State<Loginpage> {
                           email: _emailTextController.text,
                           password: _passwordTextController.text)
                       .then((value) {
+                       
                     Get.to(() => const Homepage(),
                         transition: Transition.cupertinoDialog,
                         duration: const Duration(milliseconds: 1500));
@@ -307,12 +311,16 @@ class _LoginpageState extends State<Loginpage> {
                     height: 20,
                   ),
                   textform(
-                    isEmail: true,
-                    isPrefixIcon: true,
-                    prefixIcon: FontAwesomeIcons.envelope,
-                    hinttxt: "email@example.com",
-                    labeltxt: "Email",
-                  ),
+                      type: TextInputType.phone,
+                      controller: _phonenumber,
+                      isPrefixIcon: true,
+                      isObscure: false,
+                      prefixIcon: FontAwesomeIcons.phone,
+                      hinttxt: "Enter your Phone number",
+                      labeltxt: "Phone Number",
+                      onChanged: (value) {
+                        phone = value;
+                      }),
                   const SizedBox(
                     height: 20,
                   ),
@@ -320,8 +328,18 @@ class _LoginpageState extends State<Loginpage> {
                     width: double.infinity,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () {
-                        Get.to(const ForgotPassword());
+                      onPressed: () async {
+                        await FirebaseAuth.instance.verifyPhoneNumber(
+                          phoneNumber: "+91 8249702599",
+                          verificationCompleted:
+                              (PhoneAuthCredential credential) {},
+                          verificationFailed: (FirebaseAuthException e) {},
+                          codeSent:
+                              (String verificationId, int? resendToken) {},
+                          codeAutoRetrievalTimeout: (String verificationId) {},
+                        );
+
+                        // Get.to(const ForgotPassword());
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Appcolors.buttoncolor,
@@ -330,7 +348,7 @@ class _LoginpageState extends State<Loginpage> {
                                   BorderRadius.all(Radius.circular(10)),
                               side: BorderSide(color: Appcolors.buttoncolor))),
                       child: Text(
-                        "Send",
+                        "Send OTP",
                         style: GoogleFonts.urbanist(
                             fontWeight: FontWeight.w600,
                             fontSize: 18,

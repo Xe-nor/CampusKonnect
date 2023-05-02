@@ -1,4 +1,3 @@
-// import 'package:campuskonnect/utils/colors.dart';
 import 'package:campuskonnect/pages/forgotPassword.dart';
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
@@ -11,13 +10,7 @@ import 'package:campuskonnect/pages/signup.dart';
 import 'package:campuskonnect/pages/splashscreen.dart';
 import 'package:campuskonnect/utils/routes.dart';
 import 'package:get/get.dart';
-// import 'package:image_form_field/image_form_field.dart';
-
-// import 'package:campuskonnect/pages/img_input.dart';
-// import 'dart:io';
-
-// import 'package:google_fonts/google_fonts.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 

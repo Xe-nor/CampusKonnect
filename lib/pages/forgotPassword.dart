@@ -26,13 +26,23 @@ class ForgotPassword extends StatelessWidget {
                   fontSize: 80,
                 ),
               ),
-              const Text("Verification"),
+              Text(
+                "Verification",
+                style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
               const SizedBox(
                 height: 20,
               ),
-              const Text(
+              Text(
                 "Enter the verification code sent at \n email@email.com",
                 textAlign: TextAlign.center,
+                style: GoogleFonts.urbanist(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14,
+                ),
               ),
               const SizedBox(
                 height: 20,

@@ -41,14 +41,13 @@ class _CreateEventState extends State<CreateEvent> {
           ),
           content: Column(
             //key: formkey, // added formkey
-            
+
             children: [
               const SizedBox(
                 height: 5,
               ),
               textform(
-                
-                  isEmail: false,
+                  type: TextInputType.name,
                   isObscure: false,
                   hinttxt: "Name of the event",
                   labeltxt: "Name",
@@ -73,7 +72,7 @@ class _CreateEventState extends State<CreateEvent> {
                 maxlen: MaxLengthEnforcement.enforced,
                 prefixIcon: null,
                 suffixIcon: null,
-                isEmail: false,
+                type: TextInputType.multiline,
                 isPrefixIcon: false,
                 isObscure: false,
                 validator: (value) {

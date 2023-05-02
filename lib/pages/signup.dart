@@ -2,12 +2,12 @@
 import 'package:campuskonnect/pages/dashboard.dart';
 import 'package:campuskonnect/services/firebase_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/loginpage.dart';
 import 'package:campuskonnect/pages/profilepage.dart';
 import 'package:campuskonnect/pages/bottomnavbar.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,8 +35,10 @@ class _SignupscreenState extends State<Signupscreen> {
   final TextEditingController _confirmPasswordTextController =
       TextEditingController();
   final TextEditingController _usernameTextController = TextEditingController();
+  final TextEditingController _phonenumberTextController =
+      TextEditingController();
 
-  String? email, password, confirmpassword;
+  String? email, password, confirmpassword, phonenumber;
   String username = "";
 
   // void _savedData() {
@@ -56,19 +58,12 @@ class _SignupscreenState extends State<Signupscreen> {
       gestures: const [GestureType.onTap, GestureType.onVerticalDragDown],
       child: Scaffold(
         key: _scaffoldKey,
-        appBar: AppBar(
-          leading: IconButton(
-              onPressed: () {
-                Get.to(() => const Homepage(),
-                    transition: Transition.cupertinoDialog,
-                    duration: const Duration(milliseconds: 1500));
-              },
-              icon: const Icon(Icons.arrow_back)),
-          elevation: 0,
-        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(
+                height: 50,
+              ),
               Container(
                 width: double.infinity,
                 // height: MediaQuery.of(context).size.height * 0.1,
@@ -109,7 +104,7 @@ class _SignupscreenState extends State<Signupscreen> {
                           hinttxt: 'Enter your Name',
                           prefixIcon: Icons.person,
                           labeltxt: 'Name',
-                          isEmail: false,
+                          type: TextInputType.name,
                           isObscure: false,
                           suffixIcon: null,
                           isPrefixIcon: true,
@@ -124,6 +119,30 @@ class _SignupscreenState extends State<Signupscreen> {
                           onSaved: (value) {
                             print(value);
                             username = value;
+                          }),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      textform(
+                          controller: _phonenumberTextController,
+                          hinttxt: 'Enter Phone number',
+                          prefixIcon: Icons.phone,
+                          labeltxt: 'Phone Number',
+                          type: TextInputType.phone,
+                          isObscure: false,
+                          suffixIcon: null,
+                          isPrefixIcon: true,
+                          validator: (String input) {
+                            print("From validator");
+                            print(input);
+                            if (input.isEmpty) {
+                              //Get.snackbar('Warning', 'Username is empty');
+                              return 'Phone number is empty';
+                            }
+                          },
+                          onSaved: (value) {
+                            print(value);
+                            phonenumber = value;
                           }),
                       const SizedBox(
                         height: 20,
@@ -147,7 +166,7 @@ class _SignupscreenState extends State<Signupscreen> {
                           labeltxt: "E-mail",
                           hinttxt: "Enter your E-mail",
                           prefixIcon: Icons.email,
-                          isEmail: true,
+                          type: TextInputType.emailAddress,
                           suffixIcon: null,
                           onSaved: (String value) {
                             //print(value);
@@ -171,9 +190,8 @@ class _SignupscreenState extends State<Signupscreen> {
                             }
                           },
                           isPrefixIcon: true,
-                          isObscure: false,
+                          isObscure: true,
                           prefixIcon: Icons.key,
-                          isEmail: true,
                           suffixIcon: null,
                           onSaved: (String value) {
                             //print(value);
@@ -196,7 +214,6 @@ class _SignupscreenState extends State<Signupscreen> {
                             }
                           },
                           prefixIcon: Icons.key,
-                          isEmail: true,
                           suffixIcon: null,
                           onSaved: (String value) {
                             //print(value);
@@ -229,12 +246,51 @@ class _SignupscreenState extends State<Signupscreen> {
                                 .then((value) {
                               print("Created new account");
                               print(username);
-                              Get.to(() => const dashboard(),
+
+                              // Store user information in Firebase Realtime Database
+                              DatabaseReference databaseReference =
+                                  FirebaseDatabase.instance.ref();
+                              databaseReference
+                                  .child("users")
+                                  .child(value.user!.uid)
+                                  .set(
+                                {
+                                  "username":
+                                      _usernameTextController.text.trim(),
+                                  "email": _emailTextController.text.trim(),
+                                  "PhoneNumber":
+                                      _phonenumberTextController.text.trim(),
+                                },
+                              );
+
+                              // Navigate to dashboard page
+                              Get.to(() => const Homepage(),
                                   transition: Transition.cupertinoDialog,
                                   duration: const Duration(milliseconds: 1500));
-                            }).onError((error, stackTrace) {
-                              print("Error ${error.toString()}");
-                            });
+                            }).onError(
+                              (error, stackTrace) {
+                                print("Error ${error.toString()}");
+                              },
+                            );
+
+                            // FirebaseAuth.instance
+                            //     .createUserWithEmailAndPassword(
+                            //         email: _emailTextController.text.trim(),
+                            //         password:
+                            //             _passwordTextController.text.trim())
+
+                            //     .then((value) {
+                            //   print("Created new account");
+                            //   print(username);
+                            //   Get.to(() => const dashboard(),
+                            //       transition: Transition.cupertinoDialog,
+                            //       duration: const Duration(milliseconds: 1500));
+                            // }).onError(
+                            //   (error, stackTrace) {
+                            //     print("Error ${error.toString()}");
+                            //   },
+
+                            // );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Appcolors.buttoncolor,
