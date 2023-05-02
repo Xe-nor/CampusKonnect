@@ -17,11 +17,13 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool isLoggedIn = false;
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -32,9 +34,20 @@ class MyApp extends StatelessWidget {
           title: "campuskonnect",
           themeMode: themeProvider.themeMode,
           darkTheme: MyTheme.dark,
-          initialRoute: MyRoutes.loginRoute,
+          home: StreamBuilder<User?>(
+            stream: _auth.authStateChanges(),
+            builder: (context, snapshot) {
+              // if (snapshot.connectionState == ConnectionState.waiting) {
+              //   return Splashscreen();
+              // }
+              if (snapshot.hasData) {
+                print(snapshot.data);
+                return const Homepage();
+              }
+              return const Loginpage();
+            },
+          ),
           routes: {
-            // "/": (context) => const Homepage(),
             MyRoutes.splashscreen: (context) => Splashscreen(),
             MyRoutes.homeRoute: (context) => const Homepage(),
             MyRoutes.loginRoute: (context) => const Loginpage(),
