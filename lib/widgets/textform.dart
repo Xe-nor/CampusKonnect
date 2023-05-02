@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../utils/theme.dart';
 
 Widget textform(
@@ -11,22 +10,23 @@ Widget textform(
     MaxLengthEnforcement? maxlen,
     IconData? prefixIcon,
     IconData? suffixIcon,
-    bool isEmail = false,
+    TextInputType? type,
     bool isPrefixIcon = false,
     bool isautofocus = false,
     bool isObscure = true,
     TextEditingController? controller,
-    Function? validator,Function? onSaved}) {
+    Function? validator,
+    Function? onChanged,
+    Function? onSaved}) {
   return SizedBox(
     height: 55,
     child: TextFormField(
       autofocus: isautofocus,
-      onSaved: (newValue)=> onSaved!(newValue) ,
-        
-      
+      onChanged: (value) => onChanged!(value),
+      onSaved: (newValue) => onSaved!(newValue),
       validator: (input) => validator!(input),
       obscureText: isObscure,
-      keyboardType: isEmail ? TextInputType.emailAddress : null,
+      keyboardType: type,
       controller: controller,
       maxLengthEnforcement: maxlen,
       decoration: InputDecoration(
