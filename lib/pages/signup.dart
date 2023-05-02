@@ -1,5 +1,5 @@
 //import 'dart:html';
-import 'package:campuskonnect/pages/dashboard.dart';
+import 'package:campuskonnect/pages/dashboard2.dart';
 import 'package:campuskonnect/services/firebase_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_core/firebase_core.dart';

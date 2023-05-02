@@ -1,7 +1,7 @@
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/create_event.dart';
-import 'package:campuskonnect/pages/dashboard.dart';
+import 'package:campuskonnect/pages/dashboard2.dart';
 import 'package:campuskonnect/pages/profilepage.dart';
 import 'package:campuskonnect/pages/search.dart';
 import 'bookmark.dart';
