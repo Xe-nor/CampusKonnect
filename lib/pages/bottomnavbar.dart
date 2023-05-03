@@ -4,7 +4,7 @@ import 'package:campuskonnect/pages/create_event.dart';
 import 'package:campuskonnect/pages/dashboard2.dart';
 import 'package:campuskonnect/pages/profilepage.dart';
 import 'package:campuskonnect/pages/search.dart';
-import 'bookmark.dart';
+
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 // import 'package:campuskonnect/pages/profilepage.dart';
 // import 'package:get/get.dart';

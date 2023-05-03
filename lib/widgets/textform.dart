@@ -37,16 +37,18 @@ Widget textform(
         hintStyle: GoogleFonts.montserrat(
           fontSize: 14,
         ),
+        floatingLabelStyle: const TextStyle(
+            color: Colors.grey, fontSize: 16, fontWeight: FontWeight.w600),
         hintText: hinttxt,
         fillColor: Appcolors.secondary,
         filled: true,
         enabledBorder: const OutlineInputBorder(
           // borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: Appcolors.buttoncolor, width: 1),
+          borderSide: BorderSide.none,
         ),
         focusedBorder: const OutlineInputBorder(
           // borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: Appcolors.buttoncolor, width: 1),
+          borderSide: BorderSide.none,
         ),
         prefixIcon: isPrefixIcon
             ? Icon(
