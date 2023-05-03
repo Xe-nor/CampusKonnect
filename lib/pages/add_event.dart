@@ -175,6 +175,7 @@ class _EventCreateState extends State<EventCreate> {
                   ),
                   DateTimePicker(
                     initialValue: '',
+                    dateMask: 'd/MM/yy',
                     decoration: InputDecoration(
                       labelStyle: GoogleFonts.montserrat(
                         fontSize: 15,
