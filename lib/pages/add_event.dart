@@ -230,51 +230,6 @@ class _EventCreateState extends State<EventCreate> {
                           color: Colors.grey,
                           fontSize: 16,
                           fontWeight: FontWeight.w600),
-                      labelText: "Location",
-                      hintStyle: GoogleFonts.montserrat(
-                        fontSize: 14,
-                      ),
-                      hintText: "Location of the event",
-                      fillColor: Appcolors.secondary,
-                      filled: true,
-                      enabledBorder: const OutlineInputBorder(
-                        // borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide.none,
-                      ),
-                      focusedBorder: const OutlineInputBorder(
-                        // borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide.none,
-                      ),
-                      prefixIcon: const Icon(
-                        Icons.location_on,
-                        color: Colors.white,
-                      ),
-                      // prefixIconColor: const Color(0xffffffff),
-                    ),
-                    validator: (input) {
-                      if (input == null || input.isEmpty) {
-                        return 'Location is empty';
-                      }
-                      return '';
-                    },
-                    onSaved: (input) {
-                      if (input != null) {
-                        location = input;
-                      }
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelStyle: GoogleFonts.montserrat(
-                        fontSize: 15,
-                      ),
-                      floatingLabelStyle: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600),
                       labelText: "Batch",
                       hintStyle: GoogleFonts.montserrat(
                         fontSize: 14,
@@ -356,6 +311,49 @@ class _EventCreateState extends State<EventCreate> {
                   ),
                   const SizedBox(
                     height: 20,
+                  ),
+                  TextFormField(
+                    maxLength: 25,
+                    decoration: InputDecoration(
+                      labelStyle: GoogleFonts.montserrat(
+                        fontSize: 15,
+                      ),
+                      floatingLabelStyle: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                      labelText: "Location",
+                      hintStyle: GoogleFonts.montserrat(
+                        fontSize: 14,
+                      ),
+                      hintText: "Location of the event",
+                      fillColor: Appcolors.secondary,
+                      filled: true,
+                      enabledBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      prefixIcon: const Icon(
+                        Icons.location_on,
+                        color: Colors.white,
+                      ),
+                      // prefixIconColor: const Color(0xffffffff),
+                    ),
+                    validator: (input) {
+                      if (input == null || input.isEmpty) {
+                        return 'Location is empty';
+                      }
+                      return '';
+                    },
+                    onSaved: (input) {
+                      if (input != null) {
+                        location = input;
+                      }
+                    },
                   ),
                   TextFormField(
                     keyboardType: TextInputType.number,
