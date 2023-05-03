@@ -20,8 +20,6 @@ class _HomepageState extends State<Homepage> {
   int currentIndex = 0;
   List pages = const [
     dashboard(),
-    bookmark(),
-    CreateEvent(),
     search(),
     profile(),
   ];
@@ -52,10 +50,6 @@ class _HomepageState extends State<Homepage> {
             icon: Icon(Icons.home),
             label: "Home",
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.bookmark), label: "Bookmarked"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.add_circle_outline), label: "Create Event"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
