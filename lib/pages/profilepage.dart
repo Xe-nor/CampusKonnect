@@ -24,7 +24,7 @@ class _profileState extends State<profile> {
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
-    int currentIndex = 3;
+    int currentIndex = 2;
     return SafeArea(
       child: Scaffold(
         //!!DO NOT UNCOMMENT (TOGGLE FOR THEMEMODE)
