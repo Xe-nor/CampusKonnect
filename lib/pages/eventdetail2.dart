@@ -21,49 +21,7 @@ class eventdetail extends StatefulWidget {
 
 // ignore: camel_case_types
 class _eventdetailState extends State<eventdetail> {
-  List<EventItem> _eventItm = [];
-
-  void _loadItems() async {
-    final url = Uri.https(
-        'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list3.json');
-    final response = await http.get(url);
-    //print(response.body);
-    if (response.body == 'null') {
-      return;
-    }
-    final Map<String, dynamic> listData = json.decode(response.body);
-    final List<EventItem> loadedItems = [];
-    for (final item in listData.entries) {
-      // if (listData.entries != null) {
-      loadedItems.add(EventItem(
-          id: item.key,
-          //eventImage: "assets/images/event.jpg",
-          eventName: item.value['eventName'],
-          eventDescription: item.value['eventDescription'],
-          eventDate: item.value['eventDate'],
-          eventLocation: item.value['eventLocation'],
-          eventTime: item.value['eventTime']));
-      //}
-    }
-    setState(() {
-      _eventItm = loadedItems;
-    });
-  }
-
-  void _addItem() async {
-    await Navigator.of(context).push<EventItem>(
-      MaterialPageRoute(
-        builder: (ctx) => const EventCreate(),
-      ),
-    );
-    _loadItems();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _loadItems();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
