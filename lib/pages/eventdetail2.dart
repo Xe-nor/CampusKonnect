@@ -11,7 +11,6 @@ import 'package:campuskonnect/widgets/event_item.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-
 // ignore: camel_case_types
 class eventdetail extends StatefulWidget {
   const eventdetail({super.key});
@@ -22,11 +21,7 @@ class eventdetail extends StatefulWidget {
 
 // ignore: camel_case_types
 class _eventdetailState extends State<eventdetail> {
-
-    
-
-    List<EventItem> _eventItm = [];
-  
+  List<EventItem> _eventItm = [];
 
   void _loadItems() async {
     final url = Uri.https(
@@ -66,15 +61,13 @@ class _eventdetailState extends State<eventdetail> {
 
   @override
   void initState() {
-   
     super.initState();
     _loadItems();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> args = Get.arguments;
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
@@ -123,7 +116,7 @@ class _eventdetailState extends State<eventdetail> {
                       children: [
                         Row(
                           children: [
-                            Text('Event Name',
+                            Text('${args['name']}',
                                 style: GoogleFonts.urbanist(
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.w500))
@@ -133,13 +126,14 @@ class _eventdetailState extends State<eventdetail> {
                           height: 10,
                         ),
                         icondetailpair(
-                            detail: 'Location',
+                            detail: '${args['location']}',
                             icon: FontAwesomeIcons.locationPin),
                         const SizedBox(
                           height: 10,
                         ),
                         icondetailpair(
-                            detail: 'Date', icon: FontAwesomeIcons.calendar),
+                            detail: '${args['date']}',
+                            icon: FontAwesomeIcons.calendar),
                         const SizedBox(
                           height: 15,
                         ),
@@ -172,7 +166,7 @@ class _eventdetailState extends State<eventdetail> {
                         ),
                         Row(
                           children: [
-                            Text("DESCRIPTION",
+                            Text('DESCRIPTION',
                                 style: GoogleFonts.urbanist(
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.w500))
@@ -181,10 +175,10 @@ class _eventdetailState extends State<eventdetail> {
                         const SizedBox(
                           height: 15,
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 160,
                           child: Text(
-                            "DUMMY",
+                            '${args['description']}',
                             maxLines: 8,
                             overflow: TextOverflow.clip,
                           ),
