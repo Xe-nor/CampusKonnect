@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:campuskonnect/utils/theme.dart';
 
 import 'package:flutter/material.dart';
@@ -79,7 +81,7 @@ class _eventdetailState extends State<eventdetail> {
       body: SafeArea(
         child: SizedBox(
           width: double.maxFinite,
-          height: double.maxFinite,
+          height: double.infinity,
           child: Stack(
             children: [
               Positioned(
@@ -143,6 +145,9 @@ class _eventdetailState extends State<eventdetail> {
                         const SizedBox(
                           height: 15,
                         ),
+                        icondetailpair(
+                            detail: 'StartTime', icon: FontAwesomeIcons.clock),
+                        const SizedBox(height: 10),
                         Row(
                           children: [
                             Text("MORE INFORMATION",
@@ -155,7 +160,8 @@ class _eventdetailState extends State<eventdetail> {
                           height: 10,
                         ),
                         icondetailpair(
-                            detail: 'Total-Time', icon: FontAwesomeIcons.clock),
+                            detail: 'Total-Time',
+                            icon: FontAwesomeIcons.hourglass),
                         const SizedBox(
                           height: 10,
                         ),
@@ -168,7 +174,7 @@ class _eventdetailState extends State<eventdetail> {
                         icondetailpair(
                             detail: 'Batch', icon: FontAwesomeIcons.user),
                         const SizedBox(
-                          height: 15,
+                          height: 10,
                         ),
                         Row(
                           children: [
@@ -179,10 +185,10 @@ class _eventdetailState extends State<eventdetail> {
                           ],
                         ),
                         const SizedBox(
-                          height: 15,
+                          height: 10,
                         ),
                         const SizedBox(
-                          height: 160,
+                          height: 145,
                           child: Text(
                             "DUMMY",
                             maxLines: 8,
@@ -190,7 +196,6 @@ class _eventdetailState extends State<eventdetail> {
                           ),
                         ),
                         Positioned(
-                          bottom: 0,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [

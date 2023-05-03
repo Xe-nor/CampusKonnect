@@ -1,9 +1,9 @@
+// ignore_for_file: use_build_context_synchronously, unused_local_variable
+
 import 'package:campuskonnect/widgets/textform.dart';
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
-//import 'package:campuskonnect/widgets/eventcard.dart';
-//import 'package:campuskonnect/widgets/event_item.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:date_time_picker/date_time_picker.dart';
@@ -17,7 +17,15 @@ class EventCreate extends StatefulWidget {
 
 class _EventCreateState extends State<EventCreate> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String evName = '', location = '', description = '', time = '', date = '';
+  String evName = '',
+      location = '',
+      description = '',
+      time = '',
+      date = '',
+      duration = '',
+      branch = '',
+      registerLink = '',
+      batch = '';
 
   void _saveItem() async {
     if (formKey.currentState != null) {
@@ -26,7 +34,7 @@ class _EventCreateState extends State<EventCreate> {
       }
     }
     final url = Uri.https(
-        'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list3.json');
+        'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list4.json');
     final response = await http.post(url,
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
@@ -34,6 +42,10 @@ class _EventCreateState extends State<EventCreate> {
           'eventDescription': description,
           'eventLocation': location,
           'eventTime': time,
+          'eventDuration': duration,
+          'eventBranch': branch,
+          'eventBatch': batch,
+          'registerLink': registerLink,
           //'eventImage': "assets/images/event.jpg",
           'eventName': evName,
         }));
@@ -47,6 +59,7 @@ class _EventCreateState extends State<EventCreate> {
     Navigator.of(context).pop();
   }
 
+  String counterStr = "0";
   @override
   Widget build(BuildContext context) {
     return KeyboardDismisser(
@@ -114,6 +127,8 @@ class _EventCreateState extends State<EventCreate> {
                     height: 20,
                   ),
                   TextFormField(
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 8,
                     decoration: InputDecoration(
                       labelStyle: GoogleFonts.montserrat(
                         fontSize: 15,
@@ -123,10 +138,11 @@ class _EventCreateState extends State<EventCreate> {
                           fontSize: 16,
                           fontWeight: FontWeight.w600),
                       labelText: "Description",
+                      alignLabelWithHint: false,
                       hintStyle: GoogleFonts.montserrat(
                         fontSize: 14,
                       ),
-                      hintText: "Description of the Event",
+                      hintText: "Description of the Event...",
                       fillColor: Appcolors.secondary,
                       filled: true,
                       enabledBorder: const OutlineInputBorder(
@@ -159,6 +175,7 @@ class _EventCreateState extends State<EventCreate> {
                   ),
                   DateTimePicker(
                     initialValue: '',
+                    dateMask: 'd/MM/yy',
                     decoration: InputDecoration(
                       labelStyle: GoogleFonts.montserrat(
                         fontSize: 15,
@@ -205,9 +222,7 @@ class _EventCreateState extends State<EventCreate> {
                   const SizedBox(
                     height: 20,
                   ),
-                  DateTimePicker(
-                    type: DateTimePickerType.time,
-                    initialValue: '', //_initialValue,
+                  TextFormField(
                     decoration: InputDecoration(
                       labelStyle: GoogleFonts.montserrat(
                         fontSize: 15,
@@ -216,11 +231,12 @@ class _EventCreateState extends State<EventCreate> {
                           color: Colors.grey,
                           fontSize: 16,
                           fontWeight: FontWeight.w600),
-                      labelText: "Time",
+                      labelText: "Batch",
                       hintStyle: GoogleFonts.montserrat(
                         fontSize: 14,
                       ),
-                      hintText: "Time of event",
+                      hintText:
+                          "i.e 3rd year, write all to include every batch",
                       fillColor: Appcolors.secondary,
                       filled: true,
                       enabledBorder: const OutlineInputBorder(
@@ -232,23 +248,20 @@ class _EventCreateState extends State<EventCreate> {
                         borderSide: BorderSide.none,
                       ),
                       prefixIcon: const Icon(
-                        Icons.access_time,
+                        Icons.person,
                         color: Colors.white,
                       ),
                       // prefixIconColor: const Color(0xffffffff),
                     ),
-                    timeLabelText: "Time",
-                    use24HourFormat: false,
-                    locale: const Locale('pt', 'BR'),
                     validator: (input) {
                       if (input == null || input.isEmpty) {
-                        return 'Time is empty';
+                        return 'Batch is empty';
                       }
                       return '';
                     },
                     onSaved: (input) {
                       if (input != null) {
-                        time = input;
+                        batch = input;
                       }
                     },
                   ),
@@ -256,6 +269,52 @@ class _EventCreateState extends State<EventCreate> {
                     height: 20,
                   ),
                   TextFormField(
+                    decoration: InputDecoration(
+                      labelStyle: GoogleFonts.montserrat(
+                        fontSize: 15,
+                      ),
+                      floatingLabelStyle: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                      labelText: "Branch",
+                      hintStyle: GoogleFonts.montserrat(
+                        fontSize: 14,
+                      ),
+                      hintText: "Branch of Students",
+                      fillColor: Appcolors.secondary,
+                      filled: true,
+                      enabledBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      prefixIcon: const Icon(
+                        Icons.book,
+                        color: Colors.white,
+                      ),
+                      // prefixIconColor: const Color(0xffffffff),
+                    ),
+                    validator: (input) {
+                      if (input == null || input.isEmpty) {
+                        return 'Branch is empty';
+                      }
+                      return '';
+                    },
+                    onSaved: (input) {
+                      if (input != null) {
+                        branch = input;
+                      }
+                    },
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    maxLength: 25,
                     decoration: InputDecoration(
                       labelStyle: GoogleFonts.montserrat(
                         fontSize: 15,
@@ -294,6 +353,137 @@ class _EventCreateState extends State<EventCreate> {
                     onSaved: (input) {
                       if (input != null) {
                         location = input;
+                      }
+                    },
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    maxLength: 4,
+                    decoration: InputDecoration(
+                      labelStyle: GoogleFonts.montserrat(
+                        fontSize: 15,
+                      ),
+                      floatingLabelStyle: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                      labelText: "Start Time",
+                      hintStyle: GoogleFonts.montserrat(
+                        fontSize: 14,
+                      ),
+                      hintText: "In 24hr format (i.e 1600)",
+                      fillColor: Appcolors.secondary,
+                      filled: true,
+                      enabledBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      prefixIcon: const Icon(
+                        Icons.access_time,
+                        color: Colors.white,
+                      ),
+                      // prefixIconColor: const Color(0xffffffff),
+                    ),
+                    validator: (input) {
+                      if (input == null || input.isEmpty) {
+                        return 'Time is empty';
+                      }
+                      return '';
+                    },
+                    onSaved: (input) {
+                      if (input != null) {
+                        time = input;
+                      }
+                    },
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    maxLength: 3,
+                    decoration: InputDecoration(
+                      labelStyle: GoogleFonts.montserrat(
+                        fontSize: 15,
+                      ),
+                      floatingLabelStyle: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                      labelText: "Duration",
+                      hintStyle: GoogleFonts.montserrat(
+                        fontSize: 14,
+                      ),
+                      hintText: "i.e 2 or 2.5 hrs",
+                      fillColor: Appcolors.secondary,
+                      filled: true,
+                      enabledBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      prefixIcon: const Icon(
+                        Icons.hourglass_bottom,
+                        color: Colors.white,
+                      ),
+                      // prefixIconColor: const Color(0xffffffff),
+                    ),
+                    validator: (input) {
+                      if (input == null || input.isEmpty) {
+                        return 'Duration is Empty';
+                      }
+                      return '';
+                    },
+                    onSaved: (input) {
+                      if (input != null) {
+                        duration = input;
+                      }
+                    },
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.url,
+                    decoration: InputDecoration(
+                      labelStyle: GoogleFonts.montserrat(
+                        fontSize: 15,
+                      ),
+                      floatingLabelStyle: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                      labelText: "Registration link",
+                      hintStyle: GoogleFonts.montserrat(
+                        fontSize: 14,
+                      ),
+                      hintText: "Registration form link",
+                      fillColor: Appcolors.secondary,
+                      filled: true,
+                      enabledBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      prefixIcon: const Icon(
+                        Icons.link,
+                        color: Colors.white,
+                      ),
+                      // prefixIconColor: const Color(0xffffffff),
+                    ),
+                    validator: (input) {
+                      if (input == null || input.isEmpty) {
+                        return 'Registration link is Empty';
+                      }
+                      return '';
+                    },
+                    onSaved: (input) {
+                      if (input != null) {
+                        registerLink = input;
                       }
                     },
                   ),

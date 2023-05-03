@@ -43,15 +43,15 @@ class EventItem extends StatelessWidget {
         });
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
-                color: const Color.fromARGB(255, 13, 16, 22), width: 2),
+                color: const Color.fromARGB(255, 13, 16, 22), width: 1),
             color: Appcolors.secondary,
           ),
-          height: 240,
+          height: 255,
           child: Column(
             children: [
               ClipRRect(
@@ -91,8 +91,6 @@ class EventItem extends StatelessWidget {
                         icondetailpair(
                             detail: eventDate, icon: FontAwesomeIcons.calendar),
                         icondetailpair(
-                            detail: eventTime, icon: FontAwesomeIcons.clock),
-                        icondetailpair(
                             detail: eventLocation,
                             icon: FontAwesomeIcons.locationPin),
                       ],
@@ -106,7 +104,7 @@ class EventItem extends StatelessWidget {
                         Expanded(
                           child: Text(
                             eventDescription,
-                            maxLines: 2,
+                            maxLines: 3,
                             style: GoogleFonts.urbanist(
                               fontWeight: FontWeight.w500,
                             ),

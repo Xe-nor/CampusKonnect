@@ -21,7 +21,6 @@ class eventdetail extends StatefulWidget {
 
 // ignore: camel_case_types
 class _eventdetailState extends State<eventdetail> {
-  
 
   @override
   Widget build(BuildContext context) {

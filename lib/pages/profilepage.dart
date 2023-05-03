@@ -1,17 +1,13 @@
+// ignore_for_file: unused_import, camel_case_types
+
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-// import 'package:campuskonnect/pages/homepage.dart';
-// import 'package:campuskonnect/pages/informationpage.dart';
 import 'package:campuskonnect/pages/loginpage.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:campuskonnect/services/firebase_services.dart';
 import 'package:get/get.dart';
 
-// import 'loginpage.dart';
-
-// ignore: camel_case_types
 class profile extends StatefulWidget {
   const profile({super.key});
 
@@ -19,7 +15,6 @@ class profile extends StatefulWidget {
   State<profile> createState() => _profileState();
 }
 
-// ignore: camel_case_types
 class _profileState extends State<profile> {
   @override
   Widget build(BuildContext context) {
@@ -76,6 +71,7 @@ class _profileState extends State<profile> {
                   height: 10,
                 ),
                 const Divider(
+                  thickness: 1,
                   color: Appcolors.buttoncolor,
                 ),
                 const SizedBox(

@@ -1,13 +1,14 @@
-// import 'package:campuskonnect/pages/splashscreen.dart';
+// ignore_for_file: camel_case_types
+import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
 import 'package:campuskonnect/pages/add_event.dart';
-//import '../widgets/eventcard.dart';
 import 'package:campuskonnect/widgets/event_item.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-// ignore: camel_case_types
+import 'package:keyboard_dismisser/keyboard_dismisser.dart';
+
 class search extends StatefulWidget {
   const search({super.key});
 
@@ -15,7 +16,6 @@ class search extends StatefulWidget {
   State<search> createState() => _dashboardState();
 }
 
-// ignore: camel_case_types
 class _dashboardState extends State<search> {
   List<EventItem> _eventItm = [];
   List<EventItem> _found = [];
@@ -24,23 +24,19 @@ class _dashboardState extends State<search> {
     final url = Uri.https(
         'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list3.json');
     final response = await http.get(url);
-    //print(response.body);
     if (response.body == 'null') {
       return;
     }
     final Map<String, dynamic> listData = json.decode(response.body);
     final List<EventItem> loadedItems = [];
     for (final item in listData.entries) {
-      // if (listData.entries != null) {
       loadedItems.add(EventItem(
           id: item.key,
-          //eventImage: "assets/images/event.jpg",
           eventName: item.value['eventName'],
           eventDescription: item.value['eventDescription'],
           eventDate: item.value['eventDate'],
           eventLocation: item.value['eventLocation'],
           eventTime: item.value['eventTime']));
-      //}
     }
     setState(() {
       _eventItm = loadedItems;
@@ -101,8 +97,6 @@ class _dashboardState extends State<search> {
                   eventName: _found[index].eventName,
                   eventDescription: _found[index].eventDescription,
                   eventDate: _found[index].eventDate,
-                  //eventImage: "assets/images/event.jpg",
-
                   eventLocation: _found[index].eventLocation,
                   eventTime: _found[index].eventTime),
             ],
@@ -111,33 +105,49 @@ class _dashboardState extends State<search> {
       );
     }
     return Scaffold(
-        // appBar: AppBar(
-        //   elevation: 1,
-        //   automaticallyImplyLeading: false,
-        //   title: const Image(
-        //     image: AssetImage("assets/images/onlyName.png"),
-        //     height: 150,
-        //     width: 170,
-        //   ),
-        //   centerTitle: true,
-        //   actions: [
-        //     IconButton(onPressed: _addItem, icon: const Icon(Icons.add))
-        //   ],
-        // ),
-        body: SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(5),
-        child: Column(children: [
-          TextField(
-            onChanged: (value) => _runFilter(value),
-            decoration: const InputDecoration(
-                labelText: 'Search', suffixIcon: Icon(Icons.search)),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Expanded(child: content)
-        ]),
+        body: KeyboardDismisser(
+      gestures: const [GestureType.onTap, GestureType.onVerticalDragDown],
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(5),
+          child: Column(children: [
+            TextField(
+              onChanged: (value) => _runFilter(value),
+              decoration: InputDecoration(
+                labelStyle: GoogleFonts.montserrat(
+                  fontSize: 15,
+                ),
+                labelText: "Search",
+                floatingLabelStyle: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600),
+                hintStyle: GoogleFonts.montserrat(
+                  fontSize: 14,
+                ),
+                hintText: "Search Events",
+
+                fillColor: Appcolors.secondary,
+                filled: true,
+                enabledBorder: const OutlineInputBorder(
+                    // borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide(color: Appcolors.buttoncolor)),
+                focusedBorder: const OutlineInputBorder(
+                    // borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide(color: Appcolors.buttoncolor)),
+                suffixIcon: const Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+                // prefixIconColor: const Color(0xffffffff),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Expanded(child: content)
+          ]),
+        ),
       ),
     ));
   }
