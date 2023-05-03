@@ -1,4 +1,5 @@
-import 'package:campuskonnect/utils/routes.dart';
+// ignore_for_file: depend_on_referenced_packages, library_prefixes, unused_import
+
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,6 @@ import 'package:path_provider/path_provider.dart';
 
 import '../widgets/textform.dart';
 import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:intl/intl.dart';

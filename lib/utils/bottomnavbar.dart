@@ -29,7 +29,8 @@ class _HomepageState extends State<Homepage> {
       body: pages[currentIndex],
       bottomNavigationBar: SnakeNavigationBar.color(
         shadowColor: Appcolors.buttoncolor,
-        shape: Border.all(color: const Color.fromARGB(255, 0, 0, 0)),
+        shape:
+            Border.all(color: const Color.fromARGB(255, 0, 0, 0), width: 0.2),
         currentIndex: currentIndex,
         onTap: (index) {
           setState(() {
@@ -38,7 +39,6 @@ class _HomepageState extends State<Homepage> {
         },
         snakeViewColor: Appcolors.buttoncolor,
         behaviour: SnakeBarBehaviour.floating,
-        elevation: 10,
         snakeShape: SnakeShape.rectangle,
         selectedItemColor: Appcolors.lightprimary,
         unselectedItemColor: Appcolors.buttoncolor,

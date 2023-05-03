@@ -1,8 +1,7 @@
-// import 'package:campuskonnect/pages/splashscreen.dart';
+// ignore_for_file: unused_field, unused_element
+
 import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
 import 'package:campuskonnect/pages/add_event.dart';
-//import '../widgets/eventcard.dart';
 import 'package:campuskonnect/widgets/event_item.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -24,7 +23,7 @@ class _dashboardState extends State<dashboard> {
     final url = Uri.https(
         'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list3.json');
     final response = await http.get(url);
-    //print(response.body);
+
     if (response.body == 'null') {
       return;
     }
@@ -80,7 +79,6 @@ class _dashboardState extends State<dashboard> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _loadItems();
     _found = _eventItm;
@@ -121,7 +119,12 @@ class _dashboardState extends State<dashboard> {
           ),
           centerTitle: true,
           actions: [
-            IconButton(onPressed: _addItem, icon: const Icon(Icons.add))
+            IconButton(
+                onPressed: _addItem,
+                icon: const Icon(
+                  Icons.add_circle_outline,
+                  size: 35,
+                ))
           ],
         ),
         body: content);

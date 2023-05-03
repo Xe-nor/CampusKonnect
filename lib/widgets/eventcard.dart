@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../pages/eventdetail.dart';
@@ -7,7 +9,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icondetailpair.dart';
 
 Widget eventCard({
-  // ignore: non_constant_identifier_names
   required Context,
   required eventimage,
   required eventname,
@@ -21,11 +22,12 @@ Widget eventCard({
       Get.to(const eventdetail());
     },
     child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Color.fromARGB(255, 13, 16, 22), width: 2),
+          border: Border.all(
+              color: const Color.fromARGB(255, 13, 16, 22), width: 0.2),
           color: Appcolors.secondary,
         ),
         height: 240,
@@ -64,6 +66,7 @@ Widget eventCard({
                   ),
                   Row(
                     children: [
+                      
                       icondetailpair(
                           detail: eventDate, icon: FontAwesomeIcons.calendar),
                       icondetailpair(

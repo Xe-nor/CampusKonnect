@@ -1,7 +1,8 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:campuskonnect/utils/theme.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:campuskonnect/pages/bottomnavbar.dart';
+import 'package:campuskonnect/utils/bottomnavbar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

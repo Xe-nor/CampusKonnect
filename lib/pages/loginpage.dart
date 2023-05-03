@@ -1,4 +1,4 @@
-import 'package:campuskonnect/pages/bottomnavbar.dart';
+import 'package:campuskonnect/utils/bottomnavbar.dart';
 import 'package:campuskonnect/pages/eventdetail.dart';
 import 'package:campuskonnect/pages/forgotPassword.dart';
 import 'package:campuskonnect/services/firebase_services.dart';

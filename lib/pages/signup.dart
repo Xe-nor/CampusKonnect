@@ -7,7 +7,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/loginpage.dart';
 import 'package:campuskonnect/pages/profilepage.dart';
-import 'package:campuskonnect/pages/bottomnavbar.dart';
+import 'package:campuskonnect/utils/bottomnavbar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

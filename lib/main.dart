@@ -3,7 +3,7 @@ import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/create_event.dart';
 import 'package:campuskonnect/pages/eventdetail.dart';
-import 'package:campuskonnect/pages/bottomnavbar.dart';
+import 'package:campuskonnect/utils/bottomnavbar.dart';
 import 'package:campuskonnect/pages/loginpage.dart';
 import 'package:campuskonnect/pages/profilepage.dart';
 import 'package:campuskonnect/pages/signup.dart';
@@ -18,10 +18,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -54,7 +56,6 @@ class _MyAppState extends State<MyApp> {
                 stream: _auth.authStateChanges(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    print(snapshot.data);
                     return const Homepage();
                   }
                   return const Loginpage();
@@ -76,6 +77,7 @@ class _MyAppState extends State<MyApp> {
                     builder: (context) => const Loginpage(),
                   );
                 }
+                return null;
               },
             );
           },
