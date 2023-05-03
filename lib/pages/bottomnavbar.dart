@@ -60,33 +60,6 @@ class _HomepageState extends State<Homepage> {
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
       ),
-
-      // bottomNavigationBar: BottomNavigationBar(
-      //   onTap: (index) {
-      //     setState(() {
-      //       currentIndex = index;
-      //     });
-      //   },
-      //   type: BottomNavigationBarType.fixed,
-      //   currentIndex: currentIndex,
-      //   elevation: 10,
-      //   selectedItemColor: Appcolors.buttoncolor,
-      //   selectedFontSize: 10,
-      //   showUnselectedLabels: false,
-      //   unselectedFontSize: 0,
-      //   items: const [
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.home),
-      //       label: "Home",
-      //     ),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.bookmark), label: "Bookmarked"),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.add_circle_outline), label: "Create Event"),
-      //     BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-      //     BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-      //   ],
-      // ),
     );
   }
 }
