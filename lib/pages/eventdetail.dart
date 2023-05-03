@@ -1,13 +1,18 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:campuskonnect/utils/theme.dart';
+
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/bottomnavbar.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../widgets/icondetailpair.dart';
+import 'package:campuskonnect/pages/add_event.dart';
+import 'package:campuskonnect/widgets/event_item.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 
 // ignore: camel_case_types
 class eventdetail extends StatefulWidget {
@@ -19,6 +24,57 @@ class eventdetail extends StatefulWidget {
 
 // ignore: camel_case_types
 class _eventdetailState extends State<eventdetail> {
+
+    
+
+    List<EventItem> _eventItm = [];
+  
+
+  void _loadItems() async {
+    final url = Uri.https(
+        'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list3.json');
+    final response = await http.get(url);
+    //print(response.body);
+    if (response.body == 'null') {
+      return;
+    }
+    final Map<String, dynamic> listData = json.decode(response.body);
+    final List<EventItem> loadedItems = [];
+    for (final item in listData.entries) {
+      // if (listData.entries != null) {
+      loadedItems.add(EventItem(
+          id: item.key,
+          //eventImage: "assets/images/event.jpg",
+          eventName: item.value['eventName'],
+          eventDescription: item.value['eventDescription'],
+          eventDate: item.value['eventDate'],
+          eventLocation: item.value['eventLocation'],
+          eventTime: item.value['eventTime']));
+      //}
+    }
+    setState(() {
+      _eventItm = loadedItems;
+    });
+  }
+
+  void _addItem() async {
+    await Navigator.of(context).push<EventItem>(
+      MaterialPageRoute(
+        builder: (ctx) => const EventCreate(),
+      ),
+    );
+    _loadItems();
+  }
+
+  @override
+  void initState() {
+   
+    super.initState();
+    _loadItems();
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +125,7 @@ class _eventdetailState extends State<eventdetail> {
                       children: [
                         Row(
                           children: [
-                            Text("EVENT-NAME",
+                            Text('Event Name',
                                 style: GoogleFonts.urbanist(
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.w500))
@@ -134,7 +190,7 @@ class _eventdetailState extends State<eventdetail> {
                         const SizedBox(
                           height: 145,
                           child: Text(
-                            "Velit magna eu sunt eu laboris pariatur. Duis sunt exercitation occaecat irure duis consectetur. Tempor deserunt fugiat do veniam sit dolor non. Tempor consequat consequat non eu officia ut minim reprehenderit ea. Cillum nostrud eu nulla et amet. Esse cillum ipsum nulla reprehenderit ut ut occaecat ullamco cupidatat ut id id occaecat. Nostrud sint fugiat et incididunt adipisicing reprehenderit aliquip duis.",
+                            "DUMMY",
                             maxLines: 8,
                             overflow: TextOverflow.clip,
                           ),

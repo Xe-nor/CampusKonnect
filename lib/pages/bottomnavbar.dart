@@ -4,7 +4,7 @@ import 'package:campuskonnect/pages/create_event.dart';
 import 'package:campuskonnect/pages/dashboard2.dart';
 import 'package:campuskonnect/pages/profilepage.dart';
 import 'package:campuskonnect/pages/search.dart';
-
+import 'package:get/get.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 // import 'package:campuskonnect/pages/profilepage.dart';
 // import 'package:get/get.dart';
@@ -25,6 +25,7 @@ class _HomepageState extends State<Homepage> {
   ];
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic> args = Get.arguments;
     return Scaffold(
       body: pages[currentIndex],
       bottomNavigationBar: SnakeNavigationBar.color(

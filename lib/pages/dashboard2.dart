@@ -61,21 +61,21 @@ class _dashboardState extends State<dashboard> {
     });
   }
 
-  void _runFilter(String enteredKeyword) {
-    List<EventItem> results = [];
-    if (enteredKeyword.isEmpty) {
-      results = _eventItm;
-    } else {
-      results = _eventItm
-          .where((index) => index.eventName
-              .toLowerCase()
-              .contains(enteredKeyword.toLowerCase()))
-          .toList();
-    }
-    setState(() {
-      _found = results;
-    });
-  }
+  // void _runFilter(String enteredKeyword) {
+  //   List<EventItem> results = [];
+  //   if (enteredKeyword.isEmpty) {
+  //     results = _eventItm;
+  //   } else {
+  //     results = _eventItm
+  //         .where((index) => index.eventName
+  //             .toLowerCase()
+  //             .contains(enteredKeyword.toLowerCase()))
+  //         .toList();
+  //   }
+  //   setState(() {
+  //     _found = results;
+  //   });
+  // }
 
   @override
   void initState() {

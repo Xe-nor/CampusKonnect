@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../pages/eventdetail.dart';
+import '../pages/eventdetail2.dart';
 import '../utils/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -34,7 +34,13 @@ class EventItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(const eventdetail());
+        //Get.to(const eventdetail());
+        Get.to(const eventdetail(), arguments: {
+          'name': eventName,
+          'description': eventDescription,
+          'location': eventLocation,
+          'date': eventDate
+        });
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),

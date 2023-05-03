@@ -227,8 +227,11 @@ class _LoginpageState extends State<Loginpage> {
                 onPressed: () async {
                   //here sign in with google
                   await FirebaseServices().signInwithGoogle();
+
+
                   Get.to(() => const Homepage(),
                       arguments: {'username': _emailTextController.text},
+
                       transition: Transition.cupertinoDialog,
                       duration: const Duration(milliseconds: 1500));
                 },
@@ -248,7 +251,9 @@ class _LoginpageState extends State<Loginpage> {
             ),
             TextButton(
               onPressed: () {
-                Get.to(() => const Signupscreen(),
+
+                Get.to(() => const Signupscreen(), 
+
                     transition: Transition.cupertino,
                     duration: const Duration(milliseconds: 1500));
               },
