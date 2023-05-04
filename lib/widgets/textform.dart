@@ -46,6 +46,10 @@ Widget textform(
           // borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide.none,
         ),
+        focusedErrorBorder: const OutlineInputBorder(
+          // borderRadius: BorderRadius.circular(15),
+          borderSide: BorderSide.none,
+        ),
         errorBorder: const OutlineInputBorder(
           // borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide.none,
