@@ -24,7 +24,7 @@ class _EventCreateState extends State<EventCreate> {
       date = '',
       duration = '',
       branch = '',
-      registerLink = '',
+      registerLink = 'default',
       batch = '';
 
   void _saveItem() async {
@@ -34,7 +34,7 @@ class _EventCreateState extends State<EventCreate> {
       }
     }
     final url = Uri.https(
-        'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list4.json');
+        'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list6.json');
     final response = await http.post(url,
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
@@ -45,8 +45,7 @@ class _EventCreateState extends State<EventCreate> {
           'eventDuration': duration,
           'eventBranch': branch,
           'eventBatch': batch,
-          'registerLink': registerLink,
-          //'eventImage': "assets/images/event.jpg",
+          'eventRLink': registerLink,
           'eventName': evName,
         }));
     //print(response.body);
@@ -445,7 +444,7 @@ class _EventCreateState extends State<EventCreate> {
                     },
                   ),
                   TextFormField(
-                    keyboardType: TextInputType.url,
+                    keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       labelStyle: GoogleFonts.montserrat(
                         fontSize: 15,

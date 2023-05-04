@@ -17,11 +17,17 @@ class dashboard extends StatefulWidget {
 // ignore: camel_case_types
 class _dashboardState extends State<dashboard> {
   List<EventItem> _eventItm = [];
-  List<EventItem> _found = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadItems();
+  }
 
   void _loadItems() async {
     final url = Uri.https(
-        'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list3.json');
+        'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list6.json');
+    //campuskonnect-3e383-default-rtdb.firebaseio.com
     final response = await http.get(url);
 
     if (response.body == 'null') {
@@ -30,16 +36,21 @@ class _dashboardState extends State<dashboard> {
     final Map<String, dynamic> listData = json.decode(response.body);
     final List<EventItem> loadedItems = [];
     for (final item in listData.entries) {
-      // if (listData.entries != null) {
+      //if (listData.entries != 'null') {
       loadedItems.add(EventItem(
-          id: item.key,
-          //eventImage: "assets/images/event.jpg",
-          eventName: item.value['eventName'],
-          eventDescription: item.value['eventDescription'],
-          eventDate: item.value['eventDate'],
-          eventLocation: item.value['eventLocation'],
-          eventTime: item.value['eventTime']));
-      //}
+        id: item.key,
+
+        eventName: item.value['eventName'],
+        eventDescription: item.value['eventDescription'],
+        eventDate: item.value['eventDate'],
+        eventLocation: item.value['eventLocation'],
+        eventTime: item.value['eventTime'],
+        eventBatch: item.value['eventBatch'],
+       // eventRLink: item.value['eventRLink'],
+        eventBranch: item.value['eventBranch'],
+        eventDuration: item.value['eventDuration'],
+      ));
+      // }
     }
     setState(() {
       _eventItm = loadedItems;
@@ -61,29 +72,6 @@ class _dashboardState extends State<dashboard> {
     });
   }
 
-  // void _runFilter(String enteredKeyword) {
-  //   List<EventItem> results = [];
-  //   if (enteredKeyword.isEmpty) {
-  //     results = _eventItm;
-  //   } else {
-  //     results = _eventItm
-  //         .where((index) => index.eventName
-  //             .toLowerCase()
-  //             .contains(enteredKeyword.toLowerCase()))
-  //         .toList();
-  //   }
-  //   setState(() {
-  //     _found = results;
-  //   });
-  // }
-
-  @override
-  void initState() {
-    super.initState();
-    _loadItems();
-    _found = _eventItm;
-  }
-
   @override
   Widget build(BuildContext context) {
     Widget content = const Center(child: Text('No Events Available'));
@@ -95,14 +83,19 @@ class _dashboardState extends State<dashboard> {
             key: ValueKey(_eventItm[index].id),
             children: [
               EventItem(
-                  id: _eventItm[index].id, //DateTime.now().toString(),
-                  eventName: _eventItm[index].eventName,
-                  eventDescription: _eventItm[index].eventDescription,
-                  eventDate: _eventItm[index].eventDate,
-                  //eventImage: "assets/images/event.jpg",
+                id: _eventItm[index].id, //DateTime.now().toString(),
+                eventName: _eventItm[index].eventName,
+                eventDescription: _eventItm[index].eventDescription,
+                eventDate: _eventItm[index].eventDate,
+                //eventImage: "assets/images/event.jpg",
 
-                  eventLocation: _eventItm[index].eventLocation,
-                  eventTime: _eventItm[index].eventTime),
+                eventLocation: _eventItm[index].eventLocation,
+                eventTime: _eventItm[index].eventTime,
+                eventBatch: _eventItm[index].eventBatch,
+                eventBranch: _eventItm[index].eventBranch,
+                eventDuration: _eventItm[index].eventDuration,
+               // eventRLink: _eventItm[index].eventRLink
+              )
             ],
           );
         },

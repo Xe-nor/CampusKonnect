@@ -95,7 +95,7 @@ class _eventdetailState extends State<eventdetail> {
                         ),
                         Row(
                           children: [
-                            Text("MORE INFORMATION",
+                            Text('${args['link']}',
                                 style: GoogleFonts.urbanist(
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.w500))
@@ -105,18 +105,20 @@ class _eventdetailState extends State<eventdetail> {
                           height: 10,
                         ),
                         icondetailpair(
-                            detail: 'Total-Time', icon: FontAwesomeIcons.clock),
+                            detail: '${args['totaltime']}hr',
+                            icon: FontAwesomeIcons.clock),
                         const SizedBox(
                           height: 10,
                         ),
                         icondetailpair(
-                            detail: 'Branch',
+                            detail: '${args['branch']}',
                             icon: FontAwesomeIcons.bookOpenReader),
                         const SizedBox(
                           height: 10,
                         ),
                         icondetailpair(
-                            detail: 'Batch', icon: FontAwesomeIcons.user),
+                            detail: '${args['batch']}',
+                            icon: FontAwesomeIcons.user),
                         const SizedBox(
                           height: 15,
                         ),

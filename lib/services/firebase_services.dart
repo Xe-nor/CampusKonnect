@@ -20,7 +20,7 @@ class FirebaseServices {
       }
     } on FirebaseAuthException catch (e) {
       print(e.message);
-      throw e;
+      rethrow ; // (throw e ; previously))
     }
   }
 

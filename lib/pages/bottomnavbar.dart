@@ -25,7 +25,9 @@ class _HomepageState extends State<Homepage> {
   ];
   @override
   Widget build(BuildContext context) {
-    // final Map<String, dynamic> args = Get.arguments;
+
+    //final Map<String, dynamic> args = Get.arguments;
+
     return Scaffold(
       body: pages[currentIndex],
       bottomNavigationBar: SnakeNavigationBar.color(
