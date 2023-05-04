@@ -137,37 +137,54 @@ class _eventdetailState extends State<eventdetail> {
                           height: 160,
                           child: Text(
                             '${args['description']}',
+                            textAlign: TextAlign.start,
                             maxLines: 8,
                             overflow: TextOverflow.clip,
                           ),
                         ),
+
+                        // AppButtons(
+                        //     size: 60,
+                        //     color:
+                        //         const Color.fromARGB(255, 255, 255, 255),
+                        //     isIcon: true,
+                        //     icon: FontAwesomeIcons.heart,
+                        //     backgroundColor:
+                        //         const Color.fromARGB(87, 87, 76, 244),
+                        //     borderColor: Appcolors.buttoncolor),
+                        // const SizedBox(
+                        //   width: 15,
+                        // ),
                         Positioned(
                           bottom: 0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              AppButtons(
-                                  size: 60,
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  isIcon: true,
-                                  icon: FontAwesomeIcons.heart,
-                                  backgroundColor:
-                                      const Color.fromARGB(87, 87, 76, 244),
-                                  borderColor: Appcolors.buttoncolor),
-                              const SizedBox(
-                                width: 15,
+                          child: SizedBox(
+                            height: 50,
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Appcolors.buttoncolor,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  side:
+                                      BorderSide(color: Appcolors.buttoncolor),
+                                ),
                               ),
-                              ResponsiveButton(
-                                isResponsive: true,
-                                width: double.maxFinite,
+                              child: Text(
+                                "Register",
+                                style: GoogleFonts.urbanist(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                    color: Appcolors.lightprimary),
                               ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                            ],
+                            ),
                           ),
                         ),
+                        // ResponsiveButton(
+                        //   isResponsive: true,
+                        //   width: double.maxFinite,
+                        // ),
                       ],
                     ),
                   ),
@@ -216,6 +233,7 @@ class AppButtons extends StatelessWidget {
       child: isIcon == false
           ? Center(
               child: Text("Register",
+                  textAlign: TextAlign.center,
                   style: GoogleFonts.urbanist(
                       fontSize: 80, fontWeight: FontWeight.w700)))
           : Center(child: Icon(icon, color: color)),
@@ -246,7 +264,7 @@ class ResponsiveButton extends StatelessWidget {
           children: [
             isResponsive == true
                 ? Container(
-                    margin: const EdgeInsets.only(left: 100),
+                    margin: const EdgeInsets.only(left: 140),
                     child: Text(
                       "Register",
                       style: GoogleFonts.urbanist(
