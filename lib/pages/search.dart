@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:campuskonnect/pages/add_event.dart';
+// import 'package:campuskonnect/pages/add_event.dart';
 import 'package:campuskonnect/widgets/event_item.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -22,7 +22,7 @@ class _dashboardState extends State<search> {
 
   void _loadItems() async {
     final url = Uri.https(
-        'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list3.json');
+        'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list6.json');
     final response = await http.get(url);
     if (response.body == 'null') {
       return;
@@ -36,27 +36,21 @@ class _dashboardState extends State<search> {
           eventDescription: item.value['eventDescription'],
           eventDate: item.value['eventDate'],
           eventLocation: item.value['eventLocation'],
-          eventTime: item.value['eventTime']));
+          eventTime: item.value['eventTime'],
+          eventBatch: item.value['eventBatch'],
+          eventBranch: item.value['eventBranch'],
+          eventDuration: item.value['eventDuration'],
+          //eventRLink: item.value['eventRLink']
+          ));
     }
     setState(() {
       _eventItm = loadedItems;
     });
   }
 
-  void _addItem() async {
-    await Navigator.of(context).push<EventItem>(
-      MaterialPageRoute(
-        builder: (ctx) => const EventCreate(),
-      ),
-    );
-    _loadItems();
-  }
+  
 
-  void _removeItem(EventItem item) {
-    setState(() {
-      _eventItm.remove(item);
-    });
-  }
+ 
 
   void _runFilter(String enteredKeyword) {
     List<EventItem> results = [];
@@ -76,7 +70,7 @@ class _dashboardState extends State<search> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    
     super.initState();
     _loadItems();
     _found = _eventItm;
@@ -98,7 +92,12 @@ class _dashboardState extends State<search> {
                   eventDescription: _found[index].eventDescription,
                   eventDate: _found[index].eventDate,
                   eventLocation: _found[index].eventLocation,
-                  eventTime: _found[index].eventTime),
+                  eventTime: _found[index].eventTime,
+                  eventBatch: _found[index].eventBatch,
+                  eventBranch: _found[index].eventBranch,
+                  eventDuration: _found[index].eventDuration,
+                  //eventRLink: _found[index].eventRLink
+                  ),
             ],
           );
         },

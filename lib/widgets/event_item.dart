@@ -19,6 +19,10 @@ class EventItem extends StatelessWidget {
     required this.eventDate,
     required this.eventLocation,
     required this.eventTime,
+    required this.eventBatch,
+    required this.eventBranch,
+    required this.eventDuration,
+   // required this.eventRLink,
   }) : super(key: key);
 
   //final BuildContext context;
@@ -29,6 +33,10 @@ class EventItem extends StatelessWidget {
   final String eventDate;
   final String eventLocation;
   final String eventTime;
+  final String eventBatch;
+  final String eventBranch;
+  final String eventDuration;
+  //final String eventRLink;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +47,11 @@ class EventItem extends StatelessWidget {
           'name': eventName,
           'description': eventDescription,
           'location': eventLocation,
-          'date': eventDate
+          'date': eventDate,
+          'batch':eventBatch,
+          'branch':eventBranch,
+          'totaltime': eventDuration,
+         // 'link':eventRLink
         });
       },
       child: Padding(

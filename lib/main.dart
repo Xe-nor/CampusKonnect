@@ -2,7 +2,7 @@ import 'package:campuskonnect/pages/forgotPassword.dart';
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/create_event.dart';
-import 'package:campuskonnect/pages/eventdetail.dart';
+import 'package:campuskonnect/pages/eventdetail2.dart';
 import 'package:campuskonnect/pages/bottomnavbar.dart';
 import 'package:campuskonnect/pages/loginpage.dart';
 import 'package:campuskonnect/pages/profilepage.dart';
