@@ -99,6 +99,10 @@ class _EventCreateState extends State<EventCreate> {
                         // borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide.none,
                       ),
+                      errorBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
                       focusedBorder: const OutlineInputBorder(
                         // borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide.none,
@@ -147,6 +151,14 @@ class _EventCreateState extends State<EventCreate> {
                         // borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide.none,
                       ),
+                      focusedErrorBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      errorBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
                       focusedBorder: const OutlineInputBorder(
                         // borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide.none,
@@ -190,6 +202,14 @@ class _EventCreateState extends State<EventCreate> {
                       fillColor: Appcolors.secondary,
                       filled: true,
                       enabledBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedErrorBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      errorBorder: const OutlineInputBorder(
                         // borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide.none,
                       ),
@@ -241,6 +261,14 @@ class _EventCreateState extends State<EventCreate> {
                         // borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide.none,
                       ),
+                      focusedErrorBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      errorBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
                       focusedBorder: const OutlineInputBorder(
                         // borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide.none,
@@ -283,6 +311,14 @@ class _EventCreateState extends State<EventCreate> {
                       fillColor: Appcolors.secondary,
                       filled: true,
                       enabledBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedErrorBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      errorBorder: const OutlineInputBorder(
                         // borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide.none,
                       ),
@@ -332,6 +368,14 @@ class _EventCreateState extends State<EventCreate> {
                         // borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide.none,
                       ),
+                      focusedErrorBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      errorBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
                       focusedBorder: const OutlineInputBorder(
                         // borderRadius: BorderRadius.circular(15),
                         borderSide: BorderSide.none,
@@ -368,6 +412,14 @@ class _EventCreateState extends State<EventCreate> {
                       labelText: "Start Time",
                       hintStyle: GoogleFonts.montserrat(
                         fontSize: 14,
+                      ),
+                      focusedErrorBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
+                      ),
+                      errorBorder: const OutlineInputBorder(
+                        // borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none,
                       ),
                       hintText: "In 24hr format (i.e 1600)",
                       fillColor: Appcolors.secondary,
