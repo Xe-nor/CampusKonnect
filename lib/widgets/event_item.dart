@@ -22,7 +22,7 @@ class EventItem extends StatelessWidget {
     required this.eventBatch,
     required this.eventBranch,
     required this.eventDuration,
-   // required this.eventRLink,
+    required this.eventRLink,
   }) : super(key: key);
 
   //final BuildContext context;
@@ -36,7 +36,7 @@ class EventItem extends StatelessWidget {
   final String eventBatch;
   final String eventBranch;
   final String eventDuration;
-  //final String eventRLink;
+  final String eventRLink;
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +48,10 @@ class EventItem extends StatelessWidget {
           'description': eventDescription,
           'location': eventLocation,
           'date': eventDate,
-          'batch':eventBatch,
-          'branch':eventBranch,
+          'batch': eventBatch,
+          'branch': eventBranch,
           'totaltime': eventDuration,
-         // 'link':eventRLink
+          'link': eventRLink
         });
       },
       child: Padding(

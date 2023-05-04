@@ -55,6 +55,8 @@ dependencies:
   firebase_database: ^10.1.1
   flutter_launcher_icons: ^0.13.1
   date_time_picker: ^2.1.0
+  enhanced_url_launcher: ^6.1.11
+  flutter_launcher_plus: ^0.0.6
 
 flutter_launcher_icons:
   android: true

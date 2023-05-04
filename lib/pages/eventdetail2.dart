@@ -1,7 +1,7 @@
 import 'package:campuskonnect/utils/theme.dart';
-
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/bottomnavbar.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,6 +10,7 @@ import 'package:campuskonnect/pages/add_event.dart';
 import 'package:campuskonnect/widgets/event_item.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_launcher_plus/flutter_launcher_plus.dart';
 
 // ignore: camel_case_types
 class eventdetail extends StatefulWidget {
@@ -21,9 +22,16 @@ class eventdetail extends StatefulWidget {
 
 // ignore: camel_case_types
 class _eventdetailState extends State<eventdetail> {
+  static const _channel = MethodChannel("flutter_launcher_plus");
+  Future<void> launchUrl(String websiteUrl) async {
+    await _channel
+        .invokeMethod('launchUrl', <String, String>{'website_url': websiteUrl});
+  }
+
   @override
   Widget build(BuildContext context) {
     final Map<String, dynamic> args = Get.arguments;
+
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
@@ -95,7 +103,7 @@ class _eventdetailState extends State<eventdetail> {
                         ),
                         Row(
                           children: [
-                            Text('${args['link']}',
+                            Text("More Information",
                                 style: GoogleFonts.urbanist(
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.w500))
@@ -124,7 +132,7 @@ class _eventdetailState extends State<eventdetail> {
                         ),
                         Row(
                           children: [
-                            Text('DESCRIPTION',
+                            Text('Description',
                                 style: GoogleFonts.urbanist(
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.w500))
@@ -143,41 +151,28 @@ class _eventdetailState extends State<eventdetail> {
                           ),
                         ),
 
-                        // AppButtons(
-                        //     size: 60,
-                        //     color:
-                        //         const Color.fromARGB(255, 255, 255, 255),
-                        //     isIcon: true,
-                        //     icon: FontAwesomeIcons.heart,
-                        //     backgroundColor:
-                        //         const Color.fromARGB(87, 87, 76, 244),
-                        //     borderColor: Appcolors.buttoncolor),
-                        // const SizedBox(
-                        //   width: 15,
-                        // ),
-                        Positioned(
-                          bottom: 0,
-                          child: SizedBox(
-                            height: 50,
-                            width: double.infinity,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Appcolors.buttoncolor,
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                  side:
-                                      BorderSide(color: Appcolors.buttoncolor),
-                                ),
+                        SizedBox(
+                          height: 50,
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              Uri url = Uri.parse('${args['link']}');
+                              launchUrl('${args['link']}');
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Appcolors.buttoncolor,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                side: BorderSide(color: Appcolors.buttoncolor),
                               ),
-                              child: Text(
-                                "Register",
-                                style: GoogleFonts.urbanist(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16,
-                                    color: Appcolors.lightprimary),
-                              ),
+                            ),
+                            child: Text(
+                              "Register",
+                              style: GoogleFonts.urbanist(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                  color: Appcolors.lightprimary),
                             ),
                           ),
                         ),
@@ -198,86 +193,86 @@ class _eventdetailState extends State<eventdetail> {
   }
 }
 
-class AppButtons extends StatelessWidget {
-  final Color color;
-  String? text;
-  IconData? icon;
-  final Color backgroundColor;
-  double size;
-  final Color borderColor;
-  bool? isIcon;
+// class AppButtons extends StatelessWidget {
+//   final Color color;
+//   String? text;
+//   IconData? icon;
+//   final Color backgroundColor;
+//   double size;
+//   final Color borderColor;
+//   bool? isIcon;
 
-  AppButtons(
-      {Key? key,
-      this.isIcon = false,
-      this.text = "Hi",
-      this.icon,
-      required this.size,
-      required this.color,
-      required this.backgroundColor,
-      required this.borderColor})
-      : super(key: key);
+//   AppButtons(
+//       {Key? key,
+//       this.isIcon = false,
+//       this.text = "Hi",
+//       this.icon,
+//       required this.size,
+//       required this.color,
+//       required this.backgroundColor,
+//       required this.borderColor})
+//       : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-          border: Border.all(
-            color: borderColor,
-            width: 1.0,
-          ),
-          borderRadius: BorderRadius.circular(15),
-          color: backgroundColor),
-      child: isIcon == false
-          ? Center(
-              child: Text("Register",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.urbanist(
-                      fontSize: 80, fontWeight: FontWeight.w700)))
-          : Center(child: Icon(icon, color: color)),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: size,
+//       height: size,
+//       decoration: BoxDecoration(
+//           border: Border.all(
+//             color: borderColor,
+//             width: 1.0,
+//           ),
+//           borderRadius: BorderRadius.circular(15),
+//           color: backgroundColor),
+//       child: isIcon == false
+//           ? Center(
+//               child: Text("Register",
+//                   textAlign: TextAlign.center,
+//                   style: GoogleFonts.urbanist(
+//                       fontSize: 80, fontWeight: FontWeight.w700)))
+//           : Center(child: Icon(icon, color: color)),
+//     );
+//   }
+// }
 
-class ResponsiveButton extends StatelessWidget {
-  bool? isResponsive;
-  double? width;
-  ResponsiveButton({Key? key, this.width = 120, this.isResponsive = false})
-      : super(key: key);
+// class ResponsiveButton extends StatelessWidget {
+//   bool? isResponsive;
+//   double? width;
+//   ResponsiveButton({Key? key, this.width = 120, this.isResponsive = false})
+//       : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Flexible(
-      child: Container(
-        width: isResponsive == true ? double.maxFinite : width,
-        height: 60,
-        decoration: BoxDecoration(
-          color: Appcolors.buttoncolor,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Row(
-          mainAxisAlignment: isResponsive == true
-              ? MainAxisAlignment.spaceBetween
-              : MainAxisAlignment.center,
-          children: [
-            isResponsive == true
-                ? Container(
-                    margin: const EdgeInsets.only(left: 140),
-                    child: Text(
-                      "Register",
-                      style: GoogleFonts.urbanist(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          color: Appcolors.lightprimary),
-                    ),
-                  )
-                : Container(),
-            //sImage.asset("img/button-one.png"),/
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Flexible(
+//       child: Container(
+//         width: isResponsive == true ? double.maxFinite : width,
+//         height: 60,
+//         decoration: BoxDecoration(
+//           color: Appcolors.buttoncolor,
+//           borderRadius: BorderRadius.circular(10),
+//         ),
+//         child: Row(
+//           mainAxisAlignment: isResponsive == true
+//               ? MainAxisAlignment.spaceBetween
+//               : MainAxisAlignment.center,
+//           children: [
+//             isResponsive == true
+//                 ? Container(
+//                     margin: const EdgeInsets.only(left: 140),
+//                     child: Text(
+//                       "Register",
+//                       style: GoogleFonts.urbanist(
+//                           fontSize: 20,
+//                           fontWeight: FontWeight.w500,
+//                           color: Appcolors.lightprimary),
+//                     ),
+//                   )
+//                 : Container(),
+//             //sImage.asset("img/button-one.png"),/
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

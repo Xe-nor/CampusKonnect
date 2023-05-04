@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously, unused_local_variable
 
-import 'package:campuskonnect/widgets/textform.dart';
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,14 +16,14 @@ class EventCreate extends StatefulWidget {
 
 class _EventCreateState extends State<EventCreate> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String evName = '',
+  String? evName = '',
       location = '',
       description = '',
       time = '',
       date = '',
       duration = '',
       branch = '',
-      registerLink = 'default',
+      registerLink = '',
       batch = '';
 
   void _saveItem() async {

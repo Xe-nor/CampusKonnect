@@ -27,7 +27,7 @@ class _dashboardState extends State<dashboard> {
   void _loadItems() async {
     final url = Uri.https(
         'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list6.json');
-    //campuskonnect-3e383-default-rtdb.firebaseio.com
+   
     final response = await http.get(url);
 
     if (response.body == 'null') {
@@ -36,17 +36,17 @@ class _dashboardState extends State<dashboard> {
     final Map<String, dynamic> listData = json.decode(response.body);
     final List<EventItem> loadedItems = [];
     for (final item in listData.entries) {
-      //if (listData.entries != 'null') {
+     
+     
       loadedItems.add(EventItem(
         id: item.key,
-
         eventName: item.value['eventName'],
         eventDescription: item.value['eventDescription'],
         eventDate: item.value['eventDate'],
         eventLocation: item.value['eventLocation'],
         eventTime: item.value['eventTime'],
         eventBatch: item.value['eventBatch'],
-       // eventRLink: item.value['eventRLink'],
+        eventRLink: item.value['eventRLink'],
         eventBranch: item.value['eventBranch'],
         eventDuration: item.value['eventDuration'],
       ));
@@ -88,13 +88,12 @@ class _dashboardState extends State<dashboard> {
                 eventDescription: _eventItm[index].eventDescription,
                 eventDate: _eventItm[index].eventDate,
                 //eventImage: "assets/images/event.jpg",
-
                 eventLocation: _eventItm[index].eventLocation,
                 eventTime: _eventItm[index].eventTime,
                 eventBatch: _eventItm[index].eventBatch,
                 eventBranch: _eventItm[index].eventBranch,
                 eventDuration: _eventItm[index].eventDuration,
-               // eventRLink: _eventItm[index].eventRLink
+                eventRLink: _eventItm[index].eventRLink,
               )
             ],
           );

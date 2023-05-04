@@ -23,14 +23,19 @@ class _dashboardState extends State<search> {
   void _loadItems() async {
     final url = Uri.https(
         'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list6.json');
+
     final response = await http.get(url);
-    if (response.body == 'null') {
+
+    if (response.body == null || response.body.isEmpty) {
+      // add a null check here
       return;
     }
     final Map<String, dynamic> listData = json.decode(response.body);
+    print('Decoded JSON data: $listData');
     final List<EventItem> loadedItems = [];
     for (final item in listData.entries) {
-      loadedItems.add(EventItem(
+      loadedItems.add(
+        EventItem(
           id: item.key,
           eventName: item.value['eventName'],
           eventDescription: item.value['eventDescription'],
@@ -40,17 +45,14 @@ class _dashboardState extends State<search> {
           eventBatch: item.value['eventBatch'],
           eventBranch: item.value['eventBranch'],
           eventDuration: item.value['eventDuration'],
-          //eventRLink: item.value['eventRLink']
-          ));
+          eventRLink: item.value['eventRLink'],
+        ),
+      );
     }
     setState(() {
       _eventItm = loadedItems;
     });
   }
-
-  
-
- 
 
   void _runFilter(String enteredKeyword) {
     List<EventItem> results = [];
@@ -70,7 +72,6 @@ class _dashboardState extends State<search> {
 
   @override
   void initState() {
-    
     super.initState();
     _loadItems();
     _found = _eventItm;
@@ -96,8 +97,7 @@ class _dashboardState extends State<search> {
                   eventBatch: _found[index].eventBatch,
                   eventBranch: _found[index].eventBranch,
                   eventDuration: _found[index].eventDuration,
-                  //eventRLink: _found[index].eventRLink
-                  ),
+                  eventRLink: _found[index].eventRLink),
             ],
           );
         },
