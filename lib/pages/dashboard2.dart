@@ -27,7 +27,7 @@ class _dashboardState extends State<dashboard> {
   void _loadItems() async {
     final url = Uri.https(
         'campuskonnect-3e383-default-rtdb.firebaseio.com', 'event-list6.json');
-   
+
     final response = await http.get(url);
 
     if (response.body == 'null') {
@@ -36,8 +36,6 @@ class _dashboardState extends State<dashboard> {
     final Map<String, dynamic> listData = json.decode(response.body);
     final List<EventItem> loadedItems = [];
     for (final item in listData.entries) {
-     
-     
       loadedItems.add(EventItem(
         id: item.key,
         eventName: item.value['eventName'],
