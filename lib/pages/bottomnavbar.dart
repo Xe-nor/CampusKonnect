@@ -2,7 +2,7 @@ import 'package:campuskonnect/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/create_event.dart';
 import 'package:campuskonnect/pages/dashboard2.dart';
-import 'package:campuskonnect/pages/profilepage.dart';
+import 'package:campuskonnect/pages/profilepage.dart';   //change here
 import 'package:campuskonnect/pages/search.dart';
 import 'package:get/get.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
@@ -18,14 +18,14 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   int currentIndex = 0;
+  String? emailAddress;
   List pages = const [
     dashboard(),
-    search(),
-    profile(),
+     search(),
+    profile() ,
   ];
   @override
   Widget build(BuildContext context) {
-
     //final Map<String, dynamic> args = Get.arguments;
 
     return Scaffold(

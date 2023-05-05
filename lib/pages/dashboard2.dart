@@ -46,7 +46,7 @@ class _dashboardState extends State<dashboard> {
         eventLocation: item.value['eventLocation'],
         eventTime: item.value['eventTime'],
         eventBatch: item.value['eventBatch'],
-       // eventRLink: item.value['eventRLink'],
+       eventRLink: item.value['eventRLink'],
         eventBranch: item.value['eventBranch'],
         eventDuration: item.value['eventDuration'],
       ));
@@ -94,7 +94,7 @@ class _dashboardState extends State<dashboard> {
                 eventBatch: _eventItm[index].eventBatch,
                 eventBranch: _eventItm[index].eventBranch,
                 eventDuration: _eventItm[index].eventDuration,
-               // eventRLink: _eventItm[index].eventRLink
+               eventRLink: _eventItm[index].eventRLink
               )
             ],
           );

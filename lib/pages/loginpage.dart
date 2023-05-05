@@ -7,6 +7,7 @@ import 'package:campuskonnect/utils/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:campuskonnect/pages/signup.dart';
+import 'package:campuskonnect/pages/profilepage.dart';
 import 'package:campuskonnect/utils/routes.dart';
 import 'package:campuskonnect/widgets/textform.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -31,6 +32,7 @@ class _LoginpageState extends State<Loginpage> {
   bool changebutton1 = false;
   bool changebutton2 = false;
   final formkey = GlobalKey<FormState>();
+  
 
   movetohome(BuildContext context) async {
     if (formkey.currentState!.validate()) {
@@ -184,6 +186,13 @@ class _LoginpageState extends State<Loginpage> {
 
                     Get.snackbar('Warning', 'Email or Password is in-valid.');
                   });
+                  String? email2=_emailTextController.text;
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) =>
+                  //           profile(email2)),
+                  // );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Appcolors.buttoncolor,
@@ -228,10 +237,8 @@ class _LoginpageState extends State<Loginpage> {
                   //here sign in with google
                   await FirebaseServices().signInwithGoogle();
 
-
                   Get.to(() => const Homepage(),
                       arguments: {'username': _emailTextController.text},
-
                       transition: Transition.cupertinoDialog,
                       duration: const Duration(milliseconds: 1500));
                 },
@@ -251,9 +258,7 @@ class _LoginpageState extends State<Loginpage> {
             ),
             TextButton(
               onPressed: () {
-
-                Get.to(() => const Signupscreen(), 
-
+                Get.to(() => const Signupscreen(),
                     transition: Transition.cupertino,
                     duration: const Duration(milliseconds: 1500));
               },

@@ -40,7 +40,7 @@ class _dashboardState extends State<search> {
           eventBatch: item.value['eventBatch'],
           eventBranch: item.value['eventBranch'],
           eventDuration: item.value['eventDuration'],
-          //eventRLink: item.value['eventRLink']
+          eventRLink: item.value['eventRLink']
           ));
     }
     setState(() {
@@ -96,7 +96,7 @@ class _dashboardState extends State<search> {
                   eventBatch: _found[index].eventBatch,
                   eventBranch: _found[index].eventBranch,
                   eventDuration: _found[index].eventDuration,
-                  //eventRLink: _found[index].eventRLink
+                  eventRLink: _found[index].eventRLink
                   ),
             ],
           );

@@ -17,14 +17,14 @@ class EventCreate extends StatefulWidget {
 
 class _EventCreateState extends State<EventCreate> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String evName = '',
+  String? evName = '',
       location = '',
       description = '',
       time = '',
       date = '',
       duration = '',
       branch = '',
-      registerLink = 'default',
+      registerLink = '',
       batch = '';
 
   void _saveItem() async {
@@ -444,7 +444,7 @@ class _EventCreateState extends State<EventCreate> {
                     },
                   ),
                   TextFormField(
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.url,
                     decoration: InputDecoration(
                       labelStyle: GoogleFonts.montserrat(
                         fontSize: 15,

@@ -1,4 +1,12 @@
-// ignore_for_file: unused_import, camel_case_types
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../pages/eventdetail2.dart';
+import '../utils/theme.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'icondetailpair.dart';
+
+
 
 import 'package:campuskonnect/utils/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,20 +16,36 @@ import 'package:campuskonnect/pages/loginpage.dart';
 import 'package:campuskonnect/services/firebase_services.dart';
 import 'package:get/get.dart';
 
+
+
 import 'package:campuskonnect/pages/add_event.dart';
 import 'package:campuskonnect/widgets/event_item.dart';
 import 'package:campuskonnect/widgets/user_item.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class profile extends StatefulWidget {
-  const profile({super.key});
 
-  @override
-  State<profile> createState() => _profileState();
-}
+//
 
-class _profileState extends State<profile> {
+class UserItem extends StatelessWidget {
+  const UserItem({
+    Key? key,
+    //required this.context,
+    required this.id,
+    //required this.eventImage,
+    required this.userName,
+    required this.userEmail,
+    required this.userPhone,
+    
+    
+  }) : super(key: key);
+
+  //final BuildContext context;
+  final String id;
+  //final String eventImage= "assets/images/event.jpg";
+  final String userName;
+  final String userEmail;
+  final String userPhone;
   
   
   @override
@@ -47,41 +71,41 @@ class _profileState extends State<profile> {
             child: Column(
               children: [
                 //!-----Profile pic
-                // SizedBox(
-                //   width: 120,
-                //   height: 120,
-                //   child: CircleAvatar(
-                //     backgroundImage:
-                //         const AssetImage("assets/images/defaultpic.jpg"),
-                //     child: Container(
-                //       decoration: BoxDecoration(
-                //         border:
-                //             Border.all(color: Appcolors.buttoncolor, width: 2),
-                //         shape: BoxShape.circle,
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                SizedBox(
+                  width: 120,
+                  height: 120,
+                  child: CircleAvatar(
+                    backgroundImage:
+                        const AssetImage("assets/images/defaultpic.jpg"),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: Appcolors.buttoncolor, width: 2),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                ),
                 const SizedBox(
                   height: 10,
                 ),
                 //!-----Name
-                // Text(
-                //   "Nameabc",
-                //   style: Theme.of(context).textTheme.headlineMedium,
-                // ),
+                Text(
+                      userName,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
                 //!-----Email
-                // Text(
-                //   "email@abc",
-                //   style: Theme.of(context).textTheme.titleMedium,
-                // ),
+                Text(
+                  userEmail,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
                 const SizedBox(
                   height: 10,
                 ),
-                // const Divider(
-                //   thickness: 1,
-                //   color: Appcolors.buttoncolor,
-                // ),
+                const Divider(
+                  thickness: 1,
+                  color: Appcolors.buttoncolor,
+                ),
                 const SizedBox(
                   height: 10,
                 ),

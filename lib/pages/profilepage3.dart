@@ -14,6 +14,9 @@ import 'package:campuskonnect/widgets/user_item.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
+
 class profile extends StatefulWidget {
   const profile({super.key});
 
@@ -22,13 +25,17 @@ class profile extends StatefulWidget {
 }
 
 class _profileState extends State<profile> {
-  
-  
-  @override
-  Widget build(BuildContext context) {
+  Query dbRef = FirebaseDatabase.instance.ref().child('users');
+  DatabaseReference reference = FirebaseDatabase.instance.ref().child('users');
+
+  Widget listItem({required Map user}) {
     // ignore: unused_local_variable
     int currentIndex = 2;
-    return SafeArea(
+    return SizedBox(
+    height: 700,
+      
+
+    child: SafeArea(
       child: Scaffold(
         //!!DO NOT UNCOMMENT (TOGGLE FOR THEMEMODE)
         // appBar: AppBar(
@@ -47,41 +54,41 @@ class _profileState extends State<profile> {
             child: Column(
               children: [
                 //!-----Profile pic
-                // SizedBox(
-                //   width: 120,
-                //   height: 120,
-                //   child: CircleAvatar(
-                //     backgroundImage:
-                //         const AssetImage("assets/images/defaultpic.jpg"),
-                //     child: Container(
-                //       decoration: BoxDecoration(
-                //         border:
-                //             Border.all(color: Appcolors.buttoncolor, width: 2),
-                //         shape: BoxShape.circle,
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                SizedBox(
+                  width: 120,
+                  height: 120,
+                  child: CircleAvatar(
+                    backgroundImage:
+                        const AssetImage("assets/images/defaultpic.jpg"),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: Appcolors.buttoncolor, width: 2),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                ),
                 const SizedBox(
                   height: 10,
                 ),
                 //!-----Name
-                // Text(
-                //   "Nameabc",
-                //   style: Theme.of(context).textTheme.headlineMedium,
-                // ),
+                Text(
+                  user['username'],
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
                 //!-----Email
-                // Text(
-                //   "email@abc",
-                //   style: Theme.of(context).textTheme.titleMedium,
-                // ),
+                Text(
+                  user['email'],
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
                 const SizedBox(
                   height: 10,
                 ),
-                // const Divider(
-                //   thickness: 1,
-                //   color: Appcolors.buttoncolor,
-                // ),
+                const Divider(
+                  thickness: 1,
+                  color: Appcolors.buttoncolor,
+                ),
                 const SizedBox(
                   height: 10,
                 ),
@@ -175,6 +182,24 @@ class _profileState extends State<profile> {
             ),
           ),
         ),
+      ),
+   ));
+
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: FirebaseAnimatedList(
+        query: dbRef,
+        itemBuilder: (BuildContext context, DataSnapshot snapshot,
+            Animation<double> animation, int index) {
+          Map user = snapshot.value as Map;
+          user['key'] = snapshot.key;
+
+          return listItem(user: user);
+        },
       ),
     );
   }

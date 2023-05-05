@@ -95,7 +95,7 @@ class _eventdetailState extends State<eventdetail> {
                         ),
                         Row(
                           children: [
-                            Text('${args['link']}',
+                            Text('MORE INFORMATION', //'${args['link']}',
                                 style: GoogleFonts.urbanist(
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.w500))
